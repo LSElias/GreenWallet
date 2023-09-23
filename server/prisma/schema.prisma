@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Billetera{
+  idBilletera Int       @id @default(autoincrement())
+  idUsuario   Int       @unique
+  disponibles Int       
+  canjeadas   Int
+  total       Int
+  usuario     Usuario   @relation(fields: [idUsuario],references: [idUsuario])
+}
+
+model Canjeo{
+  idCanjeo  Int  @id @default(autoincrement())
+  idUsuario Int
+  idCentro  Int
+  fecha     DateTime @default(now())
+  fotal     Int
+  usuario   Usuario @relation(fields: [idUsuario],references: [idUsuario])
+  centro    Centro @relation(fields: [idCentro],references: [idCentro])
+  canjeoDet CanjeoDet?
+}
+
+model CanjeoDet{
+  @@id([idCanjeo,idMaterial])
+  idCanjeo    Int @unique
+  idMaterial  Int @unique
+  canjeo      Canjeo @relation(fields: [idCanjeo],references: [idCanjeo])
+  material    Material @relation(fields: [idMaterial],references: [idMaterial])
+  cantidad    Int
+}
+
+model CategoriaMaterial{
+  idCategoriaM Int @id @default(autoincrement())
+  nombre      String   @db.VarChar(50)
+  descripcion String   @db.VarChar(150)
+  material    Material[]
+}
+
+model CategoriaRecom{
+  idCategoria Int      @id @default(autoincrement())
+  nombre      String   @db.VarChar(50)
+  descripcion String   @db.VarChar(150)
+  recompensas Recompensa[]
+}
+
+model Centro{
+  idCentro      Int   @id @default(autoincrement())
+  idAdmin       Int   
+  idDireccion   Int
+  administrador Usuario @relation(fields: [idAdmin],references: [idUsuario])
+  nombre        String  @db.VarChar(250)
+  direccion     Direccion @relation(fields: [idDireccion],references: [idDireccion])  
+  telefono      String    @db.Char(8)   
+  horario       Horario[]
+  materiales    Material[]
+  canjeo        Canjeo[]
+}
+
+
+model Cupon{
+  idCupon         Int         @id @default(autoincrement())
+  idUsuario       Int
+  idRecompensa    Int
+  idEstado        Int
+  estado          Estado      @relation(fields: [idEstado],references: [idEstado])
+  usuario         Usuario     @relation(fields: [idUsuario],references: [idUsuario])
+  recompensa      Recompensa  @relation(fields: [idRecompensa],references: [idRecompensas])
+  fechaAdquision  DateTime    @default(now())
+  fechaExpiracion DateTime
+  QRCODE          Bytes
+}
+
+model Direccion{
+  idDireccion Int     @id @default(autoincrement())
+  provincia   String  
+  canton      String  
+  distrito    String  
+  senas       String  
+  Usuario     Usuario[]
+  Centros     Centro[]
+}
+
+model Estado{
+  idEstado Int @id @default(autoincrement())
+  nombre  String
+  cupon   Cupon[]
+}
+
+model Horario{
+  idHorario   Int @id @default(autoincrement())
+  idCentro    Int
+  centro      Centro @relation(fields: [idCentro],references: [idCentro])
+  dia         String  
+  horaInicio  Decimal @db.Decimal(4,2)
+  horaFin  Decimal @db.Decimal(4,2)
+}
+
+model Material{
+  idMaterial    Int  @id @default(autoincrement())
+  nombre        String   @db.VarChar(50)
+  descripcion   String   @db.VarChar(150)
+  imagen        String   @db.VarChar(250)
+  idUnidad      Int
+  idCategoria   Int
+  color         String
+  valor         Int
+  unidadMedida  UnidadMedida  @relation(fields: [idUnidad],references: [idUnidad])
+  categoriaM    CategoriaMaterial @relation(fields: [idCategoria],references: [idCategoriaM])
+  centros       Centro[]
+  canjeoDet CanjeoDet?
+}
+
+model Recompensa{
+  idRecompensas Int            @id @default(autoincrement())
+  idCategoria   Int 
+  categoria     CategoriaRecom @relation(fields: [idCategoria],references: [idCategoria])
+  nombre        String         @db.VarChar(150)
+  descripcion   String         @db.VarChar(150)
+  foto          String         @db.VarChar(350)
+  valor         Int
+  cantidad      Int
+  estado        Boolean        @default(true)
+  cupones       Cupon[]
+}
+
+model Rol{
+  idRol   Int     @id @default(autoincrement())
+  nombre  String  @db.VarChar(50)
+  usuario  Usuario[]
+}
+
+model UnidadMedida{
+  idUnidad   Int     @id @default(autoincrement())
+  nombre  String  @db.VarChar(50)
+  usuario  Material[]
+}
+
+
+model Usuario {
+  idUsuario   Int     @id @default(autoincrement())
+  idRol       Int
+  nombre      String  @db.VarChar(50)
+  apellido1   String  @db.VarChar(50)
+  apellido2   String  @db.VarChar(50)
+  correo      String  @db.VarChar(250) @unique
+  contrasena  String  @db.VarChar(250) 
+  cedula      String  @db.Char(9)
+  telefono    String  @db.Char(8)
+  rol         Rol     @relation(fields: [idRol],references: [idRol])
+  direccion   Direccion[]
+  billetera   Billetera?
+  cupones     Cupon[]
+  centros     Centro[]
+  canjeo        Canjeo[]
+} 
+
+
