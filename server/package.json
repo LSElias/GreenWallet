@@ -4,11 +4,13 @@
   "description": "CRUD API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
   },
   "author": "Elias Rodríguez & Tylinn Gonzalez",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.6.5",
     "bcrypt": "^5.1.1",
     "chalk": "^5.3.0",
     "cors": "^2.8.5",
@@ -18,9 +20,14 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "passport-jwt": "^4.0.1",
-    "prisma": "^5.3.1"
+    "prisma": "^5.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@prisma/client": "^5.3.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
