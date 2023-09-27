@@ -3,7 +3,7 @@ export const unidadmedida = [
     {
         nombre: "Kilogramo",
     },
-    //Plasticos: Botellas y Fibra Textil
+    //Plasticos
     {
         nombre: "Unidad",
     },

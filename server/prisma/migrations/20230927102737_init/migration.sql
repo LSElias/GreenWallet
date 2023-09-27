@@ -16,7 +16,7 @@ CREATE TABLE `Canjeo` (
     `idUsuario` INTEGER NOT NULL,
     `idCentro` INTEGER NOT NULL,
     `fecha` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `fotal` INTEGER NOT NULL,
+    `total` INTEGER NOT NULL,
 
     PRIMARY KEY (`idCanjeo`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -1,16 +1,22 @@
 export const categoriamaterial = [
+    //Reciclado y Norma
+    //Azul
     {
         nombre: "Papel",
-        descripcion: ""
     },
+    //Botellas y Carton
+    //Amarillo
     {
         nombre: "Plástico",
     },
+    //Color y Transpa
+    //Verde
     {
         nombre: "Vidrio",
     },
-    //Cartón: Cartón corrugado y Cartón cartulina 
+    //Algodón, Lana, Seda
+    //Morado
     {
-        nombre: "Cartón",
+        nombre: "Fibras Textil",
     },
 ];

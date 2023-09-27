@@ -6,12 +6,10 @@ export const categoriarecom = [
     //Parques nacionales
     {
         nombre: "Turismo nacional",
-
     },
     //Elementos de limpieza
     {
         nombre: "Hogar",
-
     },
 
 ];

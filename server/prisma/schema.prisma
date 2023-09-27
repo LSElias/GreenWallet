@@ -24,7 +24,7 @@ model Canjeo{
   idUsuario Int
   idCentro  Int
   fecha     DateTime @default(now())
-  fotal     Int
+  total     Int
   usuario   Usuario @relation(fields: [idUsuario],references: [idUsuario])
   centro    Centro @relation(fields: [idCentro],references: [idCentro])
   canjeoDet CanjeoDet?
