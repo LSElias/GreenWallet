@@ -1,6 +1,7 @@
 export const categoriamaterial = [
     {
         nombre: "Papel",
+        descripcion: ""
     },
     {
         nombre: "Plástico",
@@ -9,8 +10,7 @@ export const categoriamaterial = [
         nombre: "Vidrio",
     },
     //Cartón: Cartón corrugado y Cartón cartulina 
-    //Pilas y baterias: Alcalinas y Litio
     {
-        nombre: "Pilas y baterías",
+        nombre: "Cartón",
     },
 ];

@@ -1,9 +1,9 @@
 export const unidadmedida = [
-   //Vidrios y Papel
+   //Vidrios, Papel, y Carton
     {
         nombre: "Kilogramo",
     },
-    //Plasticos: Botellas y Fibra Textil, y Pilas + Baterias
+    //Plasticos: Botellas y Fibra Textil
     {
         nombre: "Unidad",
     },

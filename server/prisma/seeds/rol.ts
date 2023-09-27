@@ -1,11 +1,11 @@
 export const rol = [
     //Administrador General
     {
-        nombre: "Administrador1",
+        nombre: "Administrador",
     },
     //Administrador de centro 
     {
-        nombre: "Administrador2",
+        nombre: "AdministradorCentro",
     },
     {
         nombre: "Cliente",

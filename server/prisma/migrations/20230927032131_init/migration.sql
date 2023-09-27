@@ -36,7 +36,6 @@ CREATE TABLE `CanjeoDet` (
 CREATE TABLE `CategoriaMaterial` (
     `idCategoriaM` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(50) NOT NULL,
-    `descripcion` VARCHAR(150) NOT NULL,
 
     PRIMARY KEY (`idCategoriaM`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -45,7 +44,6 @@ CREATE TABLE `CategoriaMaterial` (
 CREATE TABLE `CategoriaRecom` (
     `idCategoria` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(50) NOT NULL,
-    `descripcion` VARCHAR(150) NOT NULL,
 
     PRIMARY KEY (`idCategoria`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -184,6 +182,12 @@ CREATE TABLE `_DireccionToUsuario` (
 
 -- AddForeignKey
 ALTER TABLE `Billetera` ADD CONSTRAINT `Billetera_idUsuario_fkey` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Canjeo` ADD CONSTRAINT `Canjeo_idUsuario_fkey` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Canjeo` ADD CONSTRAINT `Canjeo_idCentro_fkey` FOREIGN KEY (`idCentro`) REFERENCES `Centro`(`idCentro`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `CanjeoDet` ADD CONSTRAINT `CanjeoDet_idCanjeo_fkey` FOREIGN KEY (`idCanjeo`) REFERENCES `Canjeo`(`idCanjeo`) ON DELETE RESTRICT ON UPDATE CASCADE;

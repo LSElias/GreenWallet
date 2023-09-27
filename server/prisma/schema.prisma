@@ -42,14 +42,12 @@ model CanjeoDet{
 model CategoriaMaterial{
   idCategoriaM Int @id @default(autoincrement())
   nombre      String   @db.VarChar(50)
-  descripcion String   @db.VarChar(150)
   material    Material[]
 }
 
 model CategoriaRecom{
   idCategoria Int      @id @default(autoincrement())
   nombre      String   @db.VarChar(50)
-  descripcion String   @db.VarChar(150)
   recompensas Recompensa[]
 }
 
