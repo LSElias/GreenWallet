@@ -1,10 +1,10 @@
 export const categoriamaterial = [
-    //Reciclado y Norma
+    //Reciclado y Norma - Cartón 
     //Azul
     {
         nombre: "Papel",
     },
-    //Botellas y Carton
+    //Botellas y Bolsas
     //Amarillo
     {
         nombre: "Plástico",
