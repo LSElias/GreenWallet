@@ -27,8 +27,6 @@ CREATE TABLE `CanjeoDet` (
     `idMaterial` INTEGER NOT NULL,
     `cantidad` INTEGER NOT NULL,
 
-    UNIQUE INDEX `CanjeoDet_idCanjeo_key`(`idCanjeo`),
-    UNIQUE INDEX `CanjeoDet_idMaterial_key`(`idMaterial`),
     PRIMARY KEY (`idCanjeo`, `idMaterial`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -67,7 +65,6 @@ CREATE TABLE `Cupon` (
     `idEstado` INTEGER NOT NULL,
     `fechaAdquision` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `fechaExpiracion` DATETIME(3) NOT NULL,
-    `QRCODE` LONGBLOB NOT NULL,
 
     PRIMARY KEY (`idCupon`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -95,7 +92,7 @@ CREATE TABLE `Estado` (
 CREATE TABLE `Horario` (
     `idHorario` INTEGER NOT NULL AUTO_INCREMENT,
     `idCentro` INTEGER NOT NULL,
-    `dia` VARCHAR(191) NOT NULL,
+    `dias` VARCHAR(191) NOT NULL,
     `horaInicio` DECIMAL(4, 2) NOT NULL,
     `horaFin` DECIMAL(4, 2) NOT NULL,
 

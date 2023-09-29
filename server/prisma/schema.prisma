@@ -27,16 +27,17 @@ model Canjeo{
   total     Int
   usuario   Usuario @relation(fields: [idUsuario],references: [idUsuario])
   centro    Centro @relation(fields: [idCentro],references: [idCentro])
-  canjeoDet CanjeoDet?
+  canjeoDet CanjeoDet[]
 }
 
 model CanjeoDet{
-  @@id([idCanjeo,idMaterial])
-  idCanjeo    Int @unique
-  idMaterial  Int @unique
+  idCanjeo    Int
+  idMaterial  Int
   canjeo      Canjeo @relation(fields: [idCanjeo],references: [idCanjeo])
   material    Material @relation(fields: [idMaterial],references: [idMaterial])
   cantidad    Int
+  @@id([idCanjeo,idMaterial])
+
 }
 
 model CategoriaMaterial{
@@ -75,7 +76,6 @@ model Cupon{
   recompensa      Recompensa  @relation(fields: [idRecompensa],references: [idRecompensas])
   fechaAdquision  DateTime    @default(now())
   fechaExpiracion DateTime
-  QRCODE          Bytes
 }
 
 model Direccion{
@@ -98,7 +98,7 @@ model Horario{
   idHorario   Int @id @default(autoincrement())
   idCentro    Int
   centro      Centro @relation(fields: [idCentro],references: [idCentro])
-  dia         String  
+  dias        String  
   horaInicio  Decimal @db.Decimal(4,2)
   horaFin  Decimal @db.Decimal(4,2)
 }
@@ -115,7 +115,7 @@ model Material{
   unidadMedida  UnidadMedida  @relation(fields: [idUnidad],references: [idUnidad])
   categoriaM    CategoriaMaterial @relation(fields: [idCategoria],references: [idCategoriaM])
   centros       Centro[]
-  canjeoDet CanjeoDet?
+  canjeoDet CanjeoDet[]
 }
 
 model Recompensa{

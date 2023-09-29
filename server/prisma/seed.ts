@@ -64,6 +64,19 @@ async function main() {
         }
     });
     await prisma.usuario.create({
+        //Admin de Centro
+        data: {
+            idRol: 2,
+            nombre: "Gerardo",
+            apellido1: "Castro",
+            apellido2: "Mendez",
+            correo: "mendezsa@gmail.com",
+            contrasena: "123456",
+            cedula: "302350246",
+            telefono: "85956565"
+        }
+    });
+    await prisma.usuario.create({
         //Cliente1 
         data: {
             idRol: 3,
@@ -73,7 +86,10 @@ async function main() {
             correo: "williamsjo@gmail.com",
             contrasena: "123456",
             cedula: "201470741",
-            telefono: "87588754"
+            telefono: "87588754",
+            direccion: {
+                connect: [{idDireccion: 1}, {idDireccion: 2}]
+            }
         }
     });
     await prisma.usuario.create({
@@ -87,6 +103,9 @@ async function main() {
             contrasena: "123456",
             cedula: "302130321",
             telefono: "85415225",
+            direccion: {
+                connect: [{idDireccion: 3}, {idDireccion: 4}]
+            }
         }
     });
     await prisma.usuario.create({
@@ -99,7 +118,10 @@ async function main() {
             correo: "smithg@gmail.com",
             contrasena: "123456",
             cedula: "302130123",
-            telefono: "64621554"
+            telefono: "64621554",
+            direccion: {
+                connect: [{idDireccion: 4}]
+            }
         }
     });
 
@@ -113,7 +135,6 @@ async function main() {
         foto:"",
         valor: 75,
         cantidad: 3,
-        //Modificar
         estado: true
         }
     });
@@ -141,39 +162,36 @@ async function main() {
     });
 
 //Cupon
-/*
+
     await prisma.cupon.create({
     //Instancia de recompensa
     data: {
-        idUsuario: 3,
+        idUsuario: 4,
         idRecompensa: 1,
         idEstado: 1,
         fechaAdquision: new Date("2023-09-23"),
         fechaExpiracion: new Date("2023-12-25"),
-        //QRCODE:
         }
     });
     await prisma.cupon.create({
         data: {
-            idUsuario: 4,
+            idUsuario: 5,
             idRecompensa: 2,
             idEstado: 1,
             fechaAdquision: new Date("2023-09-20"),
             fechaExpiracion: new Date("2023-11-15"),
-            //QRCODE:
             }
     });
     await prisma.cupon.create({
         data: {
-            idUsuario: 5,
+            idUsuario: 6,
             idRecompensa: 3,
             idEstado: 1,
             fechaAdquision: new Date("2023-9-15"),
             fechaExpiracion: new Date("2023-12-25"),
-            //QRCODE:
             }
     });
-*/
+
 
 //Material
     await prisma.material.create({
@@ -246,7 +264,7 @@ async function main() {
 //Billetera
     await prisma.billetera.create({
       data: {
-          idUsuario: 3,
+          idUsuario: 4,
           disponibles: 40,
           canjeadas: 80,
           total: 120
@@ -254,7 +272,7 @@ async function main() {
     });
     await prisma.billetera.create({
       data: {
-        idUsuario: 4,
+        idUsuario: 5,
           disponibles: 50,
           canjeadas: 80,
           total: 130
@@ -262,7 +280,7 @@ async function main() {
     });
     await prisma.billetera.create({
       data: {
-          idUsuario: 5,
+          idUsuario: 6,
           disponibles: 50,
           canjeadas: 50,
           total: 100
@@ -275,30 +293,95 @@ async function main() {
           idAdmin: 2,
           idDireccion: 1,
           nombre: "GreenWallet Alajuela",
-          telefono: '24521254'
+          telefono: '24521254',
+          materiales: {
+            connect: [{idMaterial:1},{idMaterial:2},{idMaterial:3}]
+          }
           }
     });
+    await prisma.centro.create({
+        data: {
+            idAdmin: 3,
+            idDireccion: 2,
+            nombre: "GreenWallet Cartago",
+            telefono: '26035428',
+            materiales: {
+                connect: [{idMaterial:4},{idMaterial:5},{idMaterial:6}]
+              }
+            }
+      });
+
 
 //Horario 
     await prisma.horario.create({
       data: {
           idCentro: 1,
-          dia: "Lunes",
-          horaInicio: 9.00,
-          horaFin: 4.00
+          dias: "Lunes a Viernes",
+          horaInicio: 9,
+          horaFin: 5
           }
     });
+    await prisma.horario.create({
+        data: {
+            idCentro: 2,
+            dias: "Lunes a Sábado",
+            horaInicio: 10,
+            horaFin: 3
+            }
+      });
 
 //Canjeo
+
 await prisma.canjeo.create({
   data: {
       idCentro: 1,
-      idUsuario: 3,
+      idUsuario: 4,
       fecha: new Date("2023-09-29"),
-      total: 1
-      }
+      total: 1,
+      canjeoDet: {
+        createMany: {
+            data: [
+                {cantidad:1, idMaterial:1},
+                {cantidad:1, idMaterial:2},
+                {cantidad:1, idMaterial:3},
+            ],
+        },
+        },
+      },
 });
-  
+await prisma.canjeo.create({
+    data: {
+        idCentro: 1,
+        idUsuario: 5,
+        fecha: new Date("2023-10-02"),
+        total: 1,
+        canjeoDet: {
+            createMany: {
+                data: [
+                    {cantidad:1, idMaterial:3},
+                    {cantidad:1, idMaterial:4},
+                ],
+            },
+            },
+        }
+  });
+  await prisma.canjeo.create({
+    data: {
+        idCentro: 1,
+        idUsuario: 6,
+        fecha: new Date("2023-10-10"),
+        total: 1,
+        canjeoDet: {
+            createMany: {
+                data: [
+                    {cantidad:1, idMaterial:2},
+                    {cantidad:1, idMaterial:4},
+                ],
+            },
+            },
+        }
+  });
+
 }
 main()
 .then(async()=>{
