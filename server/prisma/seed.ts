@@ -132,7 +132,7 @@ async function main() {
         idCategoria: 1,
         nombre: "Almuerzo en Soda Yuki",
         descripcion: "El premio consiste en un almuerzo todo incluído desde Sushi hasta Ramen.",
-        foto:"",
+        foto:"..\imagenes\re1.jpeg",
         valor: 75,
         cantidad: 3,
         estado: true
@@ -143,7 +143,7 @@ async function main() {
             idCategoria: 2,
             nombre: "Viaje al Proyecto Asis",
             descripcion: "El premio consiste en un viaje todo incluído a La Fortuna de San Carlos.",
-            foto:"",
+            foto:"..\imagenes\re2.jpg",
             valor: 100,
             cantidad: 5,
             estado:true
@@ -154,7 +154,7 @@ async function main() {
             idCategoria: 3,
             nombre: "Kit de limpieza sostenible",
             descripcion: "El kit está conformado por 2 cepillos de limpieza de bambú, 2 paños de limpieza biodegradables y 3 esponjas de limpieza naturales.",
-            foto:"",
+            foto:"..\imagenes\re3.png",
             valor: 80,
             cantidad: 2,
             estado: true
@@ -198,7 +198,7 @@ async function main() {
     data: {
         nombre: "Papel de periódico y revistas",
         descripcion: "Los papeles de periódico y revistas son reciclados con el fin reducir a una escala acelerada la contaminación producida.",
-        imagen: "",
+        imagen: "prisma\imagenes\mat1.jpg",
         idUnidad: 1,
         idCategoria: 3,
         color: "Azul",
@@ -209,7 +209,7 @@ async function main() {
         data: {
             nombre: "Papel Norma",
             descripcion: "Los papeles norma son reciclados para elaborar papel reciclado y otros productos. Brindando una segunda oportunidad para la hojas.",
-            imagen: "",
+            imagen: "..\imagenes\mat2.jpg",
             idUnidad: 1,
             idCategoria: 3,
             color: "Azul",
@@ -220,7 +220,7 @@ async function main() {
       data: {
           nombre: "Botellas",
           descripcion: "Las botellas serán convertidas en diferentes objetos como: juguetes, heramientas y aparatos electrónicos.",
-          imagen: "",
+          imagen: "..\imagenes\mat3.jpg",
           idUnidad: 2,
           idCategoria: 2,
           color: "Amarillo",
@@ -231,7 +231,7 @@ async function main() {
       data: {
           nombre: "Vidrio de color",
           descripcion: "El vidrio que se recicle será utilizado con el fin de crear una gran variedad de productos, desde botellas hasta pavimento de carreteras.",
-          imagen: "",
+          imagen: "..\imagenes\mat4.jpg",
           idUnidad: 1,
           idCategoria: 3,
           color: "Verde",
@@ -242,7 +242,7 @@ async function main() {
       data: {
           nombre: "Vidrio transparente",
           descripcion: "El vidrio que se recicle será utilizado con el fin de crear una gran variedad de productos, desde botellas hasta pavimento de carreteras.",
-          imagen: "",
+          imagen: "..\imagenes\mat5.jpeg",
           idUnidad: 1,
           idCategoria: 3,
           color: "Verde",
@@ -253,7 +253,7 @@ async function main() {
       data: {
           nombre: "Algodón",
           descripcion: "La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.",
-          imagen: "",
+          imagen: "..\imagenes\mat6.jpg",
           idUnidad: 1,
           idCategoria: 4,
           color: "Morado",
