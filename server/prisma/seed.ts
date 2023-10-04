@@ -198,7 +198,7 @@ async function main() {
     data: {
         nombre: "Papel de periódico y revistas",
         descripcion: "Los papeles de periódico y revistas son reciclados con el fin reducir a una escala acelerada la contaminación producida.",
-        imagen: "prisma\imagenes\mat1.jpg",
+        imagen: "..\imagenes\mat1.jpg",
         idUnidad: 1,
         idCategoria: 3,
         color: "Azul",
