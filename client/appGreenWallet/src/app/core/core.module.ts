@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -13,7 +15,10 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
     NoEncontradoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   exports: [
     HeaderComponent,
