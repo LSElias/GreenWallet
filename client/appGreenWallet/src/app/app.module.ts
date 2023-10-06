@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { ShareModule } from './share/share.module';
 import { HomeModule } from './home/home.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { CentroModule } from './centro/centro.module';
+import { MaterialesModule } from './materiales/materiales.module';
 
 @NgModule({
   declarations: [
@@ -17,15 +19,14 @@ import { UsuarioModule } from './usuario/usuario.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
-
-
-    
+    CoreModule,
+    ShareModule,
+    HomeModule,
+    UsuarioModule,
+    CentroModule,
+    MaterialesModule,
     AppRoutingModule,
-            CoreModule,
-            ShareModule,
-            HomeModule,
-            UsuarioModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
