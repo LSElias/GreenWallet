@@ -1,16 +1,24 @@
 .toolbar{
     background-color: transparent;
     height: fit-content;
+    position: sticky;
+    transition: ease 1s;
+
 }
+
+.toolbar:hover{
+    background-color: #ffffff;
+}
+
 
 .example-spacer {
     flex: 1 1 auto;
   }
 
 img {
-    height: 3.4em;
+    height: 3.5em;
     width: auto;
-    max-width: 70%;
+    max-width: 100%;
     object-fit: fill;
 }
 
