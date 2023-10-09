@@ -1,9 +1,9 @@
 .toolbar{
+    position: absolute;
     background-color: transparent;
-    height: fit-content;
-    position: sticky;
-    transition: ease 1s;
-
+    height: 15vh;
+    transition: ease 0.7s;
+    z-index: 1000;
 }
 
 .toolbar:hover{
