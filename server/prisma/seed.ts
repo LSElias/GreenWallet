@@ -5,7 +5,6 @@ import {categoriarecom} from './seeds/categoriarecom';
 import {unidadmedida} from './seeds/unidadmedida';
 import {rol} from './seeds/rol';
 import {estado} from './seeds/estado';
-import {direccion} from './seeds/direccion';
 
 const prisma = new PrismaClient();
 async function main() {
@@ -29,10 +28,6 @@ async function main() {
     //Insetar estado 
     await prisma.estado.createMany({
         data: estado
-    })
-    //Insetar direccion 
-    await prisma.direccion.createMany({
-        data: direccion
     })
 
 //Usuario
@@ -86,10 +81,7 @@ async function main() {
             correo: "williamsjo@gmail.com",
             contrasena: "123456",
             cedula: "201470741",
-            telefono: "87588754",
-            direccion: {
-                connect: [{idDireccion: 1}, {idDireccion: 2}]
-            }
+            telefono: "87588754"
         }
     });
     await prisma.usuario.create({
@@ -102,10 +94,7 @@ async function main() {
             correo: "brownmiller@gmail.com",
             contrasena: "123456",
             cedula: "302130321",
-            telefono: "85415225",
-            direccion: {
-                connect: [{idDireccion: 3}, {idDireccion: 4}]
-            }
+            telefono: "85415225"
         }
     });
     await prisma.usuario.create({
@@ -118,10 +107,36 @@ async function main() {
             correo: "smithg@gmail.com",
             contrasena: "123456",
             cedula: "302130123",
-            telefono: "64621554",
-            direccion: {
-                connect: [{idDireccion: 4}]
-            }
+            telefono: "64621554"
+        }
+    });
+
+//Dirección
+    await prisma.direccion.create({
+        data: {
+            idUsuario: 4,
+            provincia: "Alajuela",
+            canton: "Central",
+            distrito: "Alajuela",
+            senas: "150 mts de la Clinica de Alajuela"  
+        }
+    });
+    await prisma.direccion.create({
+        data: {
+            idUsuario: 5,
+            provincia: "Cartago",
+            canton: "Paraíso",
+            distrito: "Orosi",
+            senas: "50 mts Norte de la Escuela Las Vegas"
+        }
+    });
+    await prisma.direccion.create({
+        data: {
+            idUsuario: 6,
+            provincia: "Limón",
+            canton: "Talamanca",
+            distrito: "Cahuita",
+            senas: "20 mts antes de El Bodegón, a mano izquierda."
         }
     });
 
@@ -135,7 +150,9 @@ async function main() {
         foto:"..\imagenes\re1.jpeg",
         valor: 75,
         cantidad: 3,
-        estado: true
+        estado: true,
+        fechaAdquision: new Date("2023-09-23"),
+        fechaExpiracion: new Date("2023-12-25")
         }
     });
     await prisma.recompensa.create({
@@ -146,7 +163,9 @@ async function main() {
             foto:"..\imagenes\re2.jpg",
             valor: 100,
             cantidad: 5,
-            estado:true
+            estado:true,
+            fechaAdquision: new Date("2023-09-20"),
+            fechaExpiracion: new Date("2023-11-15")
             }
     });
     await prisma.recompensa.create({
@@ -157,7 +176,9 @@ async function main() {
             foto:"..\imagenes\re3.png",
             valor: 80,
             cantidad: 2,
-            estado: true
+            estado: true,
+            fechaAdquision: new Date("2023-9-15"),
+            fechaExpiracion: new Date("2023-12-25"),
             }
     });
 
@@ -168,27 +189,21 @@ async function main() {
     data: {
         idUsuario: 4,
         idRecompensa: 1,
-        idEstado: 1,
-        fechaAdquision: new Date("2023-09-23"),
-        fechaExpiracion: new Date("2023-12-25"),
+        idEstado: 1
         }
     });
     await prisma.cupon.create({
         data: {
             idUsuario: 5,
             idRecompensa: 2,
-            idEstado: 1,
-            fechaAdquision: new Date("2023-09-20"),
-            fechaExpiracion: new Date("2023-11-15"),
+            idEstado: 1
             }
     });
     await prisma.cupon.create({
         data: {
             idUsuario: 6,
             idRecompensa: 3,
-            idEstado: 1,
-            fechaAdquision: new Date("2023-9-15"),
-            fechaExpiracion: new Date("2023-12-25"),
+            idEstado: 1
             }
     });
 
@@ -317,16 +332,14 @@ async function main() {
       data: {
           idCentro: 1,
           dias: "Lunes a Viernes",
-          horaInicio: 9,
-          horaFin: 5
+          horas: "9:00 am - 5:00 pm"
           }
     });
     await prisma.horario.create({
         data: {
             idCentro: 2,
             dias: "Lunes a Sábado",
-            horaInicio: 10,
-            horaFin: 3
+            horas: "10:00 am - 3:00 pm"
             }
       });
 
@@ -341,9 +354,9 @@ await prisma.canjeo.create({
       canjeoDet: {
         createMany: {
             data: [
-                {cantidad:1, idMaterial:1},
-                {cantidad:1, idMaterial:2},
-                {cantidad:1, idMaterial:3},
+                {cantidad:1, idMaterial:1, subtotal: 5},
+                {cantidad:1, idMaterial:2, subtotal: 5},
+                {cantidad:1, idMaterial:3, subtotal: 8},
             ],
         },
         },
@@ -358,8 +371,8 @@ await prisma.canjeo.create({
         canjeoDet: {
             createMany: {
                 data: [
-                    {cantidad:1, idMaterial:3},
-                    {cantidad:1, idMaterial:4},
+                    {cantidad:1, idMaterial:3, subtotal: 8},
+                    {cantidad:1, idMaterial:4, subtotal: 10},
                 ],
             },
             },
@@ -374,8 +387,8 @@ await prisma.canjeo.create({
         canjeoDet: {
             createMany: {
                 data: [
-                    {cantidad:1, idMaterial:2},
-                    {cantidad:1, idMaterial:4},
+                    {cantidad:1, idMaterial:2, subtotal: 5},
+                    {cantidad:1, idMaterial:4, subtotal: 10},
                 ],
             },
             },

@@ -26,6 +26,7 @@ CREATE TABLE `CanjeoDet` (
     `idCanjeo` INTEGER NOT NULL,
     `idMaterial` INTEGER NOT NULL,
     `cantidad` INTEGER NOT NULL,
+    `subtotal` INTEGER NOT NULL,
 
     PRIMARY KEY (`idCanjeo`, `idMaterial`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -63,8 +64,6 @@ CREATE TABLE `Cupon` (
     `idUsuario` INTEGER NOT NULL,
     `idRecompensa` INTEGER NOT NULL,
     `idEstado` INTEGER NOT NULL,
-    `fechaAdquision` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `fechaExpiracion` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`idCupon`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -72,11 +71,13 @@ CREATE TABLE `Cupon` (
 -- CreateTable
 CREATE TABLE `Direccion` (
     `idDireccion` INTEGER NOT NULL AUTO_INCREMENT,
+    `idUsuario` INTEGER NOT NULL,
     `provincia` VARCHAR(191) NOT NULL,
     `canton` VARCHAR(191) NOT NULL,
     `distrito` VARCHAR(191) NOT NULL,
     `senas` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `Direccion_idUsuario_key`(`idUsuario`),
     PRIMARY KEY (`idDireccion`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -93,8 +94,7 @@ CREATE TABLE `Horario` (
     `idHorario` INTEGER NOT NULL AUTO_INCREMENT,
     `idCentro` INTEGER NOT NULL,
     `dias` VARCHAR(191) NOT NULL,
-    `horaInicio` DECIMAL(4, 2) NOT NULL,
-    `horaFin` DECIMAL(4, 2) NOT NULL,
+    `horas` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`idHorario`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -123,6 +123,8 @@ CREATE TABLE `Recompensa` (
     `valor` INTEGER NOT NULL,
     `cantidad` INTEGER NOT NULL,
     `estado` BOOLEAN NOT NULL DEFAULT true,
+    `fechaAdquision` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `fechaExpiracion` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`idRecompensas`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -168,15 +170,6 @@ CREATE TABLE `_CentroToMaterial` (
     INDEX `_CentroToMaterial_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- CreateTable
-CREATE TABLE `_DireccionToUsuario` (
-    `A` INTEGER NOT NULL,
-    `B` INTEGER NOT NULL,
-
-    UNIQUE INDEX `_DireccionToUsuario_AB_unique`(`A`, `B`),
-    INDEX `_DireccionToUsuario_B_index`(`B`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
 -- AddForeignKey
 ALTER TABLE `Billetera` ADD CONSTRAINT `Billetera_idUsuario_fkey` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -208,6 +201,9 @@ ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idUsuario_fkey` FOREIGN KEY (`idUsuari
 ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idRecompensa_fkey` FOREIGN KEY (`idRecompensa`) REFERENCES `Recompensa`(`idRecompensas`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `Direccion` ADD CONSTRAINT `Direccion_idUsuario_fkey` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `Horario` ADD CONSTRAINT `Horario_idCentro_fkey` FOREIGN KEY (`idCentro`) REFERENCES `Centro`(`idCentro`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -227,9 +223,3 @@ ALTER TABLE `_CentroToMaterial` ADD CONSTRAINT `_CentroToMaterial_A_fkey` FOREIG
 
 -- AddForeignKey
 ALTER TABLE `_CentroToMaterial` ADD CONSTRAINT `_CentroToMaterial_B_fkey` FOREIGN KEY (`B`) REFERENCES `Material`(`idMaterial`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `_DireccionToUsuario` ADD CONSTRAINT `_DireccionToUsuario_A_fkey` FOREIGN KEY (`A`) REFERENCES `Direccion`(`idDireccion`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `_DireccionToUsuario` ADD CONSTRAINT `_DireccionToUsuario_B_fkey` FOREIGN KEY (`B`) REFERENCES `Usuario`(`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
