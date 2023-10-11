@@ -8,7 +8,7 @@ const app = express();
 const prism = new PrismaClient();
 
 //---Archivos de rutas---
-
+const datosRoutes = require("./routes/datosRoutes"); 
 
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
@@ -30,7 +30,9 @@ app.use(
 );
 
 //---- Definir rutas ---- 
- 
+ app.use("/datos/", datosRoutes);
+
+
 // Servidor
 app.listen(port, () => { 
   console.log(`http://localhost:${port}`);
