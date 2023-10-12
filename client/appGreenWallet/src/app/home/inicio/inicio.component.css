@@ -56,7 +56,10 @@ button span{
 }
 
 button:hover{
-    background-color: #827717;
+    background-color: #573c0b;
 
 }
 
+.secondSlide{
+    background-color: #272911;
+}
