@@ -44,3 +44,11 @@ img {
     color: #9E9D24;
     
 }
+
+@media (max-width: 1250px) {
+  
+    .toolbar{
+        background-color: #eeeeee;
+    }
+
+}
