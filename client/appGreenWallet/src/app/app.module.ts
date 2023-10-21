@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { CentroModule } from './centro/centro.module';
 import { MaterialesModule } from './materiales/materiales.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { MaterialesModule } from './materiales/materiales.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), 
     CoreModule,
     ShareModule,
     HomeModule,
@@ -26,7 +28,6 @@ import { MaterialesModule } from './materiales/materiales.module';
     CentroModule,
     MaterialesModule,
     AppRoutingModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
