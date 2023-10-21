@@ -11,6 +11,9 @@ const prism = new PrismaClient();
 const datosRoutes = require("./routes/datosRoutes"); 
 const usuariosRoutes = require("./routes/usuariosRoutes"); 
 const direccionRoutes = require("./routes/direccionRoutes"); 
+const recompensaRoutes = require("./routes/recompensaRoutes");
+const cuponRoutes = require("./routes/cuponRoutes");
+
 
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
@@ -35,6 +38,8 @@ app.use(
  app.use("/datos/", datosRoutes);
  app.use("/usuario/", usuariosRoutes); 
  app.use("/direccion/", direccionRoutes); 
+ app.use("/recompensa/", recompensaRoutes); 
+ app.use("/cupon/", cuponRoutes); 
 
 
 // Servidor

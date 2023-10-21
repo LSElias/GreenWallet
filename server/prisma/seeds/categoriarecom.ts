@@ -1,7 +1,7 @@
 export const categoriarecom = [
     //Conv.Sodas 
     {
-        nombre: "Alimentos y bedidas",
+        nombre: "Alimentos y bebidas",
     },
     //Parques nacionales
     {
