@@ -6,6 +6,7 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,

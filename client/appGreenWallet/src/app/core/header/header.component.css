@@ -10,6 +10,12 @@
     background-color: #eeeeee;
 }
 
+button{
+    background-color: transparent;
+    height: 5em;
+    width: auto;
+    max-width: 100%;
+}
 
 .example-spacer {
     flex: 1 1 auto;

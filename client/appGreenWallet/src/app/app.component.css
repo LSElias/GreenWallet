@@ -2,10 +2,6 @@
     scroll-behavior: smooth;
 }
 
-mat-toolbar{
-    overflow: unset;
-}
-
 .container {
     width: 100%;
     padding-right: 15px;
