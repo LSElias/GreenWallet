@@ -13,6 +13,7 @@ const usuariosRoutes = require("./routes/usuariosRoutes");
 const direccionRoutes = require("./routes/direccionRoutes"); 
 const recompensaRoutes = require("./routes/recompensaRoutes");
 const cuponRoutes = require("./routes/cuponRoutes");
+const materialRoutes = require("./routes/materialRoutes");
 
 
 // Acceder a la configuracion del archivo .env
@@ -40,6 +41,7 @@ app.use(
  app.use("/direccion/", direccionRoutes); 
  app.use("/recompensa/", recompensaRoutes); 
  app.use("/cupon/", cuponRoutes); 
+ app.use("/material/", materialRoutes); 
 
 
 // Servidor

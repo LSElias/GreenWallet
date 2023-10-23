@@ -12,5 +12,4 @@ router.put("/:idUsuario", usuarioController.update);
 router.get("/idU/:idUsuario", usuarioController.getByIdUser);
 router.get("/idR/:idRol", usuarioController.getByIdRol);
 
-
 module.exports = router;
