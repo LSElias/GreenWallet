@@ -8,7 +8,7 @@ module.exports.get = async (request, response, next) => {
   const direccion = await prisma.direccion.findMany({
     orderBy: {
       idDireccion: "asc",
-    },
+    }
   });
   response.json(direccion);
 };
@@ -17,22 +17,7 @@ module.exports.get = async (request, response, next) => {
 module.exports.getByIdDireccion = async (request, response, next) => {
   let idDireccion = parseInt(request.params.idDireccion);
   const direccion = await prisma.direccion.findUnique({
-    where: { idDireccion: idDireccion },
-    include: {
-      usuario: true,
-    },
-  });
-  response.json(direccion);
-};
-
-//GetByIdUsuario
-module.exports.getByIdUsuario = async (request, response, next) => {
-  let idUsuario = parseInt(request.params.idUsuario);
-  const direccion = await prisma.direccion.findUnique({
-    where: { idUsuario: idUsuario },
-    include: {
-      usuario: true,
-    },
+    where: { idDireccion: idDireccion }
   });
   response.json(direccion);
 };
@@ -42,7 +27,6 @@ module.exports.create = async (request, response, next) => {
   let infoDirec = request.body;
   const newDirec = await prisma.direccion.create({
     data: {
-      idUsuario: infoDirec.idUsuario,
       provincia: infoDirec.provincia,
       canton: infoDirec.canton,
       distrito: infoDirec.distrito,
@@ -58,25 +42,18 @@ module.exports.update = async (request, response, next) => {
   let idDireccion = parseInt(request.params.idDireccion);
   //Obtener videojuego viejo
   const oldDirec = await prisma.direccion.findUnique({
-    where: { idDireccion: idDireccion },
-    include: {
-     usuario: true
-    },
+    where: { idDireccion: idDireccion }
   });
   const newDirec = await prisma.direccion.update({
     where: {
       idDireccion: idDireccion,
     },
       data: {
-        idUsuario: infoDirec.idUsuario,
         provincia: infoDirec.provincia,
         canton: infoDirec.canton,
         distrito: infoDirec.distrito,
         senas: infoDirec.senas
-      },
-    include: {
-      usuario:true
-    }
+      }
   });
 
   response.json(newDirec);

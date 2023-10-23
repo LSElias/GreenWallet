@@ -71,13 +71,11 @@ CREATE TABLE `Cupon` (
 -- CreateTable
 CREATE TABLE `Direccion` (
     `idDireccion` INTEGER NOT NULL AUTO_INCREMENT,
-    `idUsuario` INTEGER NOT NULL,
     `provincia` VARCHAR(191) NOT NULL,
     `canton` VARCHAR(191) NOT NULL,
     `distrito` VARCHAR(191) NOT NULL,
     `senas` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `Direccion_idUsuario_key`(`idUsuario`),
     PRIMARY KEY (`idDireccion`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -149,6 +147,7 @@ CREATE TABLE `UnidadMedida` (
 CREATE TABLE `Usuario` (
     `idUsuario` INTEGER NOT NULL AUTO_INCREMENT,
     `idRol` INTEGER NOT NULL,
+    `idDireccion` INTEGER NOT NULL,
     `nombre` VARCHAR(50) NOT NULL,
     `apellido1` VARCHAR(50) NOT NULL,
     `apellido2` VARCHAR(50) NOT NULL,
@@ -201,9 +200,6 @@ ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idUsuario_fkey` FOREIGN KEY (`idUsuari
 ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idRecompensa_fkey` FOREIGN KEY (`idRecompensa`) REFERENCES `Recompensa`(`idRecompensas`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Direccion` ADD CONSTRAINT `Direccion_idUsuario_fkey` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE `Horario` ADD CONSTRAINT `Horario_idCentro_fkey` FOREIGN KEY (`idCentro`) REFERENCES `Centro`(`idCentro`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -217,6 +213,9 @@ ALTER TABLE `Recompensa` ADD CONSTRAINT `Recompensa_idCategoria_fkey` FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE `Usuario` ADD CONSTRAINT `Usuario_idRol_fkey` FOREIGN KEY (`idRol`) REFERENCES `Rol`(`idRol`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Usuario` ADD CONSTRAINT `Usuario_idDireccion_fkey` FOREIGN KEY (`idDireccion`) REFERENCES `Direccion`(`idDireccion`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_CentroToMaterial` ADD CONSTRAINT `_CentroToMaterial_A_fkey` FOREIGN KEY (`A`) REFERENCES `Centro`(`idCentro`) ON DELETE CASCADE ON UPDATE CASCADE;

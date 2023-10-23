@@ -8,7 +8,6 @@ router.get("/", direccionController.get);
 router.post("/", direccionController.create);
 router.put("/:idDireccion", direccionController.update); 
 
-router.get("/idDirec/:idDireccion", direccionController.getByIdDireccion);
-router.get("/idUser/:idUsuario", direccionController.getByIdUsuario);
+router.get("/:idDireccion", direccionController.getByIdDireccion);
 
 module.exports = router;

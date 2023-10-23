@@ -9,6 +9,11 @@ module.exports.get = async (request, response, next) => {
     orderBy: {
       idUsuario: "asc",
     },
+    include:
+    {
+      rol: true,
+      direccion: true
+    }
   });
   response.json(usuarios);
 };
@@ -20,6 +25,7 @@ module.exports.getByIdUser = async (request, response, next) => {
     where: { idUsuario: idUsuario },
     include: {
       rol: true,
+      direccion: true
     },
   });
   response.json(usuario);
@@ -32,6 +38,7 @@ module.exports.getByIdRol = async (request, response, next) => {
     where: { idRol: idRol },
     include: {
       rol: true,
+      direccion: true
     },
   });
   response.json(usuario);
@@ -44,6 +51,7 @@ module.exports.login = async (request, response, next) => {
     where: { correo: correo, contrasena: contrasena },
     include: {
       rol: true,
+      direccion: true
     },
   });
   response.json(usuario);
@@ -55,6 +63,7 @@ module.exports.create = async (request, response, next) => {
   const newUsuario = await prisma.usuario.create({
     data: {
       idRol: infoUsuario.idRol,
+      idDireccion: infoUsuario.idDireccion,
       nombre: infoUsuario.nombre,
       apellido1: infoUsuario.apellido1,
       apellido2: infoUsuario.apellido2,
@@ -75,7 +84,8 @@ module.exports.update = async (request, response, next) => {
   const oldUser = await prisma.usuario.findUnique({
     where: { idUsuario: idUsuario },
     include: {
-     rol: true
+     rol: true,
+     direccion: true
     },
   });
   const newUser = await prisma.usuario.update({
@@ -84,6 +94,7 @@ module.exports.update = async (request, response, next) => {
     },
       data: {
         idRol: infoUsuario.idRol,
+        idDireccion: infoUsuario.idDireccion,
         nombre: infoUsuario.nombre,
         apellido1: infoUsuario.apellido1,
         apellido2: infoUsuario.apellido2,

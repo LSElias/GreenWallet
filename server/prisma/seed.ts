@@ -30,12 +30,66 @@ async function main() {
         data: estado
     })
 
+//Dirección
+await prisma.direccion.create({
+    data: {
+        provincia: "Alajuela",
+        canton: "Central",
+        distrito: "Alajuela",
+        senas: "150 mts de la Clinica de Alajuela"  
+    }
+});
+await prisma.direccion.create({
+    data: {
+        provincia: "Cartago",
+        canton: "Paraíso",
+        distrito: "Orosi",
+        senas: "50 mts Norte de la Escuela Las Vegas"
+    }
+});
+await prisma.direccion.create({
+    data: {
+        provincia: "Limón",
+        canton: "Talamanca",
+        distrito: "Cahuita",
+        senas: "20 mts antes de El Bodegón, a mano izquierda."
+    }
+});
+
+await prisma.direccion.create({
+    data: {
+        provincia: "Guanacaste",
+        canton: "Liberia",
+        distrito: "Mayorga",
+        senas: "20 mts sur de lla Iglesía Católica"
+    }
+});
+
+await prisma.direccion.create({
+    data: {
+        provincia: "San José",
+        canton: "Pérez Zeledón",
+        distrito: "Platanares",
+        senas: "100 mts de Palí"
+    }
+});
+
+await prisma.direccion.create({
+    data: {
+        provincia: "Heredia",
+        canton: "San Isidro",
+        distrito: "San Isidro",
+        senas: "100 mts de MaxiPalí"
+    }
+});
+
 //Usuario
     await prisma.usuario.create({
         //Instancia de usuario
         //Admin General
         data: {
         idRol: 1,
+        idDireccion: 1,
         nombre: "Eduardo",
         apellido1: "Hernández",
         apellido2: "Solis",
@@ -49,6 +103,7 @@ async function main() {
         //Admin de Centro
         data: {
             idRol: 2,
+            idDireccion: 2,
             nombre: "Claudia",
             apellido1: "Soto",
             apellido2: "Pesqueira",
@@ -62,6 +117,7 @@ async function main() {
         //Admin de Centro
         data: {
             idRol: 2,
+            idDireccion: 3,
             nombre: "Gerardo",
             apellido1: "Castro",
             apellido2: "Mendez",
@@ -75,6 +131,7 @@ async function main() {
         //Cliente1 
         data: {
             idRol: 3,
+            idDireccion: 4,
             nombre: "Emma",
             apellido1: "Williams",
             apellido2: "Jones",
@@ -88,6 +145,7 @@ async function main() {
         //Cliente2
         data: {
             idRol: 3,
+            idDireccion: 5,
             nombre: "Adrian",
             apellido1: "Miller",
             apellido2: "Brown",
@@ -101,6 +159,7 @@ async function main() {
         //Cliente3
         data: {
             idRol: 3,
+            idDireccion: 6,
             nombre: "Victor",
             apellido1: "García",
             apellido2: "Smith",
@@ -108,35 +167,6 @@ async function main() {
             contrasena: "123456",
             cedula: "302130123",
             telefono: "64621554"
-        }
-    });
-
-//Dirección
-    await prisma.direccion.create({
-        data: {
-            idUsuario: 4,
-            provincia: "Alajuela",
-            canton: "Central",
-            distrito: "Alajuela",
-            senas: "150 mts de la Clinica de Alajuela"  
-        }
-    });
-    await prisma.direccion.create({
-        data: {
-            idUsuario: 5,
-            provincia: "Cartago",
-            canton: "Paraíso",
-            distrito: "Orosi",
-            senas: "50 mts Norte de la Escuela Las Vegas"
-        }
-    });
-    await prisma.direccion.create({
-        data: {
-            idUsuario: 6,
-            provincia: "Limón",
-            canton: "Talamanca",
-            distrito: "Cahuita",
-            senas: "20 mts antes de El Bodegón, a mano izquierda."
         }
     });
 

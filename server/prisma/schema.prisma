@@ -79,13 +79,12 @@ model Cupon{
 
 model Direccion{
   idDireccion Int     @id @default(autoincrement())
-  idUsuario   Int     @unique
   provincia   String  
   canton      String  
   distrito    String  
   senas       String  
-  usuario     Usuario   @relation(fields: [idUsuario],references: [idUsuario])
   Centros     Centro[]
+  Usuario     Usuario[]
 }
 
 model Estado{
@@ -148,6 +147,7 @@ model UnidadMedida{
 model Usuario {
   idUsuario   Int     @id @default(autoincrement())
   idRol       Int
+  idDireccion Int
   nombre      String  @db.VarChar(50)
   apellido1   String  @db.VarChar(50)
   apellido2   String  @db.VarChar(50)
@@ -156,8 +156,8 @@ model Usuario {
   cedula      String  @db.Char(9)
   telefono    String  @db.Char(8)
   rol         Rol     @relation(fields: [idRol],references: [idRol])
+  direccion   Direccion @relation(fields: [idDireccion], references: [idDireccion])
   billetera   Billetera?
-  direccion   Direccion?
   cupones     Cupon[]
   centros     Centro[]
   canjeo      Canjeo[]
