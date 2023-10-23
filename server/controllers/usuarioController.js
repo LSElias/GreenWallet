@@ -82,11 +82,7 @@ module.exports.update = async (request, response, next) => {
   let idUsuario = parseInt(request.params.idUsuario);
   //Obtener videojuego viejo
   const oldUser = await prisma.usuario.findUnique({
-    where: { idUsuario: idUsuario },
-    include: {
-     rol: true,
-     direccion: true
-    },
+    where: { idUsuario: idUsuario }
   });
   const newUser = await prisma.usuario.update({
     where: {

@@ -52,8 +52,8 @@ module.exports.create = async (request, response, next) => {
       valor: infoRecom.valor,
       cantidad: infoRecom.cantidad,
       estado: infoRecom.estado,
-      fechaAdquision: infoRecom.fechaAdquision,
-      fechaExpiracion: infoRecom.fechaExpiracion
+      fechaAdquision: new Date(infoRecom.fechaAdquision),
+      fechaExpiracion: new Date(infoRecom.fechaExpiracion)
     },
   });
   response.json(newRecom);
@@ -82,9 +82,9 @@ module.exports.update = async (request, response, next) => {
       valor: infoRecom.valor,
       cantidad: infoRecom.cantidad,
       estado: infoRecom.estado,
-      fechaAdquision: infoRecom.fechaAdquision,
-      fechaExpiracion: infoRecom.fechaExpiracion
-    }
+      fechaAdquision: new Date(infoRecom.fechaAdquision),
+      fechaExpiracion: new Date(infoRecom.fechaExpiracion)
+    },
   });
 
   response.json(newRecom);

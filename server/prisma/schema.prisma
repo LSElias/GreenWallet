@@ -156,7 +156,7 @@ model Usuario {
   cedula      String  @db.Char(9)
   telefono    String  @db.Char(8)
   rol         Rol     @relation(fields: [idRol],references: [idRol])
-  direccion   Direccion @relation(fields: [idDireccion], references: [idDireccion])
+  direccion   Direccion @relation(fields: [idDireccion],references:[idDireccion])
   billetera   Billetera?
   cupones     Cupon[]
   centros     Centro[]
