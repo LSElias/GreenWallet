@@ -52,6 +52,7 @@ CREATE TABLE `Centro` (
     `idCentro` INTEGER NOT NULL AUTO_INCREMENT,
     `idAdmin` INTEGER NOT NULL,
     `idDireccion` INTEGER NOT NULL,
+    `idHorario` INTEGER NOT NULL,
     `nombre` VARCHAR(250) NOT NULL,
     `telefono` CHAR(8) NOT NULL,
 
@@ -90,7 +91,6 @@ CREATE TABLE `Estado` (
 -- CreateTable
 CREATE TABLE `Horario` (
     `idHorario` INTEGER NOT NULL AUTO_INCREMENT,
-    `idCentro` INTEGER NOT NULL,
     `dias` VARCHAR(191) NOT NULL,
     `horas` VARCHAR(191) NOT NULL,
 
@@ -185,6 +185,9 @@ ALTER TABLE `CanjeoDet` ADD CONSTRAINT `CanjeoDet_idCanjeo_fkey` FOREIGN KEY (`i
 ALTER TABLE `CanjeoDet` ADD CONSTRAINT `CanjeoDet_idMaterial_fkey` FOREIGN KEY (`idMaterial`) REFERENCES `Material`(`idMaterial`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `Centro` ADD CONSTRAINT `Centro_idHorario_fkey` FOREIGN KEY (`idHorario`) REFERENCES `Horario`(`idHorario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `Centro` ADD CONSTRAINT `Centro_idAdmin_fkey` FOREIGN KEY (`idAdmin`) REFERENCES `Usuario`(`idUsuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -198,9 +201,6 @@ ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idUsuario_fkey` FOREIGN KEY (`idUsuari
 
 -- AddForeignKey
 ALTER TABLE `Cupon` ADD CONSTRAINT `Cupon_idRecompensa_fkey` FOREIGN KEY (`idRecompensa`) REFERENCES `Recompensa`(`idRecompensas`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `Horario` ADD CONSTRAINT `Horario_idCentro_fkey` FOREIGN KEY (`idCentro`) REFERENCES `Centro`(`idCentro`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Material` ADD CONSTRAINT `Material_idUnidad_fkey` FOREIGN KEY (`idUnidad`) REFERENCES `UnidadMedida`(`idUnidad`) ON DELETE RESTRICT ON UPDATE CASCADE;

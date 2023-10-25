@@ -15,6 +15,7 @@ const recompensaRoutes = require("./routes/recompensaRoutes");
 const cuponRoutes = require("./routes/cuponRoutes");
 const materialRoutes = require("./routes/materialRoutes");
 const billeteraRoutes = require("./routes/billeteraRoutes");
+const centroRoutes = require("./routes/centroRoutes");
 
 
 // Acceder a la configuracion del archivo .env
@@ -44,6 +45,7 @@ app.use(
  app.use("/cupon/", cuponRoutes); 
  app.use("/material/", materialRoutes); 
  app.use("/billetera/", billeteraRoutes); 
+ app.use("/centro/", centroRoutes); 
 
 
 // Servidor

@@ -41,7 +41,7 @@ module.exports.getByIdMat = async (request, response, next) => {
     imagen: material.imagen,
     unidadMedida: material.unidadMedida.nombre,
     color: material.color,
-    valor: material.valor
+    valorUnidad: material.valor
   };
 
   response.json(valores);
