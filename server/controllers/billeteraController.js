@@ -36,12 +36,11 @@ module.exports.getByIdUser = async (request, response, next) => {
 
   const datospers = {
     usuario: {
-      nombre: billetera.usuario.nombre,
-      apellidos: billetera.usuario.apellido1 + billetera.usuario.apellido2,
-      correo: billetera.usuario.correo,
       cedula: billetera.usuario.cedula,
       telefono: billetera.usuario.telefono,
-      direccion: billetera.usuario.direccion,
+      correo: billetera.usuario.correo,
+      nombre: 
+      billetera.usuario.nombre + " " + billetera.usuario.apellido1 + " " + billetera.usuario.apellido2,
     },
     disponibles: billetera.disponibles,
     canjeados: billetera.canjeadas,

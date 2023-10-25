@@ -15,7 +15,14 @@ module.exports.get = async (request, response, next) => {
       direccion: true
     }
   });
-  response.json(usuarios);
+
+  const datos= usuarios.map(u => ({
+    cedula: u.cedula,
+    nombre: u.nombre + u.apellido1,
+    correo: u.correo,
+    telefono: u.telefono
+  }))
+  response.json(datos);
 };
 
 //GetByIdUsuario
@@ -28,7 +35,21 @@ module.exports.getByIdUser = async (request, response, next) => {
       direccion: true
     },
   });
-  response.json(usuario);
+  const datos= {
+    cedula: usuario.cedula,
+    nombre: usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2,
+    correo: usuario.correo,
+    contrasena : usuario.contrasena,
+    telefono: usuario.telefono,
+    rol: usuario.rol.nombre,
+    direccion: {
+      provincia: usuario.direccion.provincia,
+      canton: usuario.direccion.canton,
+      distrito: usuario.direccion.distrito,
+      senas: usuario.direccion.senas
+    }
+  }
+  response.json(datos);
 };
 
 //GetByIdRol
@@ -41,7 +62,23 @@ module.exports.getByIdRol = async (request, response, next) => {
       direccion: true
     },
   });
-  response.json(usuario);
+  const datos= usuario.map(usuario => ({
+    
+      cedula: usuario.cedula,
+      nombre: usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2,
+      correo: usuario.correo,
+      contrasena : usuario.contrasena,
+      telefono: usuario.telefono,
+      rol: usuario.rol.nombre,
+      direccion: {
+        provincia: usuario.direccion.provincia,
+        canton: usuario.direccion.canton,
+        distrito: usuario.direccion.distrito,
+        senas: usuario.direccion.senas
+      }
+    
+  }))
+  response.json(datos);
 };
 
 //login: Correo y Clave

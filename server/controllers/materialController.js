@@ -35,11 +35,11 @@ module.exports.getByIdMat = async (request, response, next) => {
   })
 
   const valores= {
+    categoria:  material.categoriaM.nombre,
     nombre: material.nombre,
     descripcion: material.descripcion,
     imagen: material.imagen,
     unidadMedida: material.unidadMedida.nombre,
-    categoria:  material.categoriaM.nombre,
     color: material.color,
     valor: material.valor
   };
@@ -60,8 +60,8 @@ module.exports.getByIdCat = async (request, response, next) => {
     })
   
     const categValor=  material.map(m => ({
+      categoria:  m.categoriaM.nombre,
         nombre: m.nombre,
-        categoria:  m.categoriaM.nombre,
         imagen: m.imagen,
         color: m.color
          
@@ -81,8 +81,8 @@ module.exports.getByIdUnidad = async (request, response, next) => {
     })
   
     const categValor=  material.map(m => ({
-        nombre: m.nombre,
         categoria:  m.categoriaM.nombre,
+        nombre: m.nombre,
         imagen: m.imagen,
         color: m.color
          
@@ -111,7 +111,7 @@ module.exports.create = async (request, response, next) => {
 module.exports.update = async (request, response, next) => {
     let infoMat = request.body;
     let idMaterial = parseInt(request.params.idMaterial);
-    //Obtener videojuego viejo
+
     const oldMat = await prisma.material.findUnique({
       where: { idMaterial: idMaterial },
       include: {
