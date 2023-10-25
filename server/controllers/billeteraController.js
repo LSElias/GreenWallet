@@ -58,10 +58,32 @@ module.exports.create = async (request, response, next) => {
       data: {
         idUsuario: infoB.idUsuario,
         disponibles: infoB.disponibles,
-        canjeados: infoB.canjeadas,
-        total: infoB.total,
-      },
+        canjeadas: infoB.canjeadas,
+        total: infoB.total
+      }
     });
     response.json(newBill);
   };
   
+//Update
+module.exports.update = async (request, response, next) => {
+  let infoB = request.body;
+  let idBilletera = parseInt(request.params.idBilletera);
+
+  const old = await prisma.billetera.findUnique({
+    where: { idBilletera: idBilletera }
+  });
+  const newBill = await prisma.billetera.update({
+    where: {
+      idBilletera: idBilletera,
+    },
+    data: {
+      idUsuario: infoB.idUsuario,
+      disponibles: infoB.disponibles,
+      canjeadas: infoB.canjeadas,
+      total: infoB.total
+    }
+  });
+
+  response.json(newBill);
+};

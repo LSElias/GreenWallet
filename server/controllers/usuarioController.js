@@ -80,7 +80,7 @@ module.exports.create = async (request, response, next) => {
 module.exports.update = async (request, response, next) => {
   let infoUsuario = request.body;
   let idUsuario = parseInt(request.params.idUsuario);
-  //Obtener videojuego viejo
+
   const oldUser = await prisma.usuario.findUnique({
     where: { idUsuario: idUsuario }
   });
