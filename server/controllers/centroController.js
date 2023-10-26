@@ -140,14 +140,14 @@ module.exports.create = async (request, response, next) => {
   });
   response.json(newMateriales);
 };
-
+//En proceso
 //Actualizar
 module.exports.update = async (request, response, next) => {
   let centro = request.body;
   let idCentro = parseInt(request.params.idCentro);
 
   const oldCentro = await prisma.centro.findUnique({
-    where: { idC },
+    where: { idCentro: idCentro },
     include: {
       materiales: {
         select: {

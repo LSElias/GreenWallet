@@ -17,6 +17,7 @@ const materialRoutes = require("./routes/materialRoutes");
 const billeteraRoutes = require("./routes/billeteraRoutes");
 const centroRoutes = require("./routes/centroRoutes");
 const horarioRoutes = require("./routes/horarioRoutes");
+const canjeoRoutes = require("./routes/canjeoRoutes");
 
 
 // Acceder a la configuracion del archivo .env
@@ -48,6 +49,7 @@ app.use(
  app.use("/billetera/", billeteraRoutes); 
  app.use("/centro/", centroRoutes); 
  app.use("/horario/", horarioRoutes); 
+ app.use("/canjeo/", canjeoRoutes); 
 
 
 // Servidor
