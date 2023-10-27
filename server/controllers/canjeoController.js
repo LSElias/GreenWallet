@@ -113,8 +113,10 @@ module.exports.getByIdAdmin = async (request, response, next) => {
       }
     },
     groupBy:{
-      canjeo:{
-        fecha:true
+      usuario:{
+        select:{
+          cedula:true
+        }
       }
     }
   });
