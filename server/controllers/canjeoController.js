@@ -90,8 +90,33 @@ module.exports.getByIdCliente = async (request, response, next) => {
 //GetByIdAdmin
 module.exports.getByIdAdmin = async (request, response, next) => {
   let idAdmin = parseInt(request.params.idAdmin);
-  const canjeo = await prisma.canjeo.groupBy({
-
+  const canjeo = await prisma.canjeoDet.findMany({
+    select:{
+      cantidad:true,
+      canjeo:{
+        select:{
+          fecha: true,
+          total:true,
+          usuario:{
+            select:{
+              cedula:true
+            }
+          }
+        }
+      }
+    },
+    where:{
+      canjeo:{
+        centro:{
+          idAdmin: idAdmin
+        }
+      }
+    },
+    groupBy:{
+      canjeo:{
+        fecha:true
+      }
+    }
   });
 
   response.json(canjeo);
