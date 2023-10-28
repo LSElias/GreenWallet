@@ -105,7 +105,7 @@ module.exports.getByIdAdmin = async (request, response, next) => {
   
   const datos = canjeo.map(m => ({
     codigo: m.idCanjeo,
-    fecha: m.fecha,
+    fecha: m.fecha.toLocaleDateString(),
     usuario: m.usuario.nombre + " " + m.usuario.apellido1,
     contacto: m.usuario.correo
   }))

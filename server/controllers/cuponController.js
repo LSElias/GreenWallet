@@ -139,14 +139,7 @@ module.exports.update = async (request, response, next) => {
       idUsuario: infoCupon.idUsuario,
       idRecompensa: infoCupon.idRecompensa,
       idEstado: infoCupon.idEstado
-    },
-    include:
-    {
-        usuario: true,
-        recompensa: true,
-        estado: true
     }
-
   });
 
   response.json(newCupon);
