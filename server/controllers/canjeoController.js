@@ -3,6 +3,30 @@ const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
 
+//Get
+module.exports.get = async (request, response, next) => {
+  const canjeo = await prisma.canjeo.findMany({
+    orderBy: {
+      idCanjeo: "asc",
+    },
+    include: {
+      usuario: true,
+      centro: true,
+    },
+  });
+
+  const datos = canjeo.map((c) => ({
+    fecha: c.fecha.toLocaleDateString(),
+    centro: c.centro.nombre,
+    usuario:
+      c.usuario.nombre + " " + c.usuario.apellido1 + " " + c.usuario.apellido2,
+    total: c.total,
+  }));
+
+  response.json(datos);
+};
+
+
 //GetByIdCanjeo
 module.exports.getByIdCanjeo = async (request, response, next) => {
   let idCanjeo = parseInt(request.params.idCanjeo);
@@ -15,6 +39,9 @@ module.exports.getByIdCanjeo = async (request, response, next) => {
           direccion: true,
           nombre: true,
           telefono: true,
+          horario:true,
+          administrador:true
+          
         },
       },
       canjeoDet: {
@@ -37,6 +64,10 @@ module.exports.getByIdCanjeo = async (request, response, next) => {
 
     //Centro
     centro: canjeo.centro.nombre,
+    administrador: canjeo.centro.administrador.nombre 
+           + " " + canjeo.centro.administrador.apellido1
+           + " " + canjeo.centro.administrador.apellido2,
+    horario: canjeo.centro.horario.dias + " - " + canjeo.centro.horario.horas,
     direccion:
       canjeo.centro.direccion.provincia +
       ", " +

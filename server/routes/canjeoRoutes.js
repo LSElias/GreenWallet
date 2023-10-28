@@ -3,6 +3,7 @@ const router = express.Router();
 
 const canjeoController = require("../controllers/canjeoController");
 
+router.get("/", canjeoController.get);
 router.get("/:idCanjeo", canjeoController.getByIdCanjeo);
 
 router.post("/", canjeoController.create);

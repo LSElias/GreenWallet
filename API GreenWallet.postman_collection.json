@@ -1,0 +1,1307 @@
+{
+	"info": {
+		"_postman_id": "e226365e-2b06-467e-998b-2fd4107dd6a2",
+		"name": "API GreenWallet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25387302"
+	},
+	"item": [
+		{
+			"name": "Datos Fijos",
+			"item": [
+				{
+					"name": "Cat. Material",
+					"item": [
+						{
+							"name": "Get CategoriaMaterial",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/catmat",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"catmat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIdCatMaterial",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/catmat/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"catmat",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Estado",
+					"item": [
+						{
+							"name": "Get Estado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/estado",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"estado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIdEstado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/estado/3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"estado",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cat. Recomp",
+					"item": [
+						{
+							"name": "Get CatRecompensa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/catrec",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"catrec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIdCatRecompensa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/catrec/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"catrec",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Rol",
+					"item": [
+						{
+							"name": "Get Rol",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/rol",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"rol"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIdRol",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/rol/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"rol",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UnidadMedida",
+					"item": [
+						{
+							"name": "Get UnidadMed",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/unidadMed",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"unidadMed"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByIdUMed",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/datos/unidadMed/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"datos",
+										"unidadMed",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dirección",
+			"item": [
+				{
+					"name": "Get Direcciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/direccion/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"direccion",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdDirec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/direccion/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"direccion",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"provincia\": \"Limón\",\r\n    \"canton\": \"Talamanca\",\r\n    \"distrito\": \"Cahuita\",\r\n    \"senas\": \"20 mts antes de llegar Playa Negra, a mano izquierda.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/direccion/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"direccion",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"provincia\": \"Limón\",\r\n    \"canton\": \"Talamanca\",\r\n    \"distrito\": \"Cahuita\",\r\n    \"senas\": \"15 mts antes de llegar Playa Negra, a mano izquierda.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/direccion/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"direccion",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GetUsuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/usuario/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/usuario/IdU/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"IdU",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdRol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/usuario/IdR/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"IdR",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"gordonw@gmail.com\",\r\n    \"contrasena\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuario/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idRol\": 3,\r\n    \"idDireccion\": 7,\r\n    \"nombre\": \"Evans\",\r\n    \"apellido1\": \"Brown\",\r\n    \"apellido2\": \"Swan\",\r\n    \"correo\": \"brown23@gmail.com\",\r\n    \"contrasena\": \"123456\",\r\n    \"cedula\": \"409860349\",\r\n    \"telefono\": \"76545676\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuario/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idRol\": 3,\r\n    \"idDireccion\": 7,\r\n    \"nombre\": \"Jack\",\r\n    \"apellido1\": \"Brown\",\r\n    \"apellido2\": \"Swan\",\r\n    \"correo\": \"brown23@gmail.com\",\r\n    \"contrasena\": \"123456\",\r\n    \"cedula\": \"409860349\",\r\n    \"telefono\": \"76545676\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuario/11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recompensa",
+			"item": [
+				{
+					"name": "Get Recompensa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/recompensa/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recompensa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdRecomp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/recompensa/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recompensa",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdCategoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/recompensa/idCat/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recompensa",
+								"idCat",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCategoria\": 1,\r\n    \"nombre\": \"Tarjeta de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"..imagenesre5.png\",\r\n    \"valor\": 80,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-15\",\r\n    \"fechaExpiracion\": \"2024-10-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/recompensa/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recompensa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCategoria\": 3,\r\n    \"nombre\": \"Tarjetas de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"..imagenesre5.png\",\r\n    \"valor\": 100,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-25\",\r\n    \"fechaExpiracion\": \"2023-12-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/recompensa/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recompensa",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cupon",
+			"item": [
+				{
+					"name": "Get Cupon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/cupon/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdCupon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/cupon/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/cupon/idUser/11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								"idUser",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdRecomp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/cupon/idRecom/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								"idRecom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 11,\r\n    \"idRecompensa\": 5,\r\n    \"idEstado\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/cupon/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 11,\r\n    \"idRecompensa\": 5,\r\n    \"idEstado\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/cupon/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cupon",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material",
+			"item": [
+				{
+					"name": "Get Material",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/material/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdMat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/material/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdCate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/material/cat/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								"cat",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdUnidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/material/unidad/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								"unidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"..imagenesmat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/material/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"..imagenesmat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/material/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"material",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Billetera",
+			"item": [
+				{
+					"name": "Get Billeteras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/billetera/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"billetera",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/billetera/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"billetera",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 11,\r\n    \"disponibles\": 4,\r\n    \"canjeadas\": 20,\r\n    \"total\": 24\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/billetera/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"billetera",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 11,\r\n    \"disponibles\": 4,\r\n    \"canjeadas\": 23,\r\n    \"total\": 27\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/billetera/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"billetera",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Horario",
+			"item": [
+				{
+					"name": "Get Horario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/horario/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"horario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/horario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"horario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dias\": \"Miércoles a Viernes\",\r\n    \"horas\": \"12:00 am - 5:00 pm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/horario/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"horario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dias\": \"Miércoles a Viernes\",\r\n    \"horas\": \"09:00 am - 5:00 pm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/horario/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"horario",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Centro",
+			"item": [
+				{
+					"name": "Get Centros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/centro/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"centro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdCentro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/centro/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"centro",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdAdmin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/centro/admin/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"centro",
+								"admin",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAdmin\": 6,\r\n    \"idDireccion\": 7,\r\n    \"idHorario\": 5,\r\n    \"nombre\": \"GreenWallet Limón,CR\",\r\n    \"telefono\": \"27500043\",\r\n    \"materiales\": [{\"idMaterial\":1},{\"idMaterial\":3}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/centro/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"centro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAdmin\": 6,\r\n    \"idDireccion\": 7,\r\n    \"idHorario\": 5,\r\n    \"nombre\": \"GreenWallet Limón #2\",\r\n    \"telefono\": \"27500043\",\r\n    \"materiales\": [{\"idMaterial\":1},{\"idMaterial\":2},{\"idMaterial\":3}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/centro/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"centro",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Canjeo",
+			"item": [
+				{
+					"name": "Get Canjeos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/canjeo/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"canjeo",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/canjeo/cliente/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"canjeo",
+								"cliente",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdAdmin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/canjeo/admin/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"canjeo",
+								"admin",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdCanjeo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/canjeo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"canjeo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCentro\": 5,\r\n      \"idUsuario\": 11,\r\n      \"fecha\": \"2023-10-29\",\r\n      \"total\": 6, \r\n      \"canjeoDet\": [\r\n          {\"idMaterial\": 3,\"cantidad\": 1,\"subtotal\": 2}, {\"idMaterial\": 2,\"cantidad\": 1,\"subtotal\": 4}\r\n      ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/canjeo/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"canjeo",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
