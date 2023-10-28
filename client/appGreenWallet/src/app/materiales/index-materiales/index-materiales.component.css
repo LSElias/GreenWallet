@@ -50,14 +50,15 @@
 .center-pointer{
     position: absolute;
     left: 50%;
-    top: 85%;
+    top: 84.65%;
     transform: translate(-50%, -50%); 
     user-select: none;
     z-index: 0;
-    width: 19vmin;
-    height: 19vmin;
+    width: 16vmin;
+    height: 17vmin;
     object-fit: cover;
-    background-color: rgba(255, 255, 255, 0.589);
+    background-color: transparent;
+    border: 1px solid white;
     box-shadow: 0px 0px 25px rgb(0, 0, 0);
     opacity: 1;
 }
@@ -67,25 +68,49 @@
 }
 
 .information{ 
-    margin: 30vh 1vh;
+    margin: 15vh 1vh;
     color: rgba(255, 255, 255, 0.952);
     text-align: center;
 }
 
 .information > a{
+    color: white;
     font-size: 2em;
     transition: 1s ease-in-out;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .information > a:hover{
     letter-spacing: 10px;
 }
 
+.information h1{
+    padding: 1vh;
+    margin: 0px;
+}
+
+
+.title{
+    text-align: center;
+    color: white;
+}
+
+.title > h3{
+    padding-top: 15vh;
+    font-weight: lighter;
+}
+
 @media (max-width: 1024px) {
     *{
         overflow-y: auto;
     }
+    .title > h3{
+        padding-top: 15vh;
+        font-weight: lighter;
+    }
+
+
     .center-pointer{
         position: absolute;
         left: 50%;
@@ -134,7 +159,7 @@
         gap: 5vmin;
         left: unset;
         margin: auto 3%;
-        top: 70%;
+        top: 75%;
         transform: translate(0%, -50%); 
         user-select: none;
         z-index: 1;
