@@ -6,6 +6,7 @@ const  horarioCostroller = require("../controllers/horarioCostroller");
 router.get("/", horarioCostroller.get);
 
 router.post("/", horarioCostroller.create);
+router.put("/:idHorario", horarioCostroller.update);
 
 router.get("/:idHorario", horarioCostroller.getById);
 

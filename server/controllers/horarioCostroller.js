@@ -41,3 +41,24 @@ module.exports.create = async (request, response, next) => {
     });
     response.json(newHorario);
   };
+
+  //Update
+module.exports.update = async (request, response, next) => {
+  let info = request.body;
+  let idHorario = parseInt(request.params.idHorario);
+
+  const old = await prisma.horario.findUnique({
+    where: { idHorario: idHorario }
+  });
+  const newH = await prisma.horario.update({
+    where: {
+      idHorario: idHorario,
+    },
+    data: {
+      dias: info.dias,
+      horas: info.horas
+    },
+  });
+
+  response.json(newH);
+};

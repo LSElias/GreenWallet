@@ -5,6 +5,8 @@ const canjeoController = require("../controllers/canjeoController");
 
 router.get("/:idCanjeo", canjeoController.getByIdCanjeo);
 
+router.post("/", canjeoController.create);
+
 router.get("/cliente/:idUsuario", canjeoController.getByIdCliente);
 router.get("/admin/:idAdmin", canjeoController.getByIdAdmin);
 

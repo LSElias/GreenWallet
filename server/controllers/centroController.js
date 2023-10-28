@@ -140,7 +140,7 @@ module.exports.create = async (request, response, next) => {
   });
   response.json(newMateriales);
 };
-//En proceso
+
 //Actualizar
 module.exports.update = async (request, response, next) => {
   let centro = request.body;

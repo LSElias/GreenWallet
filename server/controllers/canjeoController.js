@@ -87,37 +87,47 @@ module.exports.getByIdCliente = async (request, response, next) => {
   response.json(datos);
 };
 
+//En proceso
 //GetByIdAdmin
 module.exports.getByIdAdmin = async (request, response, next) => {
   let idAdmin = parseInt(request.params.idAdmin);
-  const canjeo = await prisma.canjeoDet.findMany({
-    select:{
-      cantidad:true,
-      canjeo:{
-        select:{
-          fecha: true,
-          total:true,
-          usuario:{
-            select:{
-              cedula:true
-            }
-          }
-        }
-      }
-    },
+  const canjeo = await prisma.canjeo.findMany({
     where:{
-      canjeo:{
         centro:{
           idAdmin: idAdmin
         }
-      }
     },
-    groupBy:{
-      canjeo:{
-        fecha:true
-      }
+    include: {
+      canjeoDet:true,
+      usuario:true
     }
   });
+  
+  const datos = canjeo.map(m => ({
+    codigo: m.idCanjeo,
+    fecha: m.fecha,
+    usuario: m.usuario.nombre + " " + m.usuario.apellido1,
+    contacto: m.usuario.correo
+  }))
+  response.json(datos); 
+};
 
-  response.json(canjeo);
+//Crear
+module.exports.create = async (request, response, next) => {
+  let info = request.body;
+  const newCanjeo = await prisma.canjeo.create({
+    data: {
+      idCentro: info.idCentro,
+      idUsuario: info.idUsuario,
+      fecha: new Date(info.fecha),
+      total: info.total, 
+      canjeoDet: {
+        createMany: {
+          //[{idMaterial, cantidad, subtotal}]
+          data: info.canjeoDet,
+        },
+      },
+    },
+  });
+  response.json(newCanjeo);
 };
