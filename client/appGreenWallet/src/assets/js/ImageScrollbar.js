@@ -122,24 +122,12 @@ function overflow() {
   document.body.style.overflowY = "scroll";
 }
 
-function imgFocus(id) {
+function imgFocus(id,name) {
   var bg = document.getElementById("background");
   var elem = document.getElementById(id);
   var url = elem.getAttribute("src");
   bg.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.9)), url(${url})`;
   var text = document.getElementById("changeable");
-  switch (id) {
-    case "Papel":
-      text.innerHTML = id;
-      break;
-    case "Plástico":
-      text.innerHTML = id;
-      break;
-    case "Vidrio":
-      text.innerHTML = id;
-      break;
-    case "Fibras Textil":
-      text.innerHTML = id;
-      break;
-  }
+  text.innerHTML = id;
+  document.getElementById("showmore").href = `/materiales/${name}`;
 }
