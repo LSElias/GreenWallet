@@ -237,7 +237,7 @@ async function main() {
       nombre: "Almuerzo en Soda Yuki",
       descripcion:
         "El premio consiste en un almuerzo todo incluído desde Sushi hasta Ramen.",
-      foto: "prismaimagenes\re1.jpeg",
+      foto: "re1.jpeg",
       valor: 75,
       cantidad: 3,
       estado: true,
@@ -251,7 +251,7 @@ async function main() {
       nombre: "Viaje al Proyecto Asis",
       descripcion:
         "El premio consiste en un viaje todo incluído a La Fortuna de San Carlos.",
-      foto: "prismaimagenes\re2.jpg",
+      foto: "re2.jpg",
       valor: 100,
       cantidad: 5,
       estado: true,
@@ -265,7 +265,7 @@ async function main() {
       nombre: "Kit de limpieza sostenible",
       descripcion:
         "El kit está conformado por 2 cepillos de limpieza de bambú, 2 paños de limpieza biodegradables y 3 esponjas de limpieza naturales.",
-      foto: "prismaimagenes\re3.png",
+      foto: "re3.png",
       valor: 80,
       cantidad: 2,
       estado: true,
@@ -279,7 +279,7 @@ async function main() {
       nombre: "Kit de Hidratación",
       descripcion:
         "El kit está conformado por 2 bolsaspara botellas de agua y 1 botella de agua recargable de 2000ml.",
-      foto: "prismaimagenes\re4.png",
+      foto: "re4.png",
       valor: 90,
       cantidad: 5,
       estado: true,
@@ -325,7 +325,7 @@ async function main() {
       nombre: "Papel de periódico y revistas",
       descripcion:
         "Los papeles de periódico y revistas son reciclados con el fin reducir a una escala acelerada la contaminación producida.",
-      imagen: "..imagenesmat1.jpg",
+      imagen: "mat1.jpg",
       idUnidad: 1,
       idCategoria: 3,
       color: "Azul",
@@ -337,7 +337,7 @@ async function main() {
       nombre: "Papel Norma",
       descripcion:
         "Los papeles norma son reciclados para elaborar papel reciclado y otros productos. Brindando una segunda oportunidad para la hojas.",
-      imagen: "..imagenesmat2.jpg",
+      imagen: "mat2.jpg",
       idUnidad: 1,
       idCategoria: 3,
       color: "Azul",
@@ -349,7 +349,7 @@ async function main() {
       nombre: "Botellas",
       descripcion:
         "Las botellas serán convertidas en diferentes objetos como: juguetes, heramientas y aparatos electrónicos.",
-      imagen: "..imagenesmat3.jpg",
+      imagen: "mat3.jpg",
       idUnidad: 2,
       idCategoria: 2,
       color: "Amarillo",
@@ -361,7 +361,7 @@ async function main() {
       nombre: "Vidrio de color",
       descripcion:
         "El vidrio que se recicle será utilizado con el fin de crear una gran variedad de productos, desde botellas hasta pavimento de carreteras.",
-      imagen: "..imagenesmat4.jpg",
+      imagen: "mat4.jpg",
       idUnidad: 1,
       idCategoria: 3,
       color: "Verde",
@@ -373,7 +373,7 @@ async function main() {
       nombre: "Vidrio transparente",
       descripcion:
         "El vidrio que se recicle será utilizado con el fin de crear una gran variedad de productos, desde botellas hasta pavimento de carreteras.",
-      imagen: "..imagenesmat5.jpeg",
+      imagen: "mat5.jpeg",
       idUnidad: 1,
       idCategoria: 3,
       color: "Verde",
