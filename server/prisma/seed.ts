@@ -327,8 +327,8 @@ async function main() {
         "Los papeles de periódico y revistas son reciclados con el fin reducir a una escala acelerada la contaminación producida.",
       imagen: "mat1.jpg",
       idUnidad: 1,
-      idCategoria: 3,
-      color: "Azul",
+      idCategoria: 1,
+      color: "#1F456E",
       valor: 5,
     },
   });
@@ -339,8 +339,8 @@ async function main() {
         "Los papeles norma son reciclados para elaborar papel reciclado y otros productos. Brindando una segunda oportunidad para la hojas.",
       imagen: "mat2.jpg",
       idUnidad: 1,
-      idCategoria: 3,
-      color: "Azul",
+      idCategoria: 1,
+      color: "#151E3DD",
       valor: 5,
     },
   });
@@ -352,7 +352,7 @@ async function main() {
       imagen: "mat3.jpg",
       idUnidad: 2,
       idCategoria: 2,
-      color: "Amarillo",
+      color: "#E3C565",
       valor: 8,
     },
   });
@@ -364,7 +364,7 @@ async function main() {
       imagen: "mat4.jpg",
       idUnidad: 1,
       idCategoria: 3,
-      color: "Verde",
+      color: "#728C69",
       valor: 10,
     },
   });
@@ -376,7 +376,7 @@ async function main() {
       imagen: "mat5.jpeg",
       idUnidad: 1,
       idCategoria: 3,
-      color: "Verde",
+      color: "#354A21",
       valor: 10,
     },
   });

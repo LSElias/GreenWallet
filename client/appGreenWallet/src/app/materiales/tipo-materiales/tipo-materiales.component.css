@@ -6,3 +6,28 @@
     margin-top: 15vh;
     padding: 1em;
 } 
+
+.imagen > img{
+    height: 12.5em;
+    width: 100%;
+}
+
+mat-card{
+    height: 20em;
+    width: 100%;
+    border: 1px solid black;
+}
+mat-card-content{
+    padding: 0.6em;
+
+}
+
+mat-card-header{
+    padding: 0.6em;
+    border-bottom: 1px solid black;
+}
+
+mat-card-actions{
+    padding: 0.6em;
+    border-top: 1px solid black;
+}

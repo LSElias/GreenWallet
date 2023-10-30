@@ -26,6 +26,9 @@ if (track != null) {
     if (!esMovil) {
       if((window.innerWidth>1024)){
 
+        if (document.querySelector(".information > a:hover") != null) {
+          return;
+      } 
       track.dataset.mouseDownAt = "0";
       track.dataset.prevPercentage = track.dataset.percentage;
 
@@ -35,7 +38,7 @@ if (track != null) {
       var elem = document.elementFromPoint(x, y);
       if (elem) {
         if (elem.classList.contains("image")) {
-          changeInfo(elem.id);
+          changeInfo(elem.id, elem.name);
           var url = elem.getAttribute("src");
           bg.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.9)), url(${url})`;
         }
@@ -44,8 +47,9 @@ if (track != null) {
   }
   };
 
-  function changeInfo(id) {
+  function changeInfo(id, name) {
     var text = document.getElementById("changeable");
+    document.getElementById("showmore").href = `/materiales/${name}`;
     switch (id) {
       case "Papel":
         text.innerHTML = id;

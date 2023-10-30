@@ -23,7 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {"glob": "**/**", "input": "../../server", "output": "./prisma/imagenes"}
+              {"glob": "**.*", "input": "../../server/prisma/imagenes", "output": "/assets/images/"}
             ],
             "styles": [
               "src/custom-theme.scss",
