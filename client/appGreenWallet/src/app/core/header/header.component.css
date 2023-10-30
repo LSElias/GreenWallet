@@ -26,8 +26,13 @@ img {
     width: auto;
     max-width: 100%;
     object-fit: fill;
+    transition: ease-in-out 0.5s;
 }
 
+img:hover {
+    filter: brightness(70%);
+    cursor: pointer;
+}
 .top-row{
     text-align: end;
 }
@@ -49,6 +54,12 @@ img {
 .nav-item:hover{
     color: #9E9D24;
     
+}
+
+hr{
+    box-shadow: none;
+    text-shadow: none;
+    color: black;
 }
 
 @media (max-width: 1250px) {
