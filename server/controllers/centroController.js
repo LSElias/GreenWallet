@@ -15,6 +15,7 @@ module.exports.get = async (request, response, next) => {
   });
 
   const datos = centro.map((b) => ({
+    idCentro: b.idCentro,
     nombre: b.nombre,
     telefono: b.telefono,
     sede: b.direccion.provincia,

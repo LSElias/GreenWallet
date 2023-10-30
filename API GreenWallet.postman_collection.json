@@ -399,7 +399,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"gordonw@gmail.com\",\r\n    \"contrasena\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"correo\": \"solishe@gmail.com\",\r\n    \"contrasena\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -506,14 +506,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/recompensa/5",
+							"raw": "localhost:3000/recompensa/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"recompensa",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -546,7 +546,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCategoria\": 1,\r\n    \"nombre\": \"Tarjeta de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"..imagenesre5.png\",\r\n    \"valor\": 80,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-15\",\r\n    \"fechaExpiracion\": \"2024-10-15\"\r\n}",
+							"raw": "{\r\n    \"idCategoria\": 1,\r\n    \"nombre\": \"Tarjeta de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"re5.png\",\r\n    \"valor\": 80,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-15\",\r\n    \"fechaExpiracion\": \"2024-10-15\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -574,7 +574,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCategoria\": 3,\r\n    \"nombre\": \"Tarjetas de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"..imagenesre5.png\",\r\n    \"valor\": 100,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-25\",\r\n    \"fechaExpiracion\": \"2023-12-25\"\r\n}",
+							"raw": "{\r\n    \"idCategoria\": 3,\r\n    \"nombre\": \"Tarjetas de membresía\",\r\n    \"descripcion\": \"Tarjeta de membresía por un año completo a Pricesmart\",\r\n    \"foto\": \"re5.png\",\r\n    \"valor\": 100,\r\n    \"cantidad\": 6,\r\n    \"estado\": true,\r\n    \"fechaAdquision\": \"2023-10-25\",\r\n    \"fechaExpiracion\": \"2023-12-25\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -625,14 +625,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/cupon/5",
+							"raw": "localhost:3000/cupon/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"cupon",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -644,7 +644,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/cupon/idUser/11",
+							"raw": "localhost:3000/cupon/idUser/9",
 							"host": [
 								"localhost"
 							],
@@ -652,7 +652,7 @@
 							"path": [
 								"cupon",
 								"idUser",
-								"11"
+								"9"
 							]
 						}
 					},
@@ -664,7 +664,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/cupon/idRecom/5",
+							"raw": "localhost:3000/cupon/idRecom/3",
 							"host": [
 								"localhost"
 							],
@@ -672,7 +672,7 @@
 							"path": [
 								"cupon",
 								"idRecom",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -824,7 +824,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"..imagenesmat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 10\r\n}",
+							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"mat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 10\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -852,7 +852,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"..imagenesmat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 15\r\n}",
+							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"mat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 15\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1240,7 +1240,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/canjeo/admin/2",
+							"raw": "localhost:3000/canjeo/admin/3",
 							"host": [
 								"localhost"
 							],
@@ -1248,7 +1248,7 @@
 							"path": [
 								"canjeo",
 								"admin",
-								"2"
+								"3"
 							]
 						}
 					},

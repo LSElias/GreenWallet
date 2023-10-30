@@ -14,6 +14,7 @@ module.exports.get = async (request, response, next) => {
     }
   });
   const datos= recompensa.map(u => ({
+    idRecompensas: u.nombre,
     categoria: u.categoria.nombre,
     nombre: u.nombre,
     valorUnidad: u.valor,

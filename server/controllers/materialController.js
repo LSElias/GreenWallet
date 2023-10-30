@@ -14,6 +14,7 @@ module.exports.get = async (request, response, next) => {
   });
  
     const categValor=  material.map(m => ({
+        idMaterial: m.idMaterial,
         nombre: m.nombre,
         categoria:  m.categoriaM.nombre,
         imagen: m.imagen,
