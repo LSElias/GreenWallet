@@ -18,12 +18,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialDetalleComponent } from './material-detalle/material-detalle.component';
 
 @NgModule({
   declarations: [
     DiagMaterialesComponent,
     IndexMaterialesComponent,
-    TipoMaterialesComponent
+    TipoMaterialesComponent,
+    MaterialDetalleComponent
   ],
   imports: [
     CommonModule,

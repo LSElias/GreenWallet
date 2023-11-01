@@ -12,15 +12,26 @@ import { GenericService } from 'src/app/share/generic.service';
 export class TipoMaterialesComponent {
   datos: any;
   destroy$: Subject<boolean>=new Subject<boolean>();
+  cat: any;
 
   constructor(private gService: GenericService,
     private dialog:MatDialog, private route:ActivatedRoute){
-      
+      this.listarCategoria();
       let id= this.route.snapshot.paramMap.get('id');
       if(!isNaN(Number(id))){
         this.listarMateriales(Number(id));
       }
     }
+
+    listarCategoria(){
+      this.gService.list('datos/catmat/')
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((response:any)=>{
+          console.log(response);
+          this.cat=response;
+        })
+      }
+
 
     listarMateriales(id:any){
       this.gService.get('material/cat', id)
@@ -30,6 +41,9 @@ export class TipoMaterialesComponent {
         this.datos = data;
       });
     }
+
+
+
 
     ngOnDestroy(){
       this.destroy$.next(true);
