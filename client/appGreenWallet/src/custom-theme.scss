@@ -16,7 +16,7 @@ $appGreenWallet-primary: mat.define-palette(mat.$light_green-palette, 300);
 $appGreenWallet-accent: mat.define-palette(mat.$lime-palette, 800, A700, 900);
 
 // The warn palette is optional (defaults to red).
-$appGreenWallet-warn: mat.define-palette(mat.$red-palette);
+$appGreenWallet-warn: mat.define-palette(mat.$grey-palette,900);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".

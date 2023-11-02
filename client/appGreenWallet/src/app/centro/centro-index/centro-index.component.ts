@@ -26,9 +26,26 @@ export class CentroIndexComponent {
       });
     }
 
+    changeData(item: any){
+      let title = <HTMLElement>document.getElementById("title");
+      let admin = <HTMLElement>document.getElementById("admin");
+      let tel = <HTMLElement>document.getElementById("tel");
+      let sede = <HTMLElement>document.getElementById("sede");
+      let btn = document.getElementsByClassName("botoncito");
+
+      title.innerHTML= item.nombre;
+      admin.innerHTML= " " + item.administrador;
+      tel.innerHTML= " " + item.telefono;
+      sede.innerHTML= " " + item.sede;
+      btn[0].id= item.idCentro
+      console.log(btn[0].id);
+    }
+
     ngOnDestroy(){
       this.destroy$.next(true);
       this.destroy$.unsubscribe();
     }
+
+
 
 }

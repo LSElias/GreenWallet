@@ -1,36 +1,31 @@
 <div>
-<div class="container-vh100 bg">
-    <div class="text-title">
-        <h1>Nuestros <br/> Centros</h1>
+  <div class="container-vh100 bg">
+    <div>
+      <h1> Nuestros centros</h1>
     </div>
-</div>
-<div class="second-slide">
-    <div class="grid-container">
-        <mat-grid-list [cols]="3" [rowHeight]="'20em'" gutterSize="10px">
-          <mat-grid-tile *ngFor="let item of datos">
-            <mat-card  class="dashboard-card">
-                <mat-card-header>
-                    <mat-card-title>
-                     <h3>   {{item.nombre}} </h3>
-                    </mat-card-title>
-                </mat-card-header>
-              <mat-card-content class="dashboard-card-content">
-                <p><span>Administrador:</span> {{item.administrador}}</p>
-                <p><span>Sede:</span> {{item.sede}}</p>
-                <p><span>Teléfono:</span> {{item.telefono}}</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button style="background-color: black;"
-                  mat-mini-fab
-                  matTooltip="Detalle Videjuego"
-                  aria-label="Detalle Videjuego"
-                >
-                  <mat-icon class="mat-18" style="color: rgb(255, 255, 255); text-shadow: 0px 0px 3px black;">info</mat-icon>
-                </button>
-              </mat-card-actions>
-            </mat-card>
-          </mat-grid-tile>
-        </mat-grid-list>
+    <div class="container-int">
+      <div class="menu-option">
+        <ul>
+          <div *ngFor="let item of datos">
+            <li  (click)="changeData(item)">
+              ➺ {{ item.nombre }}
+            </li>
+          </div>
+        </ul>
       </div>
-</div>
+      <div id="changeable" class="select-detail">
+        <div *ngIf="datos != null">
+        <h3 id="title">{{datos[0].nombre}}</h3>
+        <hr/>
+        <p> <b>Administrador:</b> <span id="admin"> {{datos[0].administrador}} </span> </p>
+        <p> <b>Teléfono:</b> <span id="tel"> {{datos[0].telefono}} </span> </p>
+        <p> <b>Sede:</b> <span id="sede"> {{datos[0].sede}} </span></p>
+        <hr/>
+        <div class="button-part">
+          <button class="botoncito" mat-raised-button id="{{datos[0].idCentro}}" color="warn">Más Información</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
