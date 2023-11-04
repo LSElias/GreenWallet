@@ -3,6 +3,7 @@ const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
 const multer = require("multer");
+const fs = require('fs');
 
 //Get
 module.exports.get = async (request, response, next) => {
@@ -128,12 +129,13 @@ module.exports.create = async (request, response, next) => {
 
   response.json(newMat);
 };
+const uploadOld = "prisma/imagenes/"; 
 
 //Update
 module.exports.update = async (request, response, next) => {
     let infoMat = request.body;
     let idMaterial = parseInt(request.params.idMaterial);
-
+    const photo = request.file.originalname;
     const oldMat = await prisma.material.findUnique({
       where: { idMaterial: idMaterial },
       include: {
@@ -141,6 +143,12 @@ module.exports.update = async (request, response, next) => {
         categoriaM: true
       },
     });
+    const oldPhoto= uploadOld + oldMat.imagen; 
+    
+    if(fs.existsSync(oldPhoto)){
+      fs.unlinkSync(oldPhoto)
+    }
+
     const newMat = await prisma.material.update({
       where: {
         idMaterial: idMaterial,
@@ -148,11 +156,11 @@ module.exports.update = async (request, response, next) => {
         data: {
             nombre: infoMat.nombre,
             descripcion: infoMat.descripcion,
-            imagen: infoMat.imagen,
-            idUnidad: infoMat.idUnidad,
-            idCategoria:  infoMat.idCategoria,
+            imagen: photo,
+            idUnidad: parseInt(infoMat.idUnidad),
+            idCategoria:  parseInt(infoMat.idCategoria),
             color: infoMat.color,
-            valor: infoMat.valor
+            valor: parseInt(infoMat.valor)
         }
     });
   

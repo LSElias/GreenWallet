@@ -9,7 +9,8 @@ router.post("/", materialController.upload,
 materialController.create);
 
 
-router.put("/:idMaterial", materialController.update);
+router.put("/:idMaterial", materialController.upload,
+materialController.update);
 
 router.get("/:idMaterial", materialController.getByIdMat);
 router.get("/cat/:idCategoria", materialController.getByIdCat);
