@@ -22,7 +22,7 @@
         <p> <b>Sede:</b> <span id="sede"> {{datos[0].sede}} </span></p>
         <hr/>
         <div class="button-part">
-          <button class="botoncito" mat-raised-button id="{{datos[0].idCentro}}" color="warn">Más Información</button>
+          <button class="botoncito" mat-raised-button id="{{datos[0].idCentro}}" color="warn" (click)="redirect()">Más Información</button>
         </div>
       </div>
       </div>

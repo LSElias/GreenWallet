@@ -26,6 +26,13 @@ export class CentroIndexComponent {
       });
     }
 
+    redirect(){
+      var id = document.getElementsByClassName("botoncito")[0].id
+      if(!Number.isNaN(id)){
+        document.location.href = `/centros/${id}`
+      }  
+    }
+
     changeData(item: any){
       let title = <HTMLElement>document.getElementById("title");
       let admin = <HTMLElement>document.getElementById("admin");
@@ -38,7 +45,6 @@ export class CentroIndexComponent {
       tel.innerHTML= " " + item.telefono;
       sede.innerHTML= " " + item.sede;
       btn[0].id= item.idCentro
-      console.log(btn[0].id);
     }
 
     ngOnDestroy(){

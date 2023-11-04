@@ -1,1 +1,21 @@
-<p>centro-detalle works!</p>
+<div *ngIf="datos!=null">
+<div class="container">
+    <div class="sq-cont">
+        <div class="square">
+           <h1>  {{datos.nombre}}</h1>
+           <h2>Materiales</h2>
+           <mat-chip-listbox aria-label="Fish selection">
+           <div *ngFor="let item of datos.materiales">
+            <mat-chip-option disabled="true" style="border-color: {{item.color}};"> {{item.nombre}} </mat-chip-option>
+          </div>
+        </mat-chip-listbox>
+           <h2>Información</h2>
+           <p>Administrado por<span> {{datos.administrador.nombre}} </span></p>
+           <p>Encontrado en <span>{{datos.direccion}}</span></p>
+           <p>Abierto de <span>{{datos.horario}}</span></p>
+            <h2>Contacto</h2>
+            <p> <span>Teléfono:</span> {{datos.telefono}} </p>
+        </div>
+    </div>
+</div>
+</div>
