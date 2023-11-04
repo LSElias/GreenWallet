@@ -2,6 +2,7 @@ const { PrismaClient, Prisma } = require("@prisma/client");
 const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
+const multer = require("multer");
 
 //Get
 module.exports.get = async (request, response, next) => {
@@ -91,21 +92,41 @@ module.exports.getByIdUnidad = async (request, response, next) => {
   response.json(categValor);
 };
 
+
+//Investigación proceso...
+//Ruta del almacenamiento
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "prisma/imagenes/");
+  },
+  filename: function (req, file, cb) {
+   //console.log(file)
+    cb(null,`${file.originalname}`);
+  }
+});
+
+const upload = multer({storage: storage}); 
+
+exports.upload = upload.single('imagen'); 
+
+
 //Create 
 module.exports.create = async (request, response, next) => {
-    let infoMat = request.body;
-    const newMat = await prisma.material.create({
-      data: {
-        nombre: infoMat.nombre,
-        descripcion: infoMat.descripcion,
-        imagen: infoMat.imagen,
-        idUnidad: infoMat.idUnidad,
-        idCategoria:  infoMat.idCategoria,
-        color: infoMat.color,
-        valor: infoMat.valor
-      },
-    });
-    response.json(newMat);
+  let infoMat = request.body;
+  const photo = request.file.originalname;
+  const newMat = await prisma.material.create({
+    data: { 
+      nombre: infoMat.nombre,
+      descripcion: infoMat.descripcion,
+      imagen: photo,
+      idUnidad:parseInt( infoMat.idUnidad),
+      idCategoria: parseInt(infoMat.idCategoria),
+      color: infoMat.color,
+      valor: parseInt(infoMat.valor)
+    },
+  });
+
+  response.json(newMat);
 };
 
 //Update

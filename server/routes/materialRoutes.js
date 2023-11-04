@@ -5,7 +5,10 @@ const materialController = require("../controllers/materialController");
 
 router.get("/", materialController.get);
 
-router.post("/", materialController.create);
+router.post("/", materialController.upload,
+materialController.create);
+
+
 router.put("/:idMaterial", materialController.update);
 
 router.get("/:idMaterial", materialController.getByIdMat);
