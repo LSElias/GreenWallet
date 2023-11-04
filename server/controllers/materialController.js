@@ -101,7 +101,6 @@ const storage = multer.diskStorage({
     cb(null, "prisma/imagenes");
   },
   filename: function (req, file, cb) {
-    console.log(file)
     cb(null,`${Date.now()}_${file.originalname}`);
   }
 });
