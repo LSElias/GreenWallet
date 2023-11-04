@@ -16,6 +16,7 @@
           mat-icon-button
           class="nav-item"
           aria-label="Example icon-button with menu icon"
+          (click)="drawer.toggle()"
         >
           <mat-icon>menu</mat-icon>
         </button>
@@ -28,3 +29,27 @@
     </div>
 </div>
 </mat-toolbar>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="false" mode="over" position="end">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button> <mat-icon> dashboard </mat-icon> Dashboard </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button> <mat-icon> dashboard </mat-icon> Dashboard </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button> <mat-icon> dashboard </mat-icon> Dashboard </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button> <mat-icon> dashboard </mat-icon> Dashboard </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 600px;">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>
