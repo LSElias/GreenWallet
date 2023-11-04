@@ -42,7 +42,11 @@ export class TipoMaterialesComponent {
       });
     }
 
-
+    Redirect(id:any){
+      if(!Number.isNaN(id)){
+        document.location.href = `/materiales/detalle/${id}`
+      }  
+    }
 
 
     ngOnDestroy(){

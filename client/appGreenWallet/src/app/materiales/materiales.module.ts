@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialDetalleComponent } from './material-detalle/material-detalle.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MaterialDetalleComponent } from './material-detalle/material-detalle.co
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
+    MatChipsModule
   ]
 })
 export class MaterialesModule { }
