@@ -2,6 +2,8 @@ const { PrismaClient, Prisma } = require("@prisma/client");
 const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
+const multer = require("multer");
+const path = require('path');
 
 //Get
 module.exports.get = async (request, response, next) => {
@@ -90,6 +92,24 @@ module.exports.getByIdUnidad = async (request, response, next) => {
     }))
   response.json(categValor);
 };
+
+
+//Investigación proceso...
+//Ruta del almacenamiento
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "prisma/imagenes");
+  },
+  filename: function (req, file, cb) {
+    console.log(file)
+    cb(null,`${Date.now()}_${file.originalname}`);
+  }
+});
+
+const upload = multer({storage: storage}); 
+
+exports.upload = upload.single('imagen'); 
+
 
 //Create 
 module.exports.create = async (request, response, next) => {
