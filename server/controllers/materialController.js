@@ -66,8 +66,8 @@ module.exports.getByIdCat = async (request, response, next) => {
       categoria:  m.categoriaM.nombre,
         nombre: m.nombre,
         imagen: m.imagen,
-        color: m.color
-         
+        color: m.color,
+        idMaterial: m.idMaterial  
     }))
   response.json(categValor);
 };

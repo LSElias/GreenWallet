@@ -1,1 +1,18 @@
-<p>material-detalle works!</p>
+<div *ngIf="datos!=null">
+    <div class="container" style="background-image:  linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(252,176,69,0) 100%), url('../../../assets/images/{{datos.imagen}}');">
+        <div class="sq-cont">
+            <div class="square">
+               <h1>  {{datos.nombre}}</h1>
+               <mat-chip-listbox aria-label="Fish selection">
+                <mat-chip-option disabled="true" style="border-color: {{datos.color}};"> {{datos.categoria}} </mat-chip-option>
+              </mat-chip-listbox>
+                <h2>Informacion</h2>
+                <p>{{datos.descripcion}}</p>
+                <h2>Valor</h2>
+                <div class="money">
+                <img src="../../../assets/images/coin.png"> <h3> {{datos.valorUnidad}} / {{datos.unidadMedida}} </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

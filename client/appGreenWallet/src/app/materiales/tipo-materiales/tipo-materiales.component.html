@@ -30,9 +30,9 @@
                   <div class="right-card">
                     <button style="background-color: {{item.color}};"
                       mat-mini-fab
-                      matTooltip="Detalle Videjuego"
-                      aria-label="Detalle Videjuego"
-                      
+                      matTooltip="Detalle del Material"
+                      aria-label="Detalle del Material"
+                      (click)="Redirect(item.idMaterial)"
                     >
                       <mat-icon class="mat-18" style="color: rgb(255, 255, 255); text-shadow: 0px 0px 3px black;">info</mat-icon>
                     </button>
