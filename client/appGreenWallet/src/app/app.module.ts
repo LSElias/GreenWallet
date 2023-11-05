@@ -10,11 +10,12 @@ import { HomeModule } from './home/home.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { CentroModule } from './centro/centro.module';
 import { MaterialesModule } from './materiales/materiales.module';
+import { CanjeoModule } from './canjeo/canjeo.module';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     UsuarioModule,
     CentroModule,
     MaterialesModule,
+    CanjeoModule,
     AppRoutingModule,
   ],
   providers: [],

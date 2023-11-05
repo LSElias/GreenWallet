@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.min-100vh{
+    height: fit-content;
+    min-height: 100vh;
+    background: rgb(176,212,95);
+background: -moz-linear-gradient(180deg, rgba(176,212,95,1) 0%, rgba(0,0,0,0) 11%);
+background: -webkit-linear-gradient(180deg, rgba(176,212,95,1) 0%, rgba(0,0,0,0) 11%);
+background: linear-gradient(180deg, rgba(176,212,95,1) 0%, rgba(0,0,0,0) 11%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b0d45f",endColorstr="#000000",GradientType=1);
+}
+
+.container-90{
+    padding: 18vh 5%;
+}
+
+.table{
+    margin: 5vh 0vh;
+}
+
+button{
+    background-color: transparent;
+    border: unset;
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@
 .container-vh100{
     min-height: 100vh;
     max-height: fit-content;
+    overflow-x: hidden;
 }
 
 .bg{
@@ -82,4 +83,8 @@ h1{
     text-shadow: 0px 1px 3px black,
     0px 0px 10px black, 0px 0px 20px black,
     0px 0px 50px black ;
+}
+
+.botoncito{
+    padding: 2.5% 1%;
 }
