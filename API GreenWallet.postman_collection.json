@@ -823,13 +823,44 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"mat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 10\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Algodón",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"type": "file",
+									"src": "/C:/Users/TYLINN/Desktop/Imag/prueba.png"
+								},
+								{
+									"key": "idUnidad",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "idCategoria",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "color",
+									"value": "Morado",
+									"type": "text"
+								},
+								{
+									"key": "valor",
+									"value": "10",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:3000/material/",
@@ -851,13 +882,44 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n      \"nombre\": \"Algodón\",\r\n      \"descripcion\":\r\n        \"La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.\",\r\n      \"imagen\": \"mat6.jpg\",\r\n      \"idUnidad\": 1,\r\n      \"idCategoria\": 4,\r\n      \"color\": \"Morado\",\r\n      \"valor\": 15\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Algodón",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "La fibra textil de algodón es reciclada para brindar una segunda vida a los tejidos.",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"type": "file",
+									"src": "/C:/Users/TYLINN/Desktop/Imag/xrgrg.png"
+								},
+								{
+									"key": "idUnidad",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "idCategoria",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "color",
+									"value": "Morado",
+									"type": "text"
+								},
+								{
+									"key": "valor",
+									"value": "15",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:3000/material/6",
