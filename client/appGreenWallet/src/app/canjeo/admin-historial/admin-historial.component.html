@@ -1,1 +1,57 @@
-<p>admin-historial works!</p>
+<div *ngIf="datos != null">
+    <div class="min-100vh">
+      <div class="container-90">
+        <h2>Historial de Canjeos de tu Centro</h2>
+        <div class="table mat-elevation-z8">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+          >
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+              <td mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+            </ng-container>
+  
+            <!-- Precio Column -->
+            <ng-container matColumnDef="usuario">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Intercambio realizado por</th>
+              <td mat-cell *matCellDef="let row">{{ row.usuario }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="accion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Detalle
+              </th>
+              <td mat-cell *matCellDef="let row">
+  
+                  <button
+                  mat-mini-fab
+                  matTooltip="Ir a Detalle"
+                  aria-label="Ir a Detalle"
+                  (click)="redirect(row.codigo)"
+                >
+                  <mat-icon class="mat-18">info</mat-icon>
+                </button>
+                </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+  
+          <mat-paginator
+            #paginator
+            [length]="dataSource.data.length"
+            [pageIndex]="0"
+            [pageSize]="1"
+            [pageSizeOptions]="[1, 3, 5]"
+            aria-label="Seleccione una página"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+  
