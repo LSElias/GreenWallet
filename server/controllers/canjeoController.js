@@ -109,6 +109,7 @@ module.exports.getByIdCliente = async (request, response, next) => {
   });
 
   const datos = canjeo.map((c) => ({
+    idCanjeo: c.idCanjeo,
     fecha: c.fecha.toLocaleDateString(),
     centro: c.centro.nombre,
     usuario:

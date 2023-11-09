@@ -36,7 +36,7 @@
                 mat-mini-fab
                 matTooltip="Ir a Detalle"
                 aria-label="Ir a Detalle"
-                (click)="redirect(row.id)"
+                (click)="redirect(row.idCanjeo)"
               >
                 <mat-icon class="mat-18">info</mat-icon>
               </button>
@@ -51,8 +51,8 @@
           #paginator
           [length]="dataSource.data.length"
           [pageIndex]="0"
-          [pageSize]="3"
-          [pageSizeOptions]="[3, 5, 10]"
+          [pageSize]="1"
+          [pageSizeOptions]="[1, 3, 5]"
           aria-label="Seleccione una página"
         >
         </mat-paginator>

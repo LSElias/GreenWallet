@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.main-container{
+    height: fit-content;
+}
+
+.data-container{
+    border: 2px solid rgb(72, 161, 109);
+    border-radius: 50px 50px 0px 0px;
+    min-height: 85vh;
+    height: fit-content;
+    width: 90vw;
+    margin: 15vh 5vw;
+}
+
+.th-header{
+    margin: 0px;
+    padding: 3% 5% 0vh 5%;
+    background-color: rgb(127, 199, 33);
+    border-radius: 48px 48px 0px 0px;
+    height: 10vh;
+    border-bottom: 2px solid rgb(72, 161, 109);
+}
+
+.th-header > h2{
+    margin: 0px;
+    padding: 0px;
+}
+
+.bodyodyody{
+    padding: 3vh 3%;
+    line-height: 1.54em;
+}
+
+table{
+    margin: 3% 0%;
+    width: 100%;
+    text-align: center;
+}
+
+table > thead{
+    background-color: rgb(127, 199, 33);
+}
+
+table > thead > th{
+    padding: 1% 0px;
+}
+
+table > thead > th:first-child{
+    border-radius: 5px 0px 0px 0px;
+}
+
+
+table > thead > th:last-child{
+    border-radius: 0px 5px 0px 0px;
+}
+
+table > tbody{
+    background-color: rgb(227, 236, 207);
+}
+
+table > tbody > tr > td{
+    padding: 1% 0px;
+}
+
+.summary > td{
+    background-color: rgb(127, 199, 33);
+    padding: 1% 0px;
+}
+
+.summary > td:first-child{
+    border-radius: 0px 0px 0px 5px;
+}
+
+.summary > td:last-child{
+    border-radius: 0px 0px 5px 0px;
+}
