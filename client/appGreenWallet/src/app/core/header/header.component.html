@@ -30,7 +30,7 @@
 </div>
 </mat-toolbar>
 <mat-drawer-container autosize>
-  <mat-drawer #drawer opened="false" mode="over" position="end">
+  <mat-drawer #drawer  opened="false" mode="over" position="end">
     <mat-nav-list>
       <mat-list-item>
         <button mat-button> <mat-icon> home </mat-icon> Inicio </button>
@@ -38,12 +38,18 @@
       <mat-list-item>
         <button mat-button> <mat-icon> door_front </mat-icon> Iniciar Sesión </button>
       </mat-list-item>
-      <mat-list-item>
-        <button routerLink="canjeo/historial" mat-button> <mat-icon> history </mat-icon> Historial de Canjeos </button>
-      </mat-list-item>
-      <mat-list-item>
-        <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> refresh </mat-icon> Historial de Canjeos — Administrador </button>
-      </mat-list-item>
+        <mat-list-item>
+          <button routerLink="canjeo/historial" mat-button> <mat-icon> history </mat-icon> Historial de Canjeos </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> history </mat-icon> Historial de Canjeos — Administrador de Centro </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> build </mat-icon> Mantenimiento de Centros </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> build </mat-icon> Mantenimiento de Materiales </button>
+        </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>

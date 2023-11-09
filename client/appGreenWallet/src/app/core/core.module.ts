@@ -9,6 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import {MatListModule} from '@angular/material/list';
   ],
   imports: [
     CommonModule,
+    MatMenuModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
     RouterModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [
     HeaderComponent,
