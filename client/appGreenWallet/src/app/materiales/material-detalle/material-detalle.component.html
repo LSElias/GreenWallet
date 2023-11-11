@@ -4,13 +4,13 @@
             <div class="square">
                <h1>  {{datos.nombre}}</h1>
                <mat-chip-listbox aria-label="Fish selection">
-                <mat-chip-option disabled="true" style="border-color: {{datos.color}};"> {{datos.categoria}} </mat-chip-option>
+                <mat-chip-option disabled="true" style="border-color: {{datos.color}};"> {{datos.categoria.nombre}} </mat-chip-option>
               </mat-chip-listbox>
                 <h2>Informacion</h2>
                 <p>{{datos.descripcion}}</p>
                 <h2>Valor</h2>
                 <div class="money">
-                <img src="../../../assets/images/coin.png"> <h3> {{datos.valorUnidad}} / {{datos.unidadMedida}} </h3>
+                <img src="../../../assets/images/coin.png"> <h3> {{datos.valorUnidad}} / {{datos.unidadMedida.nombre}} </h3>
                 </div>
             </div>
         </div>

@@ -56,11 +56,16 @@ export class AllComponent implements AfterViewInit {
     }
 
     redirectDetalle(id:any){
-      if(!Number.isNaN(id)){
-        document.location.href = `/materiales/detalle/${id}`
-      }  
+      this.router.navigate(['/materiales/detalle', id], {
+        relativeTo: this.route,
+      });
     }
 
+    update(id:any){
+      this.router.navigate(['/materiales/actualizar', id], {
+        relativeTo: this.route,
+      });
+    }
 
     ngOnDestroy(){
       this.destroy$.next(true);
