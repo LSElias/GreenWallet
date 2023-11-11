@@ -28,6 +28,9 @@
               <mat-error *ngIf="errorHandling('nombre', 'required')">
                 Nombre es <strong>requerido</strong>
               </mat-error>
+              <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+                Nombre debe tener más de <strong>tres</strong> caracteres
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field style="min-width: 45%">
@@ -62,7 +65,7 @@
               El valor del material es <strong>requerido</strong>
             </mat-error>
             <mat-error *ngIf="errorHandling('valorUnidad', 'pattern')">
-              El valor debe ser un <strong>numero</strong>
+              El valor debe ser un <strong>número entero y positivo</strong>
             </mat-error>
           </mat-form-field>
 
@@ -85,7 +88,7 @@
           </mat-form-field>
         </div>
 
-        <div class="col">
+        <div class="row">
           <mat-form-field style="min-width: 92%; min-height: 25vh">
             <input
               matInput
@@ -101,6 +104,9 @@
             <mat-error *ngIf="errorHandling('descripcion', 'required')">
               Descripción es <strong>requerido</strong>
             </mat-error>
+            <mat-error *ngIf="errorHandling('descripcion', 'minlength')">
+                Descripción debe tener más de <strong>tres</strong> caracteres
+              </mat-error>
           </mat-form-field>
         </div>
     </div>

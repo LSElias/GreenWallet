@@ -83,10 +83,9 @@ export class FormComponent implements OnInit {
         null,
         Validators.compose([Validators.required, Validators.minLength(3)])
       ],
-      descripcion:[null, Validators.required],
+      descripcion:[null, Validators.compose([Validators.required, Validators.minLength(3)])],
       valorUnidad:[null, 
         Validators.compose([Validators.required,
-          //\d+([.]\d+)?
           Validators.pattern(this.numRegex)])
       ],
       unidadMedida:[null, Validators.required],
