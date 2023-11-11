@@ -19,11 +19,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
+import { AllComponent } from './all/all.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
     CentroIndexComponent,
-    CentroDetalleComponent
+    CentroDetalleComponent,
+    AllComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,

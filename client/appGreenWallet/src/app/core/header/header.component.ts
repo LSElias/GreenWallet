@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  
+   id:any;
 
+  constructor(){
+
+  }
+
+  redirect(id:any){
+    document.location.href = `${id}`;
+  }
 }

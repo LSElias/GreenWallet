@@ -39,16 +39,16 @@
         <button mat-button> <mat-icon> door_front </mat-icon> Iniciar Sesión </button>
       </mat-list-item>
         <mat-list-item>
-          <button routerLink="canjeo/historial" mat-button> <mat-icon> history </mat-icon> Historial de Canjeos </button>
+          <button mat-button (click)="redirect('canjeo/historial')"> <mat-icon> history </mat-icon> Historial de Canjeos </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> history </mat-icon> Historial de Canjeos — Administrador de Centro </button>
+          <button mat-button (click)="redirect('canjeo/admin/historial')"> <mat-icon> history </mat-icon> Historial de Canjeos — Administrador de Centro </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> build </mat-icon> Mantenimiento de Centros </button>
+          <button (click)="redirect('centros/mantenimiento')" mat-button> <mat-icon> build </mat-icon> Mantenimiento de Centros </button>
         </mat-list-item>
         <mat-list-item>
-          <button routerLink="canjeo/admin/historial" mat-button> <mat-icon> build </mat-icon> Mantenimiento de Materiales </button>
+          <button (click)="redirect('materiales/mantenimiento')"  mat-button> <mat-icon> build </mat-icon> Mantenimiento de Materiales </button>
         </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
