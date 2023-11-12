@@ -41,6 +41,7 @@ module.exports.getByIdCentro = async (request, response, next) => {
       horario: true,
       materiales: {
         select: {
+          idMaterial:true,
           nombre: true,
           descripcion: true,
           imagen: true,
@@ -54,7 +55,11 @@ module.exports.getByIdCentro = async (request, response, next) => {
     nombre: centro.nombre,
     telefono: centro.telefono,
     horario: centro.horario.dias + " - " + centro.horario.horas,
+    dias: centro.horario.dias,
+    horas: centro.horario.horas,
+    idHorario: centro.horario.idHorario,
     administrador: {
+      idAdministrador: centro.administrador.idUsuario,
       nombre:
         centro.administrador.nombre +
         " " +
@@ -72,6 +77,10 @@ module.exports.getByIdCentro = async (request, response, next) => {
       centro.direccion.distrito +
       ". " +
       centro.direccion.senas,
+    provincia: centro.direccion.provincia,
+    canton: centro.direccion.canton,
+    senas: centro.direccion.senas,
+    idDireccion: centro.direccion.idDireccion,
     materiales: centro.materiales,
   };
   response.json(datos);
@@ -127,10 +136,20 @@ module.exports.getByIdUser = async (request, response, next) => {
 //Crear
 module.exports.create = async (request, response, next) => {
   let info = request.body;
+
+
+  const newDireccion = await prisma.direccion.create({
+    data:{
+      provincia: info.provincia,
+      canton: info.canton,
+      senas: info.senas
+    }
+  })
+
   const newMateriales = await prisma.centro.create({
     data: {
       idAdmin: info.idAdmin,
-      idDireccion: info.idDireccion,
+      idDireccion: newDireccion.idDireccion,
       idHorario: info.idHorario,
       nombre: info.nombre,
       telefono: info.telefono,

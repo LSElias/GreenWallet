@@ -31,6 +31,9 @@ export class FormComponent implements OnInit {
   isCreate: boolean = true;
   provincias: Provincia[];
   cantones: any;
+  numRegex = '^[0-9]*$';
+  provin: any;
+  canto: any;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +47,58 @@ export class FormComponent implements OnInit {
     this.listaProvincias();
     this.listaCantones();
     this.getAdminsitrador();
+  }
 
+  setProvincias() {
+    let realkey: any;
+    let jsonresponse: any;
+    let request = new XMLHttpRequest();
+    request.open('GET', 'https://ubicaciones.paginasweb.cr/provincias.json');
+    request.send();
+    request.onload = () => {
+      if (request.status == 200) {
+        jsonresponse = JSON.parse(request.response);
+        for (var key in jsonresponse) {
+          var value = jsonresponse[key];
+
+          if(value==this.centroForm.get('provinciaValue').value){
+            this.centroForm.get('provincia').setValue(key);
+          }
+        }
+        this.getCantones(this.centroForm.get('provincia').value);
+      } else {
+        console.log('error — provs');
+      }
+    };
+  }
+
+  getCantones(id?: any) {
+    this.listaCantones(id);
+    let jsonresponse: any;
+    let request = new XMLHttpRequest();
+    if (id != null && !Number.isNaN(id)) {
+      let request = new XMLHttpRequest();
+      request.open(
+        'GET',
+        `https://ubicaciones.paginasweb.cr/provincia/${id}/cantones.json`
+      );
+      request.send();
+      request.onload = () => {
+        if (request.status == 200) {
+
+          jsonresponse = JSON.parse(request.response);
+          for (var key in jsonresponse) {
+            var value = jsonresponse[key];
+            if(value==this.centroForm.get('cantonValue').value){
+              this.centroForm.get('canton').setValue(key);
+              console.log(this.centroForm.get('canton').value)
+            }
+          }
+        } else {
+          console.log('error — cantones');
+        }
+      };
+    }
   }
 
   ngOnInit(): void {
@@ -58,39 +112,65 @@ export class FormComponent implements OnInit {
           .pipe(takeUntil(this.destroy$))
           .subscribe((data: any) => {
             this.centroInfo = data;
-            console.log(this.centroInfo);
-            //Precargar los datos en el formulario
             this.centroForm.setValue({
-              id: this.centroInfo.idCentro,
+              id: null,
               nombre: this.centroInfo.nombre,
-              descripcion: this.centroInfo.descripcion,
-              valorUnidad: this.centroInfo.valorUnidad,
-              categoria: this.centroInfo.categoria.idCategoriaM,
-              color: this.centroInfo.color,
-              unidadMedida: this.centroInfo.unidadMedida.idUnidad,
+              telefono: this.centroInfo.telefono,
+              horas: this.centroInfo.horas,
+              provincia: 0,
+              provinciaValue: this.centroInfo.provincia,
+              canton: 0,
+              cantonValue: this.centroInfo.canton,
+              dias: this.centroInfo.dias,
+              senas: this.centroInfo.senas,
+              materiales: this.centroInfo.materiales.map(
+                ({ idMaterial }) => idMaterial
+              ),
             });
+          this.setProvincias();
+
           });
       }
     });
   }
 
-  showTag(value: any) {
-    let span = document.getElementById('colortag');
-    span.innerHTML = '';
-    span.innerHTML = '<b> ' + value + ' </b>';
-  }
-
   formularioReactive() {
     this.centroForm = this.fb.group({
-      id: [null, null],
+      id: [null,null],
+      provinciaValue: [null,null],
+      cantonValue: [null,null],
       nombre: [
         null,
-        Validators.compose([Validators.required, Validators.minLength(3)]),
+        Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
+      telefono: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(this.numRegex),
+          Validators.minLength(8),
+          Validators.maxLength(8),
+        ]),
+      ],
+      provincia: [null, Validators.required],
+      canton: [null, Validators.required],
+      senas: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(5)]),
+      ],
+      horas: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(5)]),
+      ],
+      dias: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(5)]),
+      ],
+      materiales: [null, Validators.required],
     });
   }
 
-  getAdminsitrador(){
+  getAdminsitrador() {
     this.user = null;
     this.gService
       .get('usuario/IdU', 4)
@@ -122,12 +202,12 @@ export class FormComponent implements OnInit {
     request.send();
     request.onload = () => {
       if (request.status == 200) {
-        jsonresponse = JSON.parse(request.response)
+        jsonresponse = JSON.parse(request.response);
         for (var key in jsonresponse) {
           var value = jsonresponse[key];
-          prov.push({id:key, value: value})
+          prov.push({ id: key, value: value });
         }
-        this.provincias = prov
+        this.provincias = prov;
       } else {
         console.log('error — provs');
       }
@@ -135,12 +215,11 @@ export class FormComponent implements OnInit {
   }
 
   listaCantones(id?: any) {
-
     let cant: Provincia[] = [];
     let jsonresponse: any;
     let request = new XMLHttpRequest();
 
-    if (id != null) {
+    if (id != null && !Number.isNaN(id)) {
       let request = new XMLHttpRequest();
       request.open(
         'GET',
@@ -149,13 +228,13 @@ export class FormComponent implements OnInit {
       request.send();
       request.onload = () => {
         if (request.status == 200) {
-          jsonresponse = JSON.parse(request.response)
+          jsonresponse = JSON.parse(request.response);
           for (var key in jsonresponse) {
             var value = jsonresponse[key];
-            cant.push({id:key, value: value})
+            cant.push({ id: key, value: value });
           }
-          this.cantones = cant
-        }  else {
+          this.cantones = cant;
+        } else {
           console.log('error — cantones');
         }
       };
@@ -168,7 +247,6 @@ export class FormComponent implements OnInit {
 
   submitMaterial(): void {
     console.log(this.centroForm.value);
-    var sentform: any = new FormData();
 
     //Establecer submit verdadero
     this.submitted = true;
@@ -176,19 +254,12 @@ export class FormComponent implements OnInit {
     if (this.centroForm.invalid) return;
     //Obtener id Generos del Formulario y Crear arreglo con {id: value}
 
-    sentform.append('id', this.centroForm.value.id);
-    sentform.append('nombre', this.centroForm.value.nombre);
-    sentform.append('descripcion', this.centroForm.value.descripcion);
-    sentform.append('idUnidad', this.centroForm.value.unidadMedida);
-    sentform.append('idCategoria', this.centroForm.value.categoria);
-    sentform.append('color', this.centroForm.value.color);
-    sentform.append('valor', this.centroForm.value.valorUnidad);
 
-    console.log(sentform);
+    console.log(this.centroForm.value);
     if (this.isCreate) {
       //Accion API create enviando toda la informacion del formulario
       this.gService
-        .create('centro', sentform)
+        .create('centro', this.centroForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: any) => {
           //Obtener respuesta
@@ -197,7 +268,7 @@ export class FormComponent implements OnInit {
     } else {
       //Accion API actualizar enviando toda la informacion del formulario
       this.gService
-        .update('material', sentform)
+        .update('material', this.centroForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: any) => {
           //Obtener respuesta
