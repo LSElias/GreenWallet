@@ -46,7 +46,8 @@ import { FormComponent } from './form/form.component';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatChipsModule
+    MatChipsModule,
+
   ]
 })
 export class CentroModule { }

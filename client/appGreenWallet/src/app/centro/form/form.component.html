@@ -1,1 +1,156 @@
-<p>form works!</p>
+<div class="vh-100">
+  <form [formGroup]="centroForm" (ngSubmit)="submitMaterial()" novalidate>
+    <input type="hidden" formControlName="id" />
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title
+          ><h3>
+            {{ titleForm }} un
+            <span> centro </span>
+          </h3></mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <div class="divider"> 
+        <div class="left-grid">
+          <h3>Información Básica</h3>
+          <div class="holder">
+            <mat-form-field style="min-width: 30%">
+              <input
+                matInput
+                #nombre
+                formControlName="nombre"
+                maxlength="40"
+                placeholder="Nombre"
+              />
+              <mat-hint align="end">{{ nombre.value.length }} / 40</mat-hint>
+              <mat-error *ngIf="errorHandling('nombre', 'required')">
+                Nombre es <strong>requerido</strong>
+              </mat-error>
+              <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+                Nombre debe tener más de <strong>tres</strong> caracteres
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field style="min-width: 30%">
+              <input
+                matInput
+                #nombre
+                formControlName="nombre"
+                maxlength="8"
+                placeholder="Número Telefónico"
+              />
+              <mat-hint align="end">{{ nombre.value.length }} / 8</mat-hint>
+              <mat-error *ngIf="errorHandling('nombre', 'required')">
+                Nombre es <strong>requerido</strong>
+              </mat-error>
+              <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+                Nombre debe tener más de <strong>tres</strong> caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+
+        <div class="row">
+          <h3>Dirección</h3>
+          <div class="holder">
+            <mat-form-field style="min-width: 30%">
+              <mat-label>Provincia</mat-label>
+              <mat-select   (selectionChange)="listaCantones($event.value)" >
+                <div *ngFor="let item of provincias"> 
+                <mat-option  [value]="item.id">{{item.value}}</mat-option>
+              </div>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="min-width: 30%">
+              <mat-label>Cantones</mat-label>
+              <mat-select>
+                <div *ngFor="let item of cantones"> 
+                <mat-option [value]="item.id">{{item.value}}</mat-option>
+              </div>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <mat-form-field style="min-width: 61%">
+            <input
+              matInput
+              #dicexacta
+              formControlName="dicexacta"
+              maxlength="250"
+              placeholder="Direccion Exacta"
+            />
+            <mat-hint align="end">{{ dicexacta.value.length }} / 250</mat-hint>
+            <mat-error *ngIf="errorHandling('nombre', 'required')">
+              Nombre es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+              Nombre debe tener más de <strong>tres</strong> caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <h3>Horario de Atención</h3>
+          <div class="holder">
+            <mat-form-field style="min-width: 61%">
+            <input
+              matInput
+              #dicexacta
+              formControlName="dicexacta"
+              maxlength="250"
+              placeholder="Horario de atencion"
+            />
+            <mat-hint align="end">{{ dicexacta.value.length }} / 250</mat-hint>
+            <mat-error *ngIf="errorHandling('nombre', 'required')">
+              Nombre es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+              Nombre debe tener más de <strong>tres</strong> caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        </div>
+
+        <div class="row">
+          <h3>Materiales</h3>
+          <div class="holder">
+            <mat-form-field style="min-width: 61%">
+              <mat-label>Seleccione los materiales</mat-label>
+              <mat-select multiple>
+                <div *ngFor="let item of matList"> 
+                <mat-option  [value]="item.idMaterial">{{item.nombre}}</mat-option>
+              </div>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <p *ngIf="user != null"><b> Administrador:</b> {{user.nombre}} </p>
+        </div>
+    </div>
+</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="example-button-row">
+          <button mat-raised-button color="warn" (click)="onReset()">
+            Reset
+          </button>
+
+          <button
+            mat-raised-button
+            style="background-color: rgb(168, 17, 17); color: white"
+            (click)="onBack()"
+          >
+            Regresar
+          </button>
+
+          <button mat-raised-button color="accent" type="submit">
+            Guardar
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
