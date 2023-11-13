@@ -1,15 +1,19 @@
 <div class="vh-100">
-  <form [formGroup]="centroForm" (ngSubmit)="submitMaterial()" novalidate>
+  <form [formGroup]="centroForm" (ngSubmit)="submit()" novalidate>
     <input type="hidden" formControlName="id" />
-    <mat-card class="shipping-card">
-      <mat-card-header>
-        <mat-card-title
-          ><h3>
+    <mat-card class="shipping-card" >
+      <mat-card-header >
+        <mat-card-title>
+          <h3>
             {{ titleForm }} un
             <span> centro </span>
-          </h3></mat-card-title
+          </h3>
+          <br/>
+            <p *ngIf="user != null"><b> Administrador:</b> {{user.nombre}} </p>
+          </mat-card-title
         >
       </mat-card-header>
+      <br/>
       <mat-card-content>
         <div class="divider"> 
         <div class="left-grid">
@@ -164,10 +168,6 @@
               </mat-error>
             </mat-form-field>
           </div>
-        </div>
-
-        <div class="row">
-          <p *ngIf="user != null"><b> Administrador:</b> {{user.nombre}} </p>
         </div>
     </div>
 </div>

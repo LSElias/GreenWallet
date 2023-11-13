@@ -138,24 +138,44 @@ module.exports.create = async (request, response, next) => {
   let info = request.body;
 
 
+
+  const admin = await prisma.usuario.findUnique({
+    where: { correo: info.administrador.correo }
+  });
+
+
+  const newHorario = await prisma.horario.create({
+    data:{
+      horas: info.horas,
+      dias: info.dias
+    }
+  })
+
   const newDireccion = await prisma.direccion.create({
     data:{
-      provincia: info.provincia,
-      canton: info.canton,
+      provincia: info.provinciaValue,
+      canton: info.cantonValue,
+      distrito: " ",
       senas: info.senas
     }
   })
 
   const newMateriales = await prisma.centro.create({
     data: {
-      idAdmin: info.idAdmin,
-      idDireccion: newDireccion.idDireccion,
-      idHorario: info.idHorario,
       nombre: info.nombre,
       telefono: info.telefono,
       materiales: {
         connect: info.materiales,
       },
+      administrador:{
+        connect: admin
+      },
+      horario:{
+        connect: newHorario
+      },
+      direccion:{
+        connect: newDireccion
+      }
     },
   });
   response.json(newMateriales);
@@ -164,7 +184,7 @@ module.exports.create = async (request, response, next) => {
 //Actualizar
 module.exports.update = async (request, response, next) => {
   let centro = request.body;
-  let idCentro = parseInt(request.params.idCentro);
+  let idCentro = parseInt(request.body.idCentro);
 
   const oldCentro = await prisma.centro.findUnique({
     where: { idCentro: idCentro },
@@ -179,12 +199,46 @@ module.exports.update = async (request, response, next) => {
       horario: true,
     },
   });
+
+
+
+  const oldDireccion = await prisma.direccion.findUnique({
+    where: { idDireccion: centro.idDireccion }
+  });
+
+  const newDireccion = await prisma.direccion.update({
+    where:{
+      idDireccion: centro.idDireccion
+    },
+    data:{
+      provincia: centro.provinciaValue,
+      canton: centro.cantonValue,
+      senas: centro.senas
+    }
+  })
+
+  const oldHorario = await prisma.horario.findUnique({
+    where: { idHorario: centro.idHorario }
+  });
+
+  const newHorario = await prisma.horario.update({
+    where:{
+      idHorario: centro.idHorario
+    },
+    data:{
+      dias: centro.dias,
+      horas: centro.horas
+    }
+  })
+
+
+
   const newCentro = await prisma.centro.update({
     where: {
       idCentro: idCentro,
     },
     data: {
-      idAdmin: centro.idAdmin,
+      idAdmin: centro.administrador.idAdminsitrador,
       idDireccion: centro.idDireccion,
       idHorario: centro.idHorario,
       nombre: centro.nombre,
@@ -195,5 +249,6 @@ module.exports.update = async (request, response, next) => {
       },
     },
   });
+
   response.json(newCentro);
 };

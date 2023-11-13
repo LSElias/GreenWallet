@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, from, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
 import {
   NotificacionService,
@@ -101,6 +101,25 @@ export class FormComponent implements OnInit {
     }
   }
 
+  getAdminsitrador() {
+    if(!this.isCreate){
+      this.user = this.centroForm.get('administrador').value
+      console.log( this.centroForm.get('administrador').value)
+      console.log(this.user,);
+    }else{
+    this.user = null;
+    this.gService
+      .get('usuario/IdU', 4)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        this.user = data;
+      });
+    }
+  }
+
+
+
+
   ngOnInit(): void {
     this.activeRouter.params.subscribe((params: Params) => {
       this.idCentro = params['id'];
@@ -114,6 +133,10 @@ export class FormComponent implements OnInit {
             this.centroInfo = data;
             this.centroForm.setValue({
               id: null,
+              idCentro: this.idCentro,
+              idHorario: this.centroInfo.idHorario,
+              idDireccion: this.centroInfo.idDireccion,
+              administrador: this.centroInfo.administrador,
               nombre: this.centroInfo.nombre,
               telefono: this.centroInfo.telefono,
               horas: this.centroInfo.horas,
@@ -128,7 +151,7 @@ export class FormComponent implements OnInit {
               ),
             });
           this.setProvincias();
-
+          this.getAdminsitrador();
           });
       }
     });
@@ -139,6 +162,10 @@ export class FormComponent implements OnInit {
       id: [null,null],
       provinciaValue: [null,null],
       cantonValue: [null,null],
+      idHorario: [null,null],
+      idDireccion: [null,null],
+      idCentro: [null,null],
+      administrador: [null,null],
       nombre: [
         null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
@@ -170,26 +197,12 @@ export class FormComponent implements OnInit {
     });
   }
 
-  getAdminsitrador() {
-    this.user = null;
-    this.gService
-      .get('usuario/IdU', 4)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => {
-        console.log(data);
-
-        this.user = data;
-      });
-  }
-
   listaMateriales() {
     this.matList = null;
     this.gService
       .list('material')
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
-        console.log(data);
-
         this.matList = data;
       });
   }
@@ -245,41 +258,63 @@ export class FormComponent implements OnInit {
     return this.centroForm.controls[control].hasError(error);
   };
 
-  submitMaterial(): void {
-    console.log(this.centroForm.value);
+  submit(): void {
 
-    //Establecer submit verdadero
+
     this.submitted = true;
-    //Verificar validación
+    this.provincias.forEach(element => {
+      if(element.id == this.centroForm.get('provincia').value){
+        this.centroForm.patchValue({provinciaValue: element.value})
+      }
+    });
+
+    this.cantones.forEach(element => {
+      if(element.id == this.centroForm.get('canton').value){
+        this.centroForm.patchValue({cantonValue: element.value})
+      }
+    });
+
+
     if (this.centroForm.invalid) return;
-    //Obtener id Generos del Formulario y Crear arreglo con {id: value}
 
+    let mFormat: any= this.centroForm.get('materiales').value
+    .map((x: any) => ( { ['idMaterial']: x }) )
+    this.centroForm.patchValue({materiales: mFormat})
 
-    console.log(this.centroForm.value);
     if (this.isCreate) {
+
+      this.centroForm.patchValue({administrador: this.user});
+
       //Accion API create enviando toda la informacion del formulario
       this.gService
         .create('centro', this.centroForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: any) => {
-          //Obtener respuesta
           this.respCentro = data;
+          this.noti.mensajeRedirect(
+            'Éxito!',
+            `Centro creado: ${data.nombre}`,
+            TipoMessage.success,
+            '/centros/mantenimiento'
+          );
+          this.router.navigate(['/centros/mantenimiento']);
+
         });
     } else {
       //Accion API actualizar enviando toda la informacion del formulario
       this.gService
-        .update('material', this.centroForm.value)
+        .update('centro', this.centroForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: any) => {
           //Obtener respuesta
           this.respCentro = data;
           this.noti.mensajeRedirect(
-            'Actualizar Material',
-            `Material actualizado: ${data.nombre}`,
+            'Éxito!',
+            `Centro actualizado: ${data.nombre}`,
             TipoMessage.success,
-            '/centro/mantenimiento'
+            '/centros/mantenimiento'
           );
-          this.router.navigate(['/centro/mantenimiento']);
+          this.router.navigate(['/centros/mantenimiento']);
         });
     }
   }

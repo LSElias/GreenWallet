@@ -36,6 +36,7 @@ module.exports.getByIdUser = async (request, response, next) => {
     },
   });
   const datos= {
+    idUsuario: usuario.idUsuario,
     cedula: usuario.cedula,
     nombre: usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2,
     correo: usuario.correo,
