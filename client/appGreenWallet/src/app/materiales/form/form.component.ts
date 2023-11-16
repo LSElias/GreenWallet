@@ -48,7 +48,6 @@ export class FormComponent implements OnInit {
           .pipe(takeUntil(this.destroy$))
           .subscribe((data: any)=>{
             this.materialInfo=data;
-            console.log(this.materialInfo)
             //Precargar los datos en el formulario
             this.materialForm.setValue({
               id: this.materialInfo.idMaterial,
@@ -101,7 +100,6 @@ export class FormComponent implements OnInit {
       .list('datos/unidadMed')
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
-        // console.log(data);
         this.unidadList = data;
       });
   }
@@ -112,7 +110,6 @@ export class FormComponent implements OnInit {
       .list('datos/catmat')
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
-        // console.log(data);
         this.catList = data;
       });
   }
@@ -123,15 +120,24 @@ export class FormComponent implements OnInit {
     }
   }
 
+
+
   public errorHandling = (control: string, error: string) => {
     return this.materialForm.controls[control].hasError(error);
   };
   submitMaterial(): void {
-    console.log(this.materialForm.value)
     var sentform: any = new FormData();
 
-    
-    //Establecer submit verdadero
+    if(this.file == null || this.file == null){
+      this.noti.mensaje('Imagen', 'Se necesita una imagen para poder guardar el material.', TipoMessage.error);
+      return;
+    }
+
+    if(this.materialForm.value.color == null){
+      this.noti.mensaje('Color', 'Seleccione un color.', TipoMessage.error);
+      return;
+    }
+
     if(this.isCreate || this.materialForm.value.imagen != null){
       sentform.append('imagen', this.file, this.file.name);
     }else{
@@ -139,9 +145,7 @@ export class FormComponent implements OnInit {
       this.materialForm.get('imagen').updateValueAndValidity();
     }
     this.submitted=true;
-    //Verificar validación
     if(this.materialForm.invalid) return;
-    //Obtener id Generos del Formulario y Crear arreglo con {id: value}
 
       sentform.append('id', this.materialForm.value.id);
       sentform.append('nombre', this.materialForm.value.nombre);
@@ -151,7 +155,6 @@ export class FormComponent implements OnInit {
       sentform.append('color', this.materialForm.value.color);
       sentform.append('valor', this.materialForm.value.valorUnidad);
 
-      console.log(sentform);
     if (this.isCreate) {
       //Accion API create enviando toda la informacion del formulario
       this.gService
@@ -160,7 +163,6 @@ export class FormComponent implements OnInit {
         .subscribe((data:any)=>{
           //Obtener respuesta
           this.respmaterial=data;
-          console.log(data);
           if(this.respmaterial!="Color ocupado"){
          this.noti.mensajeRedirect('Crear Material',
               `Material creado: ${data.nombre}`,
