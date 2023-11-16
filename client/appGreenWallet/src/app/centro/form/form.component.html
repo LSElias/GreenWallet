@@ -8,8 +8,6 @@
             {{ titleForm }} un
             <span> centro </span>
           </h3>
-          <br/>
-            <p *ngIf="user != null"><b> Administrador:</b> {{user.nombre}} </p>
           </mat-card-title
         >
       </mat-card-header>
@@ -57,6 +55,21 @@
                 El teléfono debe tener  <strong>8</strong> carácteres.
               </mat-error>
             </mat-form-field>
+
+            <mat-form-field style="min-width: 30%">
+              <mat-select
+              placeholder="Administrador"
+              formControlName="administrador"
+              multiple="false">
+                <div *ngFor="let item of user"> 
+                <mat-option  [value]="item.idUsuario"> {{item.nombre}}</mat-option>
+              </div>
+              </mat-select>
+              <mat-error *ngIf="errorHandling('administrador', 'required')">
+                El administrador es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+            
           </div>
 
 

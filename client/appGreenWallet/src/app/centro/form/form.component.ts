@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   titleForm: string = 'Crear';
   matList: any;
-  user: any;
+  user: any[];
   centroInfo: any;
   respCentro: any;
   submitted = false;
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
     this.listaMateriales();
     this.listaProvincias();
     this.listaCantones();
-    this.getAdminsitrador();
+    this.listaAdministradores();
   }
 
   setProvincias() {
@@ -101,24 +101,6 @@ export class FormComponent implements OnInit {
     }
   }
 
-  getAdminsitrador() {
-    if(!this.isCreate){
-      this.user = this.centroForm.get('administrador').value
-      console.log( this.centroForm.get('administrador').value)
-      console.log(this.user,);
-    }else{
-    this.user = null;
-    this.gService
-      .get('usuario/IdU', 4)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => {
-        this.user = data;
-      });
-    }
-  }
-
-
-
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe((params: Params) => {
@@ -136,7 +118,7 @@ export class FormComponent implements OnInit {
               idCentro: this.idCentro,
               idHorario: this.centroInfo.idHorario,
               idDireccion: this.centroInfo.idDireccion,
-              administrador: this.centroInfo.administrador,
+              administrador: this.centroInfo.administrador.idAdministrador,
               nombre: this.centroInfo.nombre,
               telefono: this.centroInfo.telefono,
               horas: this.centroInfo.horas,
@@ -149,9 +131,10 @@ export class FormComponent implements OnInit {
               materiales: this.centroInfo.materiales.map(
                 ({ idMaterial }) => idMaterial
               ),
+              
             });
+            this.user.push({idUsuario:this.centroInfo.administrador.idAdministrador, nombre: this.centroInfo.administrador.nombre});
           this.setProvincias();
-          this.getAdminsitrador();
           });
       }
     });
@@ -165,7 +148,7 @@ export class FormComponent implements OnInit {
       idHorario: [null,null],
       idDireccion: [null,null],
       idCentro: [null,null],
-      administrador: [null,null],
+      administrador: [null,Validators.required],
       nombre: [
         null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
@@ -206,6 +189,18 @@ export class FormComponent implements OnInit {
         this.matList = data;
       });
   }
+
+  listaAdministradores() {
+    this.user = null;
+    this.gService
+      .list('usuario/getFreeAdmins')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        this.user = data;
+        console.log(this.user);
+      });
+  }
+
 
   listaProvincias() {
     let prov: Provincia[] = [];
@@ -274,17 +269,15 @@ export class FormComponent implements OnInit {
       }
     });
 
-
     if (this.centroForm.invalid) return;
 
     let mFormat: any= this.centroForm.get('materiales').value
     .map((x: any) => ( { ['idMaterial']: x }) )
     this.centroForm.patchValue({materiales: mFormat})
 
+    console.log(this.centroForm.value);
+
     if (this.isCreate) {
-
-      this.centroForm.patchValue({administrador: this.user});
-
       //Accion API create enviando toda la informacion del formulario
       this.gService
         .create('centro', this.centroForm.value)
@@ -325,7 +318,7 @@ export class FormComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/materiales/mantenimiento']);
+    this.router.navigate(['/centros/mantenimiento']);
   }
 
   ngOnDestroy() {

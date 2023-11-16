@@ -2,24 +2,39 @@
   <div *ngIf="datos != null">
     <div class="data-container">
       <div class="th-header">
-        <h2> Información de Canjeo</h2>
+        <div class="left-side">
+          <img src="../../../assets/images/icon.png">
+        </div>
+        <div class="right-side">
+        <span class="example-spacer"></span>
+        <h2> información de canjeo </h2>
+      </div>
       </div>
       <div class="bodyodyody">
-        <div>
-          <p>
-            Este canjeo fue realizado por <b>{{ datos.usuario }}</b
-            >, el día <b>{{ datos.fecha }}</b> en <b>{{ datos.centro }}</b> con un total de <b>{{datos.total}} monedas</b> canjeadas.
-            <br />
-            Los materiales canjeados fueron los siguientes:
-          </p>
+        <div class="body-flex">
+          <div class="box1">
+            <h3> Fecha</h3>
+            <p> {{datos.fecha}} </p>
+          </div>
+          <div class="box1">
+            <h3> Usuario</h3>
+            <p> {{datos.usuario}} </p>
+          </div>
+          <div class="box1">
+            <h3> Centro</h3>
+            <p> {{datos.centro}} </p>
+          </div>
+          <div class="box2">
+            <h3> Total</h3>
+            <p> {{datos.total}} ecomonedas </p>
+          </div>
         </div>
         <table>
           <thead>
-            <th>Material</th>
-            <th>Valor</th>
-            <th>Cantidad</th>
-
-            <th>Subtotal</th>
+            <th>MATERIAL</th>
+            <th>VALOR</th>
+            <th>CANTIDAD</th>
+            <th>SUBTOTAL</th>
           </thead>
           <tbody *ngFor="let item of datos.materiales">
             <tr>
