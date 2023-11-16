@@ -112,8 +112,7 @@ module.exports.getByIdCliente = async (request, response, next) => {
     idCanjeo: c.idCanjeo,
     fecha: c.fecha.toLocaleDateString(),
     centro: c.centro.nombre,
-    usuario:
-      c.usuario.nombre + " " + c.usuario.apellido1 + " " + c.usuario.apellido2,
+    contacto: c.centro.telefono,
     total: c.total,
   }));
   response.json(datos);
@@ -138,7 +137,8 @@ module.exports.getByIdAdmin = async (request, response, next) => {
   const datos = canjeo.map(m => ({
     codigo: m.idCanjeo,
     fecha: m.fecha.toLocaleDateString(),
-    usuario: m.usuario.nombre + " " + m.usuario.apellido1,
+    cedula: m.usuario.cedula,
+    usuario: m.usuario.nombre + " " + m.usuario.apellido1 + " " + m.usuario.apellido2,
     contacto: m.usuario.correo
   }))
   response.json(datos); 

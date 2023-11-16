@@ -22,7 +22,7 @@ export class HistorialComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['fecha', 'centro','total','accion'];
+  displayedColumns = ['fecha', 'centro', 'contacto','total','accion'];
 
 
   constructor(private gService: GenericService ){

@@ -22,7 +22,7 @@ export class AdminHistorialComponent {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['fecha', 'usuario', 'accion'];
+  displayedColumns = ['fecha', 'cedula','usuario', 'contacto', 'accion'];
 
 
   constructor(private gService: GenericService ){

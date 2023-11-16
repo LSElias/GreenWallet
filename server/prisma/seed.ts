@@ -513,7 +513,7 @@ async function main() {
   await prisma.canjeo.create({
     data: {
       idCentro: 1,
-      idUsuario: 8,
+      idUsuario: 7,
       fecha: new Date("2023-10-30"),
       total: 18,
       canjeoDet: {
@@ -554,6 +554,39 @@ async function main() {
           data: [
             { cantidad: 1, idMaterial: 2, subtotal: 5 },
             { cantidad: 1, idMaterial: 4, subtotal: 10 },
+          ],
+        },
+      },
+    },
+  });
+  await prisma.canjeo.create({
+    data: {
+      idCentro: 2,
+      idUsuario: 7,
+      fecha: new Date("2023-10-30"),
+      total: 15,
+      canjeoDet: {
+        createMany: {
+          data: [
+            { cantidad: 1, idMaterial: 2, subtotal: 5 },
+            { cantidad: 1, idMaterial: 4, subtotal: 10 },
+          ],
+        },
+      },
+    },
+  });
+  await prisma.canjeo.create({
+    data: {
+      idCentro: 2,
+      idUsuario: 8,
+      fecha: new Date("2023-10-30"),
+      total: 18,
+      canjeoDet: {
+        createMany: {
+          data: [
+            { cantidad: 1, idMaterial: 1, subtotal: 5 },
+            { cantidad: 1, idMaterial: 2, subtotal: 5 },
+            { cantidad: 1, idMaterial: 3, subtotal: 8 },
           ],
         },
       },

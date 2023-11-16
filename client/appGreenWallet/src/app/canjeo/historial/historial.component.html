@@ -18,6 +18,12 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Centro</th>
             <td mat-cell *matCellDef="let row">{{ row.centro }}</td>
           </ng-container>
+
+          <ng-container matColumnDef="contacto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Contacto</th>
+            <td mat-cell *matCellDef="let row">{{ row.contacto }}</td>
+          </ng-container>
+
           <!-- Acciones Column -->
           <ng-container matColumnDef="total">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
