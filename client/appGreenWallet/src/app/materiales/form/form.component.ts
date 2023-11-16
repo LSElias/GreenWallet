@@ -128,10 +128,7 @@ export class FormComponent implements OnInit {
   submitMaterial(): void {
     var sentform: any = new FormData();
 
-    if(this.file == null || this.file == null){
-      this.noti.mensaje('Imagen', 'Se necesita una imagen para poder guardar el material.', TipoMessage.error);
-      return;
-    }
+
 
     if(this.materialForm.value.color == null){
       this.noti.mensaje('Color', 'Seleccione un color.', TipoMessage.error);
@@ -139,6 +136,10 @@ export class FormComponent implements OnInit {
     }
 
     if(this.isCreate || this.materialForm.value.imagen != null){
+      if(this.file == null || this.file == null){
+        this.noti.mensaje('Imagen', 'Se necesita una imagen para poder guardar el material.', TipoMessage.error);
+        return;
+      }
       sentform.append('imagen', this.file, this.file.name);
     }else{
       this.materialForm.get('imagen').clearValidators();
