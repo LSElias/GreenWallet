@@ -70,6 +70,27 @@ module.exports.getByIdRol = async (request, response, next) => {
   response.json(datos);
 };
 
+module.exports.getFreeAdmins = async (request, response, next) => {
+  const usuario = await prisma.usuario.findMany({
+    where: { idRol: 2,
+              centros:{ 
+                none:{}
+              } 
+ },
+    include: {
+      rol: true,
+      direccion: true
+    },
+  });
+  const datos= usuario.map(u => ({
+    idUsuario: u.idUsuario,
+    nombre: u.nombre + " " + u.apellido1 + " " + u.apellido2,
+  }))
+  response.json(datos);
+};
+
+
+
 //login: Correo y Clave
 module.exports.login = async (request, response, next) => {
   let { correo, contrasena } = request.body;

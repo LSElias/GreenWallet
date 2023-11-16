@@ -140,7 +140,7 @@ module.exports.create = async (request, response, next) => {
 
 
   const admin = await prisma.usuario.findUnique({
-    where: { correo: info.administrador.correo }
+    where: { idUsuario: info.administrador }
   });
 
 
@@ -201,11 +201,6 @@ module.exports.update = async (request, response, next) => {
   });
 
 
-
-  const oldDireccion = await prisma.direccion.findUnique({
-    where: { idDireccion: centro.idDireccion }
-  });
-
   const newDireccion = await prisma.direccion.update({
     where:{
       idDireccion: centro.idDireccion
@@ -217,9 +212,6 @@ module.exports.update = async (request, response, next) => {
     }
   })
 
-  const oldHorario = await prisma.horario.findUnique({
-    where: { idHorario: centro.idHorario }
-  });
 
   const newHorario = await prisma.horario.update({
     where:{
@@ -231,14 +223,12 @@ module.exports.update = async (request, response, next) => {
     }
   })
 
-
-
   const newCentro = await prisma.centro.update({
     where: {
       idCentro: idCentro,
     },
     data: {
-      idAdmin: centro.administrador.idAdminsitrador,
+      idAdmin: centro.administrador,
       idDireccion: centro.idDireccion,
       idHorario: centro.idHorario,
       nombre: centro.nombre,
