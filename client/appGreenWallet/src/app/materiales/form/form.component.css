@@ -22,6 +22,10 @@ mat-card{
     display: flex;
 }
 
+.holder > div{
+  margin: 25px 25px;
+}
+
 img{
     width: 30vh;
     height: 30vh;
@@ -75,3 +79,21 @@ img{
   .row{
     margin: 5vh 0;
   }
+
+  @media (max-width: 1080px) {
+  
+    .left-grid{
+      width: 100%;
+    }
+  
+    .right-grid{
+      width: 100%;
+      padding: 0% 0%;
+    }
+
+    .divider{
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+}

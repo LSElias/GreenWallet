@@ -41,12 +41,12 @@ module.exports.getByIdCentro = async (request, response, next) => {
       horario: true,
       materiales: {
         select: {
-          idMaterial:true,
           nombre: true,
           descripcion: true,
           imagen: true,
           color: true,
           valor: true,
+          idMaterial: true
         },
       },
     },
@@ -97,6 +97,7 @@ module.exports.getByIdUser = async (request, response, next) => {
       horario: true,
       materiales: {
         select: {
+          idMaterial: true,
           nombre: true,
           descripcion: true,
           imagen: true,

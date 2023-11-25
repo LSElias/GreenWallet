@@ -6,9 +6,11 @@ import { AdminHistorialComponent } from './admin-historial/admin-historial.compo
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 const routes: Routes = [
   {path:'canjeo/historial', component: HistorialComponent },
+  {path:'canjeo/registrar', component: RegistrarComponent},
   {path:'canjeo/admin/historial', component: AdminHistorialComponent },
   {path:'canjeo/detalle/:id', component: DetalleComponent },
 ];

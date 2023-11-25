@@ -1,0 +1,85 @@
+<div class="background">
+  <div class="formContainer">
+    <div class="topPart">
+      <div class="autocompleteBlock">
+        <h3>Ingrese la cédula del cliente</h3>
+        <mat-form-field class="example-full-width">
+          <mat-label>Cédulas</mat-label>
+          <input
+            type="text"
+            placeholder="Seleccione un cliente"
+            aria-label="Cedulas"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete
+            (optionSelected)="infoCliente($event.option.value)"
+            #auto="matAutocomplete"
+          >
+            <div *ngFor="let item of options">
+              <mat-option [value]="item.cedula">{{ item.cedula }}</mat-option>
+            </div>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <hr />
+      <div>
+        <h3>Información del cliente</h3>
+        <div id="infoCliente" class="infoCliente">
+          <p><b> Cliente: </b></p>
+          <p><b> Cédula: </b></p>
+        </div>
+        <button (click)="limpiarUsuario()" mat-raised-button color="primary">
+          Limpiar
+        </button>
+      </div>
+    </div>
+    <div class="bottomPart">
+        <div *ngIf="centro !=null">
+        <p><b> Fecha:</b> {{date}} </p>
+        <p><b> Centro: </b> {{centro[0].nombre}}</p>
+        </div>
+        <br/>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="material">
+              <mat-header-cell *matHeaderCellDef> Material </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.product.nombre}}
+              </mat-cell>
+              
+              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="precio">
+              <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.valor}} ecomonedas</mat-cell>
+              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="cantidad">
+              <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <mat-form-field appearance="fill">
+                    <input matInput id="cantidad " type="number" class="form-control mb-2" 
+                    [(ngModel)]="element.cantidad"
+                    (change)="actualizarCantidad(element)"
+                    > 
+                </mat-form-field> 
+                
+            </mat-cell>
+            <mat-footer-cell *matFooterCellDef class="footer-total">Total </mat-footer-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="subtotal">
+              <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.subtotal}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef class="footer-total">{{total}} ecomonedas </mat-footer-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns" class="header"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-footer-row *matFooterRowDef="displayedColumns" class="footer-row"></mat-footer-row>
+          </mat-table>
+    </div>
+  </div>
+</div>

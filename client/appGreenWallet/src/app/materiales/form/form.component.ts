@@ -3,15 +3,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
-import { NotificacionService, TipoMessage } from 'src/app/share/notificacion.service';
+import {
+  NotificacionService,
+  TipoMessage,
+} from 'src/app/share/notificacion.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  
   destroy$: Subject<boolean> = new Subject<boolean>();
   titleForm: string = 'Crear';
   unidadList: any;
@@ -23,7 +25,7 @@ export class FormComponent implements OnInit {
   idMaterial: number = 0;
   isCreate: boolean = true;
   numRegex = '^[0-9]*$';
-  file:any;
+  file: any;
 
   constructor(
     private fb: FormBuilder,
@@ -37,17 +39,17 @@ export class FormComponent implements OnInit {
     this.listaCategoria();
   }
   ngOnInit(): void {
-    let img = document.getElementById("output") as HTMLImageElement;
-    this.activeRouter.params.subscribe((params:Params)=>{
-      this.idMaterial=params['id'];
-      if(this.idMaterial != undefined && !isNaN(Number(this.idMaterial))){
-        this.isCreate=false;
-        this.titleForm='Actualizar';
+    let img = document.getElementById('output') as HTMLImageElement;
+    this.activeRouter.params.subscribe((params: Params) => {
+      this.idMaterial = params['id'];
+      if (this.idMaterial != undefined && !isNaN(Number(this.idMaterial))) {
+        this.isCreate = false;
+        this.titleForm = 'Actualizar';
         this.gService
           .get('material', this.idMaterial)
           .pipe(takeUntil(this.destroy$))
-          .subscribe((data: any)=>{
-            this.materialInfo=data;
+          .subscribe((data: any) => {
+            this.materialInfo = data;
             //Precargar los datos en el formulario
             this.materialForm.setValue({
               id: this.materialInfo.idMaterial,
@@ -58,40 +60,44 @@ export class FormComponent implements OnInit {
               imagen: null,
               color: this.materialInfo.color,
               unidadMedida: this.materialInfo.unidadMedida.idUnidad,
-            })
-            img.src = `../../../assets/images/${this.materialInfo.imagen}`
-          })
-        
+            });
+            img.src = `../../../assets/images/${this.materialInfo.imagen}`;
+          });
       }
-    })
+    });
   }
 
-  showTag(value:any){
-    let span = document.getElementById("colortag")
-    span.innerHTML= '';
-    span.innerHTML= "<b> " +  value + " </b>";
+  showTag(value: any) {
+    let span = document.getElementById('colortag');
+    span.innerHTML = '';
+    span.innerHTML = '<b> ' + value + ' </b>';
   }
-
 
   //Crear Formulario
   formularioReactive() {
     //[null, Validators.required]
-    this.materialForm=this.fb.group({
+    this.materialForm = this.fb.group({
       id: [null, null],
-      nombre:[
+      nombre: [
         null,
-        Validators.compose([Validators.required, Validators.minLength(3)])
+        Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      descripcion:[null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      valorUnidad:[null, 
-        Validators.compose([Validators.required,
-          Validators.pattern(this.numRegex)])
+      descripcion: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      unidadMedida:[null, Validators.required],
-      categoria:[null, Validators.required],
-      color:[null, Validators.required],
-      imagen:[null,Validators.required]
-    })
+      valorUnidad: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(this.numRegex),
+        ]),
+      ],
+      unidadMedida: [null, Validators.required],
+      categoria: [null, Validators.required],
+      color: [null, Validators.required],
+      imagen: [null, Validators.required],
+    });
   }
 
   listaUnidades() {
@@ -114,13 +120,11 @@ export class FormComponent implements OnInit {
       });
   }
 
-  getfile(event:any){
+  getfile(event: any) {
     if (event.target.files && event.target.files.length) {
       this.file = event.target.files[0];
     }
   }
-
-
 
   public errorHandling = (control: string, error: string) => {
     return this.materialForm.controls[control].hasError(error);
@@ -128,66 +132,84 @@ export class FormComponent implements OnInit {
   submitMaterial(): void {
     var sentform: any = new FormData();
 
-
-
-    if(this.materialForm.value.color == null){
+    if (this.materialForm.value.color == null) {
       this.noti.mensaje('Color', 'Seleccione un color.', TipoMessage.error);
       return;
     }
 
-    if(this.isCreate || this.materialForm.value.imagen != null){
-      if(this.file == null || this.file == null){
-        this.noti.mensaje('Imagen', 'Se necesita una imagen para poder guardar el material.', TipoMessage.error);
+    if (this.isCreate || this.materialForm.value.imagen != null) {
+      if (this.file == null || this.file == null) {
+        this.noti.mensaje(
+          'Imagen',
+          'Se necesita una imagen para poder guardar el material.',
+          TipoMessage.error
+        );
         return;
       }
       sentform.append('imagen', this.file, this.file.name);
-    }else{
+    } else {
       this.materialForm.get('imagen').clearValidators();
       this.materialForm.get('imagen').updateValueAndValidity();
     }
-    this.submitted=true;
-    if(this.materialForm.invalid) return;
+    this.submitted = true;
+    if (this.materialForm.invalid) return;
 
-      sentform.append('id', this.materialForm.value.id);
-      sentform.append('nombre', this.materialForm.value.nombre);
-      sentform.append('descripcion', this.materialForm.value.descripcion);
-      sentform.append('idUnidad', this.materialForm.value.unidadMedida);
-      sentform.append('idCategoria', this.materialForm.value.categoria);
-      sentform.append('color', this.materialForm.value.color);
-      sentform.append('valor', this.materialForm.value.valorUnidad);
+    sentform.append('id', this.materialForm.value.id);
+    sentform.append('nombre', this.materialForm.value.nombre);
+    sentform.append('descripcion', this.materialForm.value.descripcion);
+    sentform.append('idUnidad', this.materialForm.value.unidadMedida);
+    sentform.append('idCategoria', this.materialForm.value.categoria);
+    sentform.append('color', this.materialForm.value.color);
+    sentform.append('valor', this.materialForm.value.valorUnidad);
 
     if (this.isCreate) {
       //Accion API create enviando toda la informacion del formulario
       this.gService
-        .create('material',sentform)
+        .create('material', sentform)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((data:any)=>{
+        .subscribe((data: any) => {
           //Obtener respuesta
-          this.respmaterial=data;
-          if(this.respmaterial!="Color ocupado"){
-         this.noti.mensajeRedirect('Crear Material',
+          this.respmaterial = data;
+          if (this.respmaterial != 'Color ocupado') {
+            this.noti.mensajeRedirect(
+              'Crear Material',
               `Material creado: ${data.nombre}`,
               TipoMessage.success,
-              '/materiales/mantenimiento');
-         this.router.navigate(['/materiales/mantenimiento'])
-        }else{
-          this.noti.mensaje('Error', 'Color en uso. Seleccione uno diferente', TipoMessage.error);
-        }
-        })
+              '/materiales/mantenimiento'
+            );
+            this.router.navigate(['/materiales/mantenimiento']);
+          } else {
+            this.noti.mensaje(
+              'Error',
+              'Color en uso. Seleccione uno diferente',
+              TipoMessage.error
+            );
+          }
+        });
     } else {
       //Accion API actualizar enviando toda la informacion del formulario
       this.gService
-        .update('material',sentform)
+        .update('material', sentform)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((data:any)=>{
+        .subscribe((data: any) => {
           //Obtener respuesta
-          this.respmaterial=data;
-          this.noti.mensajeRedirect('Actualizar Material',
+          this.respmaterial = data;
+          if (this.respmaterial == 'Color ocupado') {
+            this.noti.mensaje(
+              'Error',
+              'Color en uso. Seleccione uno diferente',
+              TipoMessage.error
+            );
+          } else {
+            this.noti.mensajeRedirect(
+              'Actualizar Material',
               `Material actualizado: ${data.nombre}`,
               TipoMessage.success,
-              '/materiales/mantenimiento');
-          this.router.navigate(['/materiales/mantenimiento'])
-        })
+              '/materiales/mantenimiento'
+            );
+            this.router.navigate(['/materiales/mantenimiento']);
+          }
+        });
     }
   }
   onReset() {
@@ -201,6 +223,5 @@ export class FormComponent implements OnInit {
     this.destroy$.next(true);
     // Desinscribirse
     this.destroy$.unsubscribe();
-  } 
-
+  }
 }

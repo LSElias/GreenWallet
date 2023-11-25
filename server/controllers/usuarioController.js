@@ -62,8 +62,9 @@ module.exports.getByIdRol = async (request, response, next) => {
     },
   });
   const datos= usuario.map(u => ({
+    idUsuario: u.idUsuario,
     cedula: u.cedula,
-    nombre: u.nombre + u.apellido1,
+    nombre: u.nombre + " " +  u.apellido1,
     correo: u.correo,
     telefono: u.telefono
   }))
