@@ -36,14 +36,14 @@
       </div>
     </div>
     <div class="bottomPart">
-        <div *ngIf="centro !=null">
-        <p><b> Fecha:</b> {{date}} </p>
-        <p><b> Centro: </b> {{centro[0].nombre}}</p>
+        <div *ngIf="centro !=null" style="display:flex;">
+        <p style="margin:  2.5vh;"><b> Fecha:</b> {{date}} </p>
+        <p style="margin:  2.5vh;"><b> Centro: </b> {{centro[0].nombre}}</p>
         </div>
         <br/>
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="material">
-              <mat-header-cell *matHeaderCellDef> Material </mat-header-cell>
+              <mat-header-cell  *matHeaderCellDef> Material </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.product.nombre}}
               </mat-cell>
               
@@ -51,7 +51,7 @@
             </ng-container>
           
             <ng-container matColumnDef="precio">
-              <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef > Valor </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.valor}} ecomonedas</mat-cell>
               <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
@@ -63,6 +63,7 @@
                     <input matInput id="cantidad " type="number" class="form-control mb-2" 
                     [(ngModel)]="element.cantidad"
                     (change)="actualizarCantidad(element)"
+                    min="0"
                     > 
                 </mat-form-field> 
                 
@@ -76,10 +77,15 @@
               <mat-footer-cell *matFooterCellDef class="footer-total">{{total}} ecomonedas </mat-footer-cell>
             </ng-container>
           
-            <mat-header-row *matHeaderRowDef="displayedColumns" class="header"></mat-header-row>
+            <mat-header-row   *matHeaderRowDef="displayedColumns" class="header"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
             <mat-footer-row *matFooterRowDef="displayedColumns" class="footer-row"></mat-footer-row>
           </mat-table>
-    </div>
+          <div class="buttonPart">
+          <button mat-raised-button (click)="sendData()" color="primary">
+            Guardar Factura
+          </button>
+        </div>
+        </div>
   </div>
 </div>

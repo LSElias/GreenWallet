@@ -149,8 +149,8 @@ module.exports.create = async (request, response, next) => {
   let info = request.body;
   const newCanjeo = await prisma.canjeo.create({
     data: {
-      idCentro: info.idCentro,
       idUsuario: info.idUsuario,
+      idCentro: info.idCentro,
       fecha: new Date(info.fecha),
       total: info.total, 
       canjeoDet: {

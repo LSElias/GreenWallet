@@ -36,7 +36,7 @@ export class AdminHistorialComponent {
 
 
     getInfo(){
-      var id= 3
+      var id= 4
       this.gService.get('canjeo/admin', id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {

@@ -108,6 +108,7 @@ module.exports.getByIdUser = async (request, response, next) => {
     },
   });
   const datos = centro.map((centro) => ({
+    idCentro: centro.idCentro,
     nombre: centro.nombre,
     telefono: centro.telefono,
     horario: centro.horario.dias + " - " + centro.horario.horas,

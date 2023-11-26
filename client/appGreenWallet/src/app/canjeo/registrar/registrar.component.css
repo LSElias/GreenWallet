@@ -4,11 +4,11 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: fit-content;
+    height: max-content;
 }
 
 .formContainer{
-    max-height: 90vh;
+    min-height: 90vh;
     max-width: 90vw;
     padding: 20vh 5vw;
 }
@@ -20,15 +20,12 @@
     border-radius: 15px;
     box-shadow: 0px 0px 15px black;
     display: flex;
-    padding: 1.5% 3%;
+    padding: 5vh;
 }
 
-.autocompleteBlock{
-    width: 25%;
-}
 
 hr{
-    margin: 0% 10%;
+    margin: 0% 7%;
     border: none;
     border: 0.5px solid rgb(201, 201, 201);
 }
@@ -42,72 +39,31 @@ hr{
     padding: 1.5% 3%;
 }
 
-
-/***** TABLE *****/
-.bodyodyody{
-    line-height: 1.54em;
-    border: 1px solid rgb(77, 145, 60);
-    border-top: none;
+.header{
+   background-color: rgb(145, 192, 70);
+   border-radius: 15px;
 }
 
-.body-flex{
-    text-align: center;
+.header > mat-header-cell{
+   border-radius: 15px 15px 0px 0px;
+}
+
+.footer-row{
+    background-color: rgb(145, 192, 70);
+    border-radius: 0px 0px 15px 15px;
+    font-weight: 600;
+}
+
+.footer-row > mat-footer-cell{
+    border-radius: 0px 0px 15px 15px;
+ }
+
+ mat-cell{
+    padding: 2.5% 0%;
+ }
+
+ .buttonPart{
     display: flex;
-    background-color: rgb(181, 206, 145);
-    letter-spacing: 0.1em;
-    word-spacing: 0.1em;
-}
-
-.box1{
-    width: 45%;
-    padding: 0.5% 2%;
-    border-bottom: 1px solid rgb(49, 77, 42);
-
-}
-
-.box2{
-    color: rgba(255, 255, 255, 0.87);
-    width: 100%;
-    padding: 0.5% 2%;
-    background-color: rgb(61, 99, 56);
-    border-bottom: 1px solid rgb(61, 99, 56);
-
-}
-
-
-table{
-    width: 100%;
-    text-align: center;
-    background-color: rgb(61, 99, 56);
-
-}
-
-thead{
-    background-color: rgb(61, 99, 56);
-    color: rgba(255, 255, 255, 0.911);
-    letter-spacing: 0.20em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-th{
-    font-weight: 700;
-    padding: 1% 0px;
-
-}
-
-
-tbody{
-    background-color: rgb(227, 236, 207);
-}
-
-table > div > tbody > td > tr {
-    padding: 1% 0px;
-}
-
-.summary > td{
-    background-color: rgb(61, 99, 56);
-    color: rgba(255, 255, 255, 0.911);
-    letter-spacing: 0.0em;
-    padding: 1% 0px;
-}
-/**** End TABLE *****/
+    flex-direction: row-reverse;
+    padding: 2.5% 0%; 
+ }

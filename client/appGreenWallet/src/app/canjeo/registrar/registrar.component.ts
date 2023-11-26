@@ -1,10 +1,14 @@
 import { formatDate, getLocaleDateFormat } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil, window } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
+import {
+  NotificacionService,
+  TipoMessage,
+} from 'src/app/share/notificacion.service';
 
 export class ItemCart {
   idItem: any;
@@ -20,8 +24,8 @@ export class ItemCart {
   styleUrls: ['./registrar.component.css'],
 })
 export class RegistrarComponent implements AfterViewInit {
-  private cart = new BehaviorSubject<ItemCart[]>(null); //Definimos nuestro BehaviorSubject, este debe tener un valor inicial siempre
-  public currentDataCart$ = this.cart.asObservable(); //Tenemos un observable con el valor actual del BehaviorSubject
+  private cart = new BehaviorSubject<ItemCart[]>(null);
+  public currentDataCart$ = this.cart.asObservable();
   public qtyItems = new Subject<number>();
 
   myControl = new FormControl('');
@@ -31,13 +35,18 @@ export class RegistrarComponent implements AfterViewInit {
   cliente: any;
   centro: any;
   admin: any;
+  fecha = Date.now();
   total: any = 0;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['material', 'precio', 'cantidad', 'subtotal'];
 
-  date:any = formatDate(new Date(), 'dd-MM-YYYY', 'en');
+  date: any = formatDate(new Date(), 'dd-MM-YYYY', 'en');
 
-  constructor(private route: Router, private genericService: GenericService) {
+  constructor(
+    private route: Router,
+    private genericService: GenericService,
+    private noti: NotificacionService
+  ) {
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe((newValue) => {
       this.options = this.filterValues(newValue);
@@ -149,6 +158,7 @@ export class RegistrarComponent implements AfterViewInit {
     return total;
   }
 
+  @HostListener('window:beforeunload', ['$event'])
   public deleteCart() {
     this.cart.next(null);
     this.qtyItems.next(0);
@@ -159,7 +169,7 @@ export class RegistrarComponent implements AfterViewInit {
 
   filterValues(search: any) {
     if (search) {
-      this.options.filter(
+      return this.options.filter(
         (value) =>
           value?.cedula.toLowerCase().indexOf(search.toLowerCase()) === 0
       );
@@ -213,12 +223,76 @@ export class RegistrarComponent implements AfterViewInit {
       .subscribe((response: any) => {
         this.centro = response;
         console.log(this.centro);
-        if (JSON.parse(localStorage.getItem('orden')) == null) {
+        if (
+          JSON.parse(localStorage.getItem('orden')) == null ||
+          JSON.parse(localStorage.getItem('orden')) == '[]'
+        ) {
           this.centro[0].materiales.forEach((element) => {
             console.log(element);
             this.addToCart(element);
           });
         }
       });
+  }
+
+  sendData() {
+    console.log(this.centro);
+    if (this.cliente == null) {
+      this.noti.mensaje(
+        'Canjeo',
+        'Debe seleccionar un cliente.',
+        TipoMessage.warning
+      );
+      return;
+    }
+    if (this.getItems != null) {
+      //Obtener los items de la compra
+      let itemsCompra = this.getItems;
+      //Estructura para insertar en la tabla intermedia
+      //[{'videojuego_id': valor, 'cantidad': valor}]
+      var count = 0;
+      itemsCompra.filter(function (x) {
+        if (x.cantidad == 0) {
+          itemsCompra.splice(count, 1);
+        }
+        count++;
+      });
+
+      let detalle = itemsCompra.map((x) => ({
+        ['idMaterial']: x.idItem,
+        ['cantidad']: x.cantidad,
+        ['subtotal']: x.subtotal,
+      }));
+      //Datos a insertar en el API
+      let datosInsert = {
+        fecha: this.fecha,
+        idUsuario: this.cliente.idUsuario,
+        idCentro: this.centro[0].idCentro,
+        total: this.getTotal(),
+        canjeoDet: detalle,
+      };
+      console.log(datosInsert);
+      //Llamar al API para crear una orden
+      this.genericService
+        .create('canjeo/', datosInsert)
+        .subscribe((response: any) => {
+          //Notificar el registro
+          this.deleteCart();
+          this.total = this.getTotal();
+          this.noti.mensajeRedirect(
+            'Canjeo',
+            `Canjeo registrado #${response.idCanjeo}`,
+            TipoMessage.success, `/canjeo/detalle/${response.idCanjeo}`
+          );
+          this.route.navigate([`/canjeo/detalle/${response.idCanjeo}`]);
+          
+        });
+    } else {
+      this.noti.mensaje(
+        'Orden',
+        'Agregue videojuegos a la orden',
+        TipoMessage.warning
+      );
+    }
   }
 }
