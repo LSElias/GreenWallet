@@ -67,3 +67,8 @@ hr{
     flex-direction: row-reverse;
     padding: 2.5% 0%; 
  }
+ img{
+    filter: brightness(85%);
+    height: 25px;
+    margin-right: 5%;
+}

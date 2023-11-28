@@ -8,7 +8,7 @@
           <input
             type="text"
             placeholder="Seleccione un cliente"
-            aria-label="Cedulas"
+            aria-label="Cédulas"
             matInput
             [formControl]="myControl"
             [matAutocomplete]="auto"
@@ -52,7 +52,7 @@
           
             <ng-container matColumnDef="precio">
               <mat-header-cell *matHeaderCellDef > Valor </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.valor}} ecomonedas</mat-cell>
+              <mat-cell *matCellDef="let element"> <img src="../../../assets/images/coin.png">   {{element.valor}} </mat-cell>
               <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
           
@@ -63,7 +63,6 @@
                     <input matInput id="cantidad " type="number" class="form-control mb-2" 
                     [(ngModel)]="element.cantidad"
                     (change)="actualizarCantidad(element)"
-                    min="0"
                     > 
                 </mat-form-field> 
                 
@@ -73,8 +72,8 @@
     
             <ng-container matColumnDef="subtotal">
               <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.subtotal}} </mat-cell>
-              <mat-footer-cell *matFooterCellDef class="footer-total">{{total}} ecomonedas </mat-footer-cell>
+              <mat-cell *matCellDef="let element"> <img src="../../../assets/images/coin.png"> {{element.subtotal}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef class="footer-total"><img src="../../../assets/images/coin.png"> {{total}}  </mat-footer-cell>
             </ng-container>
           
             <mat-header-row   *matHeaderRowDef="displayedColumns" class="header"></mat-header-row>

@@ -121,3 +121,8 @@ table > tbody > tr > td{
     letter-spacing: 0.0em;
     padding: 1% 0px;
 }
+img{
+    filter: brightness(85%);
+    height: 25px;
+
+}

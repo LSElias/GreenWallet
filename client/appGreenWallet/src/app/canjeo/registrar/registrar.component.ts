@@ -67,8 +67,8 @@ export class RegistrarComponent implements AfterViewInit {
   }
 
   actualizarCantidad(item: any) {
-    this.addToCart(item);
-    this.total = this.getTotal();
+      this.addToCart(item);
+      this.total = this.getTotal();
   }
 
   // CARRITO
@@ -194,6 +194,8 @@ export class RegistrarComponent implements AfterViewInit {
     idObject.innerHTML = `<p><b> Cliente:</b></p> 
       <p><b> Cédula:</b></p>`;
     this.cliente = null;
+
+    this.myControl.reset(); 
   }
 
   getUserData() {
