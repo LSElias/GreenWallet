@@ -37,6 +37,7 @@ export class RegistrarComponent implements AfterViewInit {
   admin: any;
   fecha = Date.now();
   total: any = 0;
+  cantidad: any;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['material', 'precio', 'cantidad', 'subtotal'];
 
@@ -67,8 +68,20 @@ export class RegistrarComponent implements AfterViewInit {
   }
 
   actualizarCantidad(item: any) {
-      this.addToCart(item);
-      this.total = this.getTotal();
+      this.cantidad = item.cantidad
+      //console.log('Valor Cantidad: ', this.cantidad)
+
+      if (!isNaN(this.cantidad)) {
+        this.addToCart(item);
+        this.total = this.getTotal();
+      }
+      if (this.cantidad === null) {
+        this.noti.mensaje(
+          'Error',
+          'Solo acepta números',
+          TipoMessage.error
+        );
+        }         
   }
 
   // CARRITO
@@ -182,8 +195,9 @@ export class RegistrarComponent implements AfterViewInit {
     this.optionHolder.forEach((element) => {
       if (element.cedula == value) {
         var idObject = document.getElementById('infoCliente');
-        idObject.innerHTML = `<p><b> Cliente:</b> ${element.nombre}  </p> 
-          <p><b> Cédula:</b> ${element.cedula}  </p> `;
+        idObject.innerHTML = ` <p><b> Cédula:</b> ${element.cedula}  </p>
+        <p><b> Cliente:</b> ${element.nombre}  </p> 
+        <p><b> Contacto:</b> ${element.correo}  </p> `;
         this.cliente = element;
       }
     });
@@ -191,8 +205,9 @@ export class RegistrarComponent implements AfterViewInit {
 
   limpiarUsuario() {
     var idObject = document.getElementById('infoCliente');
-    idObject.innerHTML = `<p><b> Cliente:</b></p> 
-      <p><b> Cédula:</b></p>`;
+    idObject.innerHTML = `<p><b> Cédula:</b></p> 
+      <p><b> Cliente:</b></p>
+      <p><b> Contacto:</b></p>`;
     this.cliente = null;
 
     this.myControl.reset(); 
@@ -291,8 +306,8 @@ export class RegistrarComponent implements AfterViewInit {
         });
     } else {
       this.noti.mensaje(
-        'Orden',
-        'Agregue videojuegos a la orden',
+        'Canjeo',
+        'Agregue materiales al canjeo',
         TipoMessage.warning
       );
     }
