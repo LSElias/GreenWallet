@@ -11,7 +11,7 @@ export class UserGuard {
   currentUser: any;
   constructor() {
     //Subscripción a la información del usuario actual
-    this.authService.decodeToken.subscribe((user) => (this.currentUser = user));
+    this.authService.decodeToken.subscribe((usuario) => (this.currentUser = usuario));
     //Subscripción al boolean que indica si esta autenticado
     this.authService.isAuthenticated.subscribe((valor) => (this.auth = valor));
   }
@@ -20,8 +20,8 @@ export class UserGuard {
       const userRole = this.currentUser.role;
       //roles.length && roles.indexOf(verify.role)===-1
       if (
-        route.data['roles'].length &&
-        !route.data['roles'].includes(userRole)
+        route.data['rol'].length &&
+        !route.data['rol'].includes(userRole)
       ) {
         this.noti.mensajeRedirect(
           'Usuario',
