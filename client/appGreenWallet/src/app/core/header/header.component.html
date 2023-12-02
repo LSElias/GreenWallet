@@ -7,6 +7,7 @@
         <div class="col-4 top-row">
             <button
             mat-icon-button
+            (click)="redirect('usuario/login')"
             class="nav-item"
             aria-label="Example icon-button with heart icon"
           >
@@ -33,10 +34,10 @@
   <mat-drawer #drawer  opened="false" mode="over" position="end">
     <mat-nav-list>
       <mat-list-item>
-        <button mat-button> <mat-icon> home </mat-icon> Inicio </button>
+        <button mat-button (click)="redirect('/')"> <mat-icon> home </mat-icon> Inicio </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button> <mat-icon> door_front </mat-icon> Iniciar Sesión </button>
+        <button mat-button (click)="redirect('usuario/login')"> <mat-icon> door_front </mat-icon> Cerrar Sesión</button>
       </mat-list-item>
         <mat-list-item>
           <button mat-button (click)="redirect('canjeo/historial')"> <mat-icon> history </mat-icon> Historial de Canjeos </button>

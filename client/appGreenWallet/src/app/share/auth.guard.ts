@@ -11,13 +11,13 @@ export class UserGuard {
   currentUser: any;
   constructor() {
     //Subscripción a la información del usuario actual
-    this.authService.decodeToken.subscribe((usuario) => (this.currentUser = usuario));
+    this.authService.decodeToken.subscribe((usuario:any) => (this.currentUser = usuario));
     //Subscripción al boolean que indica si esta autenticado
     this.authService.isAuthenticated.subscribe((valor) => (this.auth = valor));
   }
   checkUserLogin(route: ActivatedRouteSnapshot): boolean {
     if (this.auth) {
-      const userRole = this.currentUser.role;
+      const userRole = this.currentUser.rol;
       //roles.length && roles.indexOf(verify.role)===-1
       if (
         route.data['rol'].length &&

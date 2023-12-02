@@ -7,15 +7,10 @@ import { NotificacionService, TipoMessage } from 'src/app/share/notificacion.ser
 @Component({
   selector: 'app-usuario-login',
   templateUrl: './usuario-login.component.html',
-  styleUrls: ['./usuario-login.component.css'],
-})
-@Component({
-  selector: 'app-usuario-login',
-  templateUrl: './usuario-login.component.html',
   styleUrls: ['./usuario-login.component.css']
 })
-export class UsuarioLoginComponent implements OnInit{
 
+export class UsuarioLoginComponent implements OnInit{
   hide=true;
   formulario: FormGroup;
   makeSubmit: boolean = false;
@@ -52,7 +47,7 @@ export class UsuarioLoginComponent implements OnInit{
     this.authService.loginUser(this.formulario.value)
     .subscribe((respuesta:any)=>{
       this.noti.mensajeRedirect(
-        'Usuario', 'Usuario logueado: ', 
+        'Inicio de sesión', 'Bienvenido a Greenwallet', 
         TipoMessage.success,'/')
       this.router.navigate(['/'])
     })
