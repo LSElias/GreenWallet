@@ -2,6 +2,8 @@ const { PrismaClient, Prisma } = require("@prisma/client");
 const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
+const multer = require("multer");
+const fs = require("fs");
 
 //Get
 module.exports.get = async (request, response, next) => {
@@ -64,24 +66,44 @@ module.exports.getByIdCategoria = async (request, response, next) => {
   response.json(datos);
 };
 
+//Ruta del almacenamiento
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "prisma/imagenes/");
+  },
+  filename: function (req, file, cb) {
+    //console.log(file)
+    cb(null, `${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+exports.upload = upload.single("foto");
+
+
 //Create 
 module.exports.create = async (request, response, next) => {
   let infoRecom = request.body;
+  const photo = request.file.originalname;
+
   const newRecom = await prisma.recompensa.create({
     data: {
-      idCategoria: infoRecom.idCategoria,
+      idCategoria: parseInt(infoRecom.idCategoria),
       nombre: infoRecom.nombre,
       descripcion: infoRecom.descripcion,
-      foto: infoRecom.foto,
-      valor: infoRecom.valor,
-      cantidad: infoRecom.cantidad,
-      estado: infoRecom.estado,
+      foto: photo,
+      valor: parseInt(infoRecom.valor),
+      cantidad: parseInt(infoRecom.cantidad),
+      estado: Boolean(infoRecom.estado),
       fechaAdquision: new Date(infoRecom.fechaAdquision),
-      fechaExpiracion: new Date(infoRecom.fechaExpiracion)
-    },
+      fechaExpiracion:  new Date(infoRecom.fechaExpiracion),
+    }
   });
   response.json(newRecom);
 };
+
+const uploadOld = "prisma/imagenes/";
 
 //Update
 module.exports.update = async (request, response, next) => {
@@ -94,20 +116,33 @@ module.exports.update = async (request, response, next) => {
      categoria: true
     },
   });
+
+  const oldPhoto = uploadOld + oldRecom.foto;
+  if (request.file != undefined) {
+    var photo = request.file.originalname;
+  }
+  if (photo != null) {
+    if (fs.existsSync(oldPhoto)) {
+      fs.unlinkSync(oldPhoto);
+    }
+  } else {
+    photo = oldRecom.foto;
+  }
+
   const newRecom = await prisma.recompensa.update({
     where: {
       idRecompensas: idRecompensas,
     },
     data: {
-      idCategoria: infoRecom.idCategoria,
+      idCategoria: parseInt(infoRecom.idCategoria),
       nombre: infoRecom.nombre,
       descripcion: infoRecom.descripcion,
-      foto: infoRecom.foto,
-      valor: infoRecom.valor,
-      cantidad: infoRecom.cantidad,
-      estado: infoRecom.estado,
+      foto: photo,
+      valor: parseInt(infoRecom.valor),
+      cantidad: parseInt(infoRecom.cantidad),
+      estado: Boolean(infoRecom.estado),
       fechaAdquision: new Date(infoRecom.fechaAdquision),
-      fechaExpiracion: new Date(infoRecom.fechaExpiracion)
+      fechaExpiracion:  new Date(infoRecom.fechaExpiracion),
     },
   });
 

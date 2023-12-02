@@ -7,7 +7,7 @@ router.get("/", usuarioController.get);
 
 router.get("/getFreeAdmins", usuarioController.getFreeAdmins);
 router.post("/login", usuarioController.login);
-router.post("/", usuarioController.create);
+router.post("/registrar", usuarioController.create);
 router.put("/:idUsuario", usuarioController.update);
 
 router.get("/idU/:idUsuario", usuarioController.getByIdUser);

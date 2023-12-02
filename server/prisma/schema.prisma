@@ -152,7 +152,7 @@ model Usuario {
   apellido1   String  @db.VarChar(50)
   apellido2   String  @db.VarChar(50)
   correo      String  @db.VarChar(250) @unique
-  contrasena  String  @db.VarChar(250) 
+  contrasena  String   
   cedula      String  @db.Char(9)
   telefono    String  @db.Char(8)
   rol         Rol     @relation(fields: [idRol],references: [idRol])
