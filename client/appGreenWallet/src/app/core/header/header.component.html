@@ -10,7 +10,7 @@
       <div class="col-4 top-row">
         <button
           mat-icon-button
-          (click)="redirect('usuario/login')"
+          *ngIf="!(isAutenticated)" (click)="login()"
           class="nav-item"
           aria-label="Example icon-button with heart icon"
         >
