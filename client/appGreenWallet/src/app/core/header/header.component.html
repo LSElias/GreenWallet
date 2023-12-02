@@ -18,21 +18,21 @@
           <mat-icon>door_front</mat-icon>
         </button>
         <button
-        mat-icon-button
-        class="nav-item"
-        aria-label="Example icon-button with heart icon"
-      >
-        <!--Agregar linkeo a logout -->
-        <mat-icon>logout</mat-icon>
-      </button>
-      <button
-      mat-icon-button
-      class="nav-item"
-      aria-label="Example icon-button with heart icon"
-    >
-      <!--Agregar linkeo a billetera-->
-      <mat-icon>wallet</mat-icon>
-    </button>
+          mat-icon-button
+          class="nav-item"
+          aria-label="Example icon-button with heart icon"
+        >
+          <!--Agregar linkeo a logout -->
+          <mat-icon>logout</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="nav-item"
+          aria-label="Example icon-button with heart icon"
+        >
+          <!--Agregar linkeo a billetera-->
+          <mat-icon>wallet</mat-icon>
+        </button>
         <button
           mat-icon-button
           class="nav-item"
@@ -61,10 +61,14 @@
       </mat-list-item>
       <hr />
       <mat-list-item>
-        <button mat-button (click)="redirect('/')"> <mat-icon> home </mat-icon> Inicio </button>
+        <button mat-button (click)="redirect('/')">
+          <mat-icon> home </mat-icon> Inicio
+        </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="redirect('usuario/login')"> <mat-icon> door_front </mat-icon> Cerrar Sesión</button>
+        <button mat-button (click)="redirect('usuario/login')">
+          <mat-icon> door_front </mat-icon> Cerrar Sesión
+        </button>
       </mat-list-item>
       <!--Esto se elimina cuando se hayan hecho los logeos-->
       <mat-list-item>
@@ -87,6 +91,12 @@
           Centro
         </button>
       </mat-list-item>
+      <mat-list-item>
+        <button (click)="redirect('canjeo/registrar')" mat-button>
+          <mat-icon>swap_horiz</mat-icon>
+          Canjear Materiales
+        </button>
+      </mat-list-item>
       <!--Esto se elimina cuando se hayan hecho los logeos-->
       <mat-list-item>
         <h4>Administrador General</h4>
@@ -103,9 +113,8 @@
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button (click)="redirect('canjeo/registrar')" mat-button>
-          <mat-icon>swap_horiz</mat-icon>
-          Canjear Materiales
+        <button (click)="redirect('recompensa/mantenimiento')" mat-button>
+          <mat-icon> build </mat-icon> Mantenimiento de Materiales
         </button>
       </mat-list-item>
     </mat-nav-list>
