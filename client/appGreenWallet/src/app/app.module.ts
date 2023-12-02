@@ -12,6 +12,7 @@ import { CentroModule } from './centro/centro.module';
 import { MaterialesModule } from './materiales/materiales.module';
 import { CanjeoModule } from './canjeo/canjeo.module';
 import { ToastrModule } from 'ngx-toastr';
+import { RecompensaModule } from './recompensa/recompensa.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     MaterialesModule,
     CanjeoModule,
     AppRoutingModule,
+    RecompensaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
