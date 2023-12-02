@@ -18,21 +18,22 @@
           <mat-icon>door_front</mat-icon>
         </button>
         <button
-          mat-icon-button
-          class="nav-item"
-          aria-label="Example icon-button with heart icon"
-        >
-          <!--Agregar linkeo a logout -->
-          <mat-icon>logout</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          class="nav-item"
-          aria-label="Example icon-button with heart icon"
-        >
-          <!--Agregar linkeo a billetera-->
-          <mat-icon>wallet</mat-icon>
-        </button>
+        mat-icon-button
+        *ngIf="isAutenticated" (click)="logout()"
+        class="nav-item"
+        aria-label="Example icon-button with heart icon"
+      >
+        <!--Agregar linkeo a logout -->
+        <mat-icon>logout</mat-icon>
+      </button>
+      <button
+      mat-icon-button
+      class="nav-item"
+      aria-label="Example icon-button with heart icon"
+    >
+      <!--Agregar linkeo a billetera-->
+      <mat-icon>wallet</mat-icon>
+    </button>
         <button
           mat-icon-button
           class="nav-item"
