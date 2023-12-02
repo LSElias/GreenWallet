@@ -68,20 +68,16 @@ export class RegistrarComponent implements AfterViewInit {
   }
 
   actualizarCantidad(item: any) {
-      this.cantidad = item.cantidad
-      //console.log('Valor Cantidad: ', this.cantidad)
+    this.cantidad = item.cantidad;
+    //console.log('Valor Cantidad: ', this.cantidad)
 
-      if (!isNaN(this.cantidad)) {
-        this.addToCart(item);
-        this.total = this.getTotal();
-      }
-      if (this.cantidad === null) {
-        this.noti.mensaje(
-          'Error',
-          'Solo acepta números',
-          TipoMessage.error
-        );
-        }         
+    if (!isNaN(this.cantidad)) {
+      this.addToCart(item);
+      this.total = this.getTotal();
+    }
+    if (this.cantidad === null) {
+      this.noti.mensaje('Error', 'Solo acepta números', TipoMessage.error);
+    }
   }
 
   // CARRITO
@@ -210,7 +206,7 @@ export class RegistrarComponent implements AfterViewInit {
       <p><b> Contacto:</b></p>`;
     this.cliente = null;
 
-    this.myControl.reset(); 
+    this.myControl.reset();
   }
 
   getUserData() {
@@ -262,20 +258,18 @@ export class RegistrarComponent implements AfterViewInit {
       );
       return;
     }
+    
     if (this.getItems != null) {
-      //Obtener los items de la compra
       let itemsCompra = this.getItems;
-      //Estructura para insertar en la tabla intermedia
-      //[{'videojuego_id': valor, 'cantidad': valor}]
+      var itemsdet = new Array();
       var count = 0;
       itemsCompra.filter(function (x) {
-        if (x.cantidad == 0) {
-          itemsCompra.splice(count, 1);
+        if (x.cantidad != 0) {
+          itemsdet.push(x);
         }
-        count++;
       });
 
-      let detalle = itemsCompra.map((x) => ({
+      let detalle = itemsdet.map((x) => ({
         ['idMaterial']: x.idItem,
         ['cantidad']: x.cantidad,
         ['subtotal']: x.subtotal,
@@ -299,10 +293,10 @@ export class RegistrarComponent implements AfterViewInit {
           this.noti.mensajeRedirect(
             'Canjeo',
             `Canjeo registrado #${response.idCanjeo}`,
-            TipoMessage.success, `/canjeo/detalle/${response.idCanjeo}`
+            TipoMessage.success,
+            `/canjeo/detalle/${response.idCanjeo}`
           );
           this.route.navigate([`/canjeo/detalle/${response.idCanjeo}`]);
-          
         });
     } else {
       this.noti.mensaje(

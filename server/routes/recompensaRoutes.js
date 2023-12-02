@@ -4,6 +4,7 @@ const router = express.Router();
 const recompensaController = require("../controllers/recompensaControllers");
 
 router.get("/", recompensaController.get);
+router.get("/", recompensaController.getAll);
 
 router.post("/", recompensaController.upload,recompensaController.create);
 

@@ -44,17 +44,4 @@ export class IndexMaterialesComponent implements OnInit{
       this.destroy$.next(true);
       this.destroy$.unsubscribe();
     }
-    detalleVideojuego(id:number){
-      //Detalle en formato diálogo
-      const dialogConfig=new MatDialogConfig();
-      dialogConfig.disableClose=false;
-      dialogConfig.data={
-        id:id
-      };
-      this.dialog.open(DiagMaterialesComponent,dialogConfig);
-    }
-
-
-
-
 }
