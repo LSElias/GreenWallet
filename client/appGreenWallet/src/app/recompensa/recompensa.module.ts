@@ -6,6 +6,7 @@ import { AllComponent } from './all/all.component';
 import { IndexComponent } from './index/index.component';
 import { FormComponent } from './form/form.component';
 import { HistorialComponent } from './historial/historial.component';
+import { DetalleComponent } from './detalle/detalle.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HistorialComponent } from './historial/historial.component';
     AllComponent,
     IndexComponent,
     FormComponent,
-    HistorialComponent
+    HistorialComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,
