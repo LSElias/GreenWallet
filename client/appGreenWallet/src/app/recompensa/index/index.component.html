@@ -1,1 +1,61 @@
-<p>index works!</p>
+<div class="container">
+  <div class="slide1">
+    <div class="separator">
+      <div class="left">
+        <h1>Recompensas</h1>
+        <p>
+          Has hecho un magnifico trabajo <br />
+          reciclando y obteniendo monedas. <br />
+          Es hora de recibir los frutos de tu esfuerzo <br />
+          y obtener una recompensa a cambio.
+        </p>
+      </div>
+      <div class="right">
+        <div class="piggyimg">
+          <img src="../../../assets/images/5243015.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="content">
+      <h1>Listado de Recompensas Disponibles</h1>
+      <div class="grid-container">
+        <mat-grid-list
+          [cols]="breakpoint"
+          [rowHeight]="'35em'"
+          gutterSize="16px"
+          (window:resize)="onResize($event)"
+        >
+          <mat-grid-tile *ngFor="let item of datos">
+            <mat-card
+              class="imgmatcar"
+              style="background-image: url('/assets/images/{{ item.imagen }}');"
+            >
+              <mat-card-content> </mat-card-content>
+              <mat-card-footer>
+                <div class="holder">
+                  <h2>{{ item.nombre }}</h2>
+                  <div class="price-sub">
+                    <h3 class="no">Precio: </h3>
+                    <img class="coin" src="../../../assets/images/coin.png"/>
+                    <h4>{{ item.valorUnidad }}</h4>
+                </div>
+                <mat-chip-option disabled="true" style="
+                padding: 2.5px 0px;
+                color: black;
+                ">
+                 {{item.categoria}} </mat-chip-option>  
+<br/>
+                <button mat-flat-button>
+                    Reclamar
+                  </button>
+                </div>
+              </mat-card-footer>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </div>
+</div>

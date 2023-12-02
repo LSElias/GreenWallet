@@ -6,11 +6,11 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { AllComponent } from './all/all.component';
 
 const routes: Routes = [
-  { path: 'recompensas', component: IndexComponent},
+  { path: 'recompensa', component: IndexComponent },
   { path: 'recompensa/crear', component: FormComponent },
-  { path: 'recompensas/:id', component: DetalleComponent },
-  { path: 'recompensas/actualizar/:id', component: FormComponent },
-  { path: 'recompensas/mantenimiento/:id', component: AllComponent },
+  { path: 'recompensa/mantenimiento/', component: AllComponent },
+  { path: 'recompensa/:id', component: DetalleComponent },
+  { path: 'recompensa/actualizar/:id', component: FormComponent }
 ];
 
 @NgModule({

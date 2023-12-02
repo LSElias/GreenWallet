@@ -15,25 +15,26 @@ import { ToastrModule } from 'ngx-toastr';
 import { RecompensaModule } from './recompensa/recompensa.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
     CoreModule,
     ShareModule,
+
     HomeModule,
+    RecompensaModule,
+
     UsuarioModule,
     CentroModule,
     MaterialesModule,
     CanjeoModule,
+
     AppRoutingModule,
-    RecompensaModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

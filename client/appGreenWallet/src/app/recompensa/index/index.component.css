@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body{
+    background-color: white;
+
+}
+
+.container{
+    min-height: 100vh;
+    height: fit-content;
+    background-color: white;
+}
+
+.separator{
+    padding: 5vh 3vh;
+
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.left, .right{
+    background-color: transparent;
+    width: 100%;
+    max-height: 100vh;
+    margin: 0px 25px;
+}
+
+.left > h1{
+    font-size: calc(46px * 1.2);
+    letter-spacing: -3px;
+    margin: 5vh;
+}
+
+.left > p{
+    font-size: calc(24px * 1.2);
+    font-weight: 300;
+    margin: 5vh;
+}
+
+.piggyimg > img{
+    max-height: 90vh;
+}
+
+
+.content{
+    padding: 5vh 3vh;
+    background-color:#2a2724;
+    min-height: 100vh;
+}
+
+.content > h1{
+    margin: 5vh;
+    color: rgba(255, 255, 255, 0.788);
+    border-bottom: 1px white solid;
+    line-height: 48px;
+    width: fit-content;
+
+}
+
+mat-card{
+    max-height: 30em;
+    min-height: 30em;
+    min-width: 25em;
+    margin: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 5px 20px black;
+    overflow-y: hidden;
+}
+
+mat-card-footer > .holder{
+    overflow-y: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5%;
+    flex-direction: column-reverse;
+    background-color: rgba(255, 255, 255, 0.897);
+}
+
+
+mat-card-footer > .holder > h2{
+    margin: 1% 0%;
+}
+mat-card-footer > .holder > h4{
+    margin: 1% 0%;
+}
+mat-card-footer > .holder > button{
+    margin: 1% 0%;
+    overflow-y: hidden;
+    padding: 5% 3%;
+    word-spacing: 2px;
+    font-weight: 400;
+    font-size:medium;
+    border-radius: 15px;
+    background-color:#9ebe47;
+
+}
+
+.coin{
+    filter: brightness(85%);
+    height: 25px;
+    padding: 0px 4.5px;
+
+}
+
+.price-sub{
+    display: flex;
+    padding: 15px 0px;
+}
+
+.price-sub > h4{
+    display: flex;
+    padding: 3px 2.5px;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--disabled {
+    opacity: 1;
+    letter-spacing: 0.05em;   
+    background-color:#2a2724;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+
+.mat-mdc-standard-chip {
+    --mdc-chip-disabled-label-text-color: rgb(255, 255, 255);
+    --mdc-chip-elevated-container-color: #e0e0e0;
+    --mdc-chip-elevated-disabled-container-color: #e0e0e0;
+    --mdc-chip-focus-state-layer-color: black;
+    --mdc-chip-focus-state-layer-opacity: 0.12;
+    --mdc-chip-label-text-color: #212121;
+    --mdc-chip-with-icon-icon-color: #212121;
+    --mdc-chip-with-icon-disabled-icon-color: #212121;
+    --mdc-chip-with-icon-selected-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
+}
+
+@media (max-width: 960px) {
+    .right{
+        display: none;
+    }
+
+    .separator{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .left{
+        width: 100vw;
+        max-height: 100vh;
+        padding: 0vh;
+        margin: 0% auto;
+    }
+  }

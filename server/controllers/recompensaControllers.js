@@ -6,24 +6,62 @@ const multer = require("multer");
 const fs = require("fs");
 
 //Get
-module.exports.get = async (request, response, next) => {
+module.exports.getAll = async (request, response, next) => {
   const recompensa = await prisma.recompensa.findMany({
     orderBy: {
       idRecompensas: "asc",
     },
+
     include:{
         categoria: true
     }
   });
   const datos= recompensa.map(u => ({
-    idRecompensas: u.nombre,
+    idRecompensas: u.idRecompensas,
+    idCategoria: u.idCategoria,
     categoria: u.categoria.nombre,
     nombre: u.nombre,
     valorUnidad: u.valor,
-    cantidadDispo: u.cantidad
+    cantidadDispo: u.cantidad,
+    fechaAdquision: u.fechaAdquision,
+    fechaExpiracion: u.fechaExpiracion
   }))
   response.json(datos);
 };
+
+//Get
+module.exports.get = async (request, response, next) => {
+  const recompensa = await prisma.recompensa.findMany({
+    orderBy: {
+      idRecompensas: "asc",
+    },
+    where: {
+      fechaExpiracion: {
+        gt: new Date(),
+      },
+      cantidad:{
+        gt: 0,
+      }
+    },
+
+    include:{
+        categoria: true
+    }
+  });
+  const datos= recompensa.map(u => ({
+    idRecompensas: u.idRecompensas,
+    idCategoria: u.idCategoria,
+    categoria: u.categoria.nombre,
+    nombre: u.nombre,
+    valorUnidad: u.valor,
+    cantidadDispo: u.cantidad,
+    fechaAdquision: u.fechaAdquision,
+    fechaExpiracion: u.fechaExpiracion,
+    imagen: u.foto
+  }))
+  response.json(datos);
+};
+
 
 //GetByIdRecompensa
 module.exports.getByIdRecom = async (request, response, next) => {
