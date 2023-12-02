@@ -1,0 +1,211 @@
+<form [formGroup]="formCreate" novalidate>
+  <mat-card class="shipping-card">
+    <mat-card-header style="justify-content: center; margin: 0 0 15px 0">
+      <mat-card-title>Registrarse </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Nombre"
+              formControlName="nombre"
+            />
+            <mat-error *ngIf="errorHandling('nombre', 'required')">
+              Nombre es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('nombre', 'minlength')">
+                El nombre debe tener al menos <strong>cinco</strong> caracteres
+              </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Primer apellido</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Primer apellido"
+              formControlName="apellido1"
+            />
+            <mat-error *ngIf="errorHandling('apellido1', 'required')">
+              El primer apellido es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('apellido1', 'minlength')">
+                El primer apellido debe tener al menos <strong>cinco</strong> caracteres
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Segundo apellido</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Segundo apellido"
+              formControlName="apellido2"
+            />
+            <mat-error *ngIf="errorHandling('apellido2', 'required')">
+              El segundo apellido es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('apellido2', 'minlength')">
+                El segundo apellido debe tener al menos <strong>cinco</strong> caracteres
+              </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Correo</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Correo"
+              formControlName="correo"
+            />
+            <mat-error *ngIf="errorHandling('correo', 'required')">
+              El correo es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('correo','email')">
+                Verifique el <strong>formato</strong> del correo
+              </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              placeholder="Contraseña"
+              formControlName="contrasena"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error *ngIf="errorHandling('contrasena', 'required')">
+              La contraseña es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Cédula</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Cédula"
+              formControlName="cedula"
+            />
+            <mat-error *ngIf="errorHandling('cedula', 'required')">
+              El cédula es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('cedula', 'minlength')">
+                El cédula debe tener al menos <strong>cinco</strong> caracteres
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field style="min-width: 30%">
+            <input
+              matInput
+              #telefono
+              formControlName="telefono"
+              maxlength="8"
+              placeholder="Número Telefónico"
+            />
+            <mat-hint align="end">{{ telefono.value.length }} / 8</mat-hint>
+            <mat-error *ngIf="errorHandling('telefono', 'required')">
+              El teléfono es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('telefono', 'pattern')">
+              Solo se aceptan <strong>digitos numerales</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('telefono', 'minlength')">
+              El teléfono debe tener <strong>8</strong> carácteres.
+            </mat-error>
+            <mat-error *ngIf="errorHandling('telefono', 'maxlength')">
+              El teléfono debe tener <strong>8</strong> carácteres.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <h3>Dirección</h3>
+      <div class="row">
+        <div class="col">
+          <mat-form-field style="min-width: 30%">
+            <mat-select
+            placeholder="Provincia"
+            formControlName="provincia"
+            multiple="false"
+            #prov
+            (selectionChange)="listaCantones($event.value)" >
+              <div *ngFor="let item of provincias"> 
+              <mat-option  [value]="item.id"> {{item.value}}</mat-option>
+            </div>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('provincia', 'required')">
+              Provincia es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field style="min-width: 30%">
+            <mat-select
+            placeholder="Canton"
+            formControlName="canton"
+            multiple="false"
+            >
+              <div *ngFor="let item of cantones"> 
+              <mat-option [value]="item.id">{{item.value}}</mat-option>
+            </div>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('canton', 'required')">
+              Canton es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <mat-form-field style="min-width: 100%">
+                <input
+                  matInput
+                  #senas
+                  formControlName="senas"
+                  maxlength="250"
+                  placeholder="Direccion Exacta"
+                />
+                <mat-hint align="end">{{ senas.value.length }} / 250</mat-hint>
+                <mat-error *ngIf="errorHandling('senas', 'required')">
+                  La dirección exacta es <strong>requerida</strong>
+                </mat-error>
+                <mat-error *ngIf="errorHandling('senas', 'minlength')">
+                  La dirección exacta debe tener más de <strong>cinco</strong> caracteres
+                </mat-error>
+              </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submitForm()">Registrar</button>
+      <button mat-raised-button color="accent" type="reset" (click)="onReset()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
