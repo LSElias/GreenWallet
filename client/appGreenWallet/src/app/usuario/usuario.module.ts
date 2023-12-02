@@ -15,12 +15,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MatCardModule} from '@angular/material/card';
 import { UsuarioLoginComponent } from './usuario-login/usuario-login.component';
 import { UsuarioIndexComponent } from './usuario-index/usuario-index.component';
+import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
 
 
 @NgModule({
   declarations: [
     UsuarioLoginComponent,
-    UsuarioIndexComponent
+    UsuarioIndexComponent,
+    UsuarioCreateComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { UsuarioIndexComponent } from './usuario-index/usuario-index.component';
   ],
   exports: [
     UsuarioLoginComponent,
-    UsuarioIndexComponent
+    UsuarioIndexComponent,
+    UsuarioCreateComponent
   ]
 })
 export class UsuarioModule { }

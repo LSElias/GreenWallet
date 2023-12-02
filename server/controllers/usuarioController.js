@@ -145,10 +145,20 @@ module.exports.create = async (request, response, next) => {
 
   let hash = bcrypt.hashSync(infoUsuario.contrasena, salt);
 
+  const newDireccion = await prisma.direccion.create({
+    data:{
+      provincia: infoUsuario.provinciaValue,
+      canton: infoUsuario.cantonValue,
+      distrito: " ",
+      senas: infoUsuario.senas
+    }
+  })
+
+
+
   const newUsuario = await prisma.usuario.create({
     data: {
       idRol: infoUsuario.idRol,
-      idDireccion: infoUsuario.idDireccion,
       nombre: infoUsuario.nombre,
       apellido1: infoUsuario.apellido1,
       apellido2: infoUsuario.apellido2,
@@ -156,6 +166,9 @@ module.exports.create = async (request, response, next) => {
       contrasena: hash,
       cedula: infoUsuario.cedula,
       telefono: infoUsuario.telefono,
+      direccion:{
+        connect: newDireccion
+      },
     },
   });
   response.status(200).json({
