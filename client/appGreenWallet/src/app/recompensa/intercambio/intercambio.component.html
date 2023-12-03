@@ -1,0 +1,74 @@
+<div class="background">
+  <div class="formContainer">
+    <div class="bottomPart">
+      <h2 style="text-align: center">
+        Estas de punto de realizar el intercambio de la siguiente recompensa
+      </h2>
+      <br />
+      <div class="centerdiv" *ngIf="rec != null">
+        <mat-card
+          class="imgmatcar"
+          style="background-image: url('/assets/images/{{ rec.foto }}');"
+        >
+          <mat-card-content> </mat-card-content>
+          <mat-card-footer>
+            <div class="holder">
+              <h2>{{ rec.nombre }}</h2>
+              <h3 class="no">Descripción:</h3>
+              <p>{{ rec.descripcion }}</p>
+              <mat-chip-option
+                disabled="true"
+                style="padding: 2.5px 0px; color: black"
+              >
+                {{ rec.categoria.nombre }}
+              </mat-chip-option>
+              <br />
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <br />
+      <div *ngIf="rec.cantidadDispo > 0; else nomore">
+        <div style="text-align: center" *ngIf="rec != null && bill != null">
+          <div *ngIf="rec.valorUnidad <= bill.disponibles; else yourebroke">
+            <h3>
+              El valor de este producto es {{ rec.valorUnidad }}
+              <img class="coin" src="../../../assets/images/coin.png" />
+            </h3>
+            <h3>
+              Usted tiene un total de {{ bill.disponibles }}
+              <img class="coin" src="../../../assets/images/coin.png" />
+              disponibles, por lo que puede reclamar esta recompensa.
+            </h3>
+            <button (click)="submitInfo()" mat-raised-button color="primary">
+              Reclamar
+            </button>
+          </div>
+
+          <ng-template #yourebroke>
+            <h3>
+              El valor de este producto es {{ rec.valorUnidad }}
+              <img class="coin" src="../../../assets/images/coin.png" />
+            </h3>
+            <h3>
+              Usted tiene un total de {{ bill.disponibles }}
+              <img class="coin" src="../../../assets/images/coin.png" />
+              disponibles, por lo que no puede reclamar esta recompensa.
+              <br />
+              <br />
+              Agradecemos su intéres, puede intentar obtener más monedas
+              <br />
+              reciclando mas materiales en nuestros centros.
+            </h3>
+          </ng-template>
+        </div>
+      </div>
+      <ng-template #nomore>
+        <div style="text-align: center">
+          <h3>La cantidad que había en inventario de esta recompensa se ha acabado</h3>
+          <h3>Lo sentimos mucho :(</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatMenu, MatMenuModule } from '@angular/material/menu';
     RouterModule,
     MatSidenavModule,
     MatListModule,
+    MatBadgeModule
   ],
   exports: [
     HeaderComponent,

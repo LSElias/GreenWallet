@@ -73,6 +73,7 @@ model Cupon{
   idUsuario       Int
   idRecompensa    Int
   idEstado        Int
+  qr              Json        @default("null")
   estado          Estado      @relation(fields: [idEstado],references: [idEstado])
   usuario         Usuario     @relation(fields: [idUsuario],references: [idUsuario])
   recompensa      Recompensa  @relation(fields: [idRecompensa],references: [idRecompensas])

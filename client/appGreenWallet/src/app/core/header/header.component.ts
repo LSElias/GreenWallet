@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/share/authentication.service';
 import { CartService } from 'src/app/share/cart.service';
@@ -6,31 +6,37 @@ import { CartService } from 'src/app/share/cart.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-  
+export class HeaderComponent implements OnInit {
   isAutenticated: boolean;
   currentUser: any;
-  qtyItems:Number = 0;
-  id:any;
- 
+  id: any;
 
- constructor(
-  private router: Router,
-  private cartService: CartService,
-  private authService: AuthenticationService) {      
-  this.qtyItems=this.cartService.quantityItems()
-}
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
+  }
 
-  redirect(id:any){
+  ngOnInit(): void {
+    this.authService.decodeToken.subscribe((user: any) => {
+      this.currentUser = user;
+    });
+
+    this.authService.isAuthenticated.subscribe(
+      (valor) => (this.isAutenticated = valor)
+    );
+  }
+
+  redirect(id: any) {
     document.location.href = `${id}`;
   }
 
-  login(){
+  login() {
     this.router.navigate(['usuario/login']);
   }
-  logout(){
+  logout() {
     this.authService.logout();
     this.router.navigate(['inicio']);
   }

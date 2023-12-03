@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { IntercambioComponent } from './intercambio/intercambio.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     IndexComponent,
     FormComponent,
     HistorialComponent,
-    DetalleComponent
+    DetalleComponent,
+    IntercambioComponent
   ],
   imports: [
     CommonModule,
