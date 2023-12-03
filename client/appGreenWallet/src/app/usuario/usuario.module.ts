@@ -16,13 +16,23 @@ import {MatCardModule} from '@angular/material/card';
 import { UsuarioLoginComponent } from './usuario-login/usuario-login.component';
 import { UsuarioIndexComponent } from './usuario-index/usuario-index.component';
 import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
+import { AllComponent } from './all/all.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatChipsModule } from '@angular/material/chips';
+import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.component';
 
 
 @NgModule({
   declarations: [
     UsuarioLoginComponent,
     UsuarioIndexComponent,
-    UsuarioCreateComponent
+    UsuarioCreateComponent,
+    AllComponent,
+    UsuarioDetalleComponent,
   ],
   imports: [
     CommonModule,
@@ -36,12 +46,29 @@ import { UsuarioCreateComponent } from './usuario-create/usuario-create.componen
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDividerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatChipsModule,
   ],
   exports: [
     UsuarioLoginComponent,
     UsuarioIndexComponent,
-    UsuarioCreateComponent
+    UsuarioCreateComponent,
+    AllComponent,
+    UsuarioDetalleComponent,
   ]
 })
 export class UsuarioModule { }
