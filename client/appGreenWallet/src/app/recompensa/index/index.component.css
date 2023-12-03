@@ -8,6 +8,10 @@ body{
 
 }
 
+.slide1{
+    display: none;
+}
+
 .container{
     min-height: 100vh;
     height: fit-content;
@@ -91,7 +95,7 @@ mat-card-footer > .holder > h2{
 mat-card-footer > .holder > h4{
     margin: 1% 0%;
 }
-mat-card-footer > .holder > button{
+.botoncom{
     margin: 1% 0%;
     overflow-y: hidden;
     padding: 5% 3%;
@@ -99,7 +103,6 @@ mat-card-footer > .holder > button{
     font-weight: 400;
     font-size:medium;
     border-radius: 15px;
-    background-color:#9ebe47;
 
 }
 
@@ -141,6 +144,19 @@ mat-card-footer > .holder > button{
     --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
     --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
 }
+
+.botoninfo{
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.botones{
+    display: flex;
+}
+
+.example-spacer {
+    flex: 0.85 1 auto;
+  }
 
 @media (max-width: 960px) {
     .right{

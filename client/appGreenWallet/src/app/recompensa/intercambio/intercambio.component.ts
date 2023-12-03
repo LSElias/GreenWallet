@@ -78,12 +78,12 @@ export class IntercambioComponent implements OnInit {
         .subscribe((data: any) => {
           //Obtener respuesta
           this.noti.mensajeRedirect(
-            'Crear Recompensa',
-            `Recompensa creado: ${data.nombre}`,
+            'Cupón intercambiado',
+            `¡Disfruta de tu recompensa!`,
             TipoMessage.success,
-            '/recompensa/mantenimiento'
+            `/recompensa/cupon/${data.idCupon}`
           );
-          this.router.navigate(['/recompensa/mantenimiento']);
+          this.router.navigate([`/recompensa/cupon/${data.idCupon}`]);
         });
     }
   }

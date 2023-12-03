@@ -38,6 +38,11 @@ export class IndexComponent {
       });
   }
 
+  Redirect(id: number){
+    this.router.navigate(['/recompensa', id], {
+      relativeTo: this.route,
+    });
+  }
 
   ngOnInit() {
     this.authService.decodeToken.subscribe((user: any) => {
