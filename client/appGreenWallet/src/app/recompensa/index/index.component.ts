@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthenticationService } from 'src/app/share/authentication.service';
+import { CartService } from 'src/app/share/cart.service';
 import { GenericService } from 'src/app/share/generic.service';
+import { NotificacionService, TipoMessage } from 'src/app/share/notificacion.service';
 
 @Component({
   selector: 'app-index',
@@ -11,8 +15,14 @@ export class IndexComponent {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   breakpoint: number;
+  isAutenticated: boolean;
+  currentUser: any;
 
-  constructor(private gService: GenericService) {
+  constructor(
+    private gService: GenericService,
+    private authService: AuthenticationService,
+    private router: Router, private route: ActivatedRoute 
+    ) {
     this.listarRec();
   }
 
@@ -28,10 +38,24 @@ export class IndexComponent {
       });
   }
 
-  Redirect(id: any) {}
 
   ngOnInit() {
+    this.authService.decodeToken.subscribe((user: any) => {
+      this.currentUser = user;
+      console.log(this.currentUser);
+    });
+
+    this.authService.isAuthenticated.subscribe(
+      (valor) => (this.isAutenticated = valor)
+    );
+
     this.breakpoint = window.innerWidth <= 1080 ? 1 : 3;
+  }
+
+  comprar(id: number) {
+    this.router.navigate(['/recompensa/intercambio', id], {
+      relativeTo: this.route,
+    });
   }
 
   onResize(event) {

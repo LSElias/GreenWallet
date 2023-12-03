@@ -2,6 +2,8 @@ const { PrismaClient, Prisma } = require("@prisma/client");
 const { info } = require("console");
 const { parse } = require("path");
 const prisma = new PrismaClient();
+const qrcode = require('qrcode');
+
 
 //Get
 module.exports.get = async (request, response, next) => {
@@ -107,6 +109,7 @@ module.exports.getByIdRecomp = async (request, response, next) => {
 //Create 
 module.exports.create = async (request, response, next) => {
   let infoCupon = request.body;
+  
   const newCupon = await prisma.cupon.create({
     data: {
       idUsuario: infoCupon.idUsuario,
@@ -114,7 +117,73 @@ module.exports.create = async (request, response, next) => {
       idEstado: infoCupon.idEstado
     }
   });
-  response.json(newCupon);
+
+  const usuario = await prisma.usuario.findUnique({
+    where: { idUsuario: newCupon.idUsuario },
+  });
+
+  const rec = await prisma.recompensa.findUnique({
+    where: { idRecompensas: newCupon.idRecompensa },
+  });
+
+  const recUp = await prisma.recompensa.update({
+    where: {
+      idRecompensas:  newCupon.idRecompensa,
+    },
+    data:{
+      cantidad: rec.cantidad - 1
+    }
+  })
+
+  const infoB = await prisma.billetera.findUnique({
+    where: {
+      idUsuario: newCupon.idUsuario,
+    },
+  });
+
+  const newBill = await prisma.billetera.update({
+    where: {
+      idUsuario: newCupon.idUsuario,
+    },
+    data: {
+      disponibles: infoB.disponibles - rec.valor,
+      canjeadas: infoB.canjeadas + rec.valor,
+      total: infoB.total
+    }
+  });
+
+  const estado = await prisma.estado.findUnique({
+    where:{
+         idEstado:  newCupon.idEstado
+    }
+  })
+
+  let data =
+    "Cupon #" +  newCupon.idCupon + " | " + " Estado:" + estado.nombre
+    + "\n----------------------------------------"
+    +"\nCliente: " + usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2
+    +"\nCédula:" + usuario.cedula
+    + "\n----------------------------------------"
+    + "\nRecompensa: " + rec.nombre
+    + "\nDescripción: " + rec.descripcion
+    
+    + "\n----------------------------------------";
+
+  let code = await qrcode.toDataURL(data);
+
+  const jsonCupon = await prisma.cupon.update({
+    where: {
+      idCupon: newCupon.idCupon,
+    },
+    data: {
+      idUsuario: newCupon.idUsuario,
+      idRecompensa: newCupon.idRecompensa,
+      idEstado: newCupon.idEstado,
+      qr: code
+    }
+  });
+
+  response.json(jsonCupon);
 };
 
 //Update

@@ -123,7 +123,7 @@ module.exports.login = async (request, response, next) => {
     const payload = {
       idUsuario: usuario.idUsuario,
       correo: usuario.correo,
-      rol: usuario.rol,
+      rol: usuario.idRol,
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {

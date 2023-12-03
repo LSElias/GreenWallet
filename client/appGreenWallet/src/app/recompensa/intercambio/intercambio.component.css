@@ -1,0 +1,159 @@
+.background {
+    min-height: 100vh;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5) ), url('../../../assets/images/bg-trade.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: max-content;
+}
+
+.formContainer{
+    min-height: 90vh;
+    max-width: 90vw;
+    padding: 20vh 5vw;
+}
+
+.topPart{
+    background-color: white;
+    height: fit-content;
+    margin-bottom: 2.5vh ;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px black;
+    display: flex;
+    padding: 5vh;
+}
+
+
+hr{
+    margin: 0% 7%;
+    border: none;
+    border: 0.5px solid rgb(201, 201, 201);
+}
+
+
+.bottomPart{
+    background-color: white;
+    height: fit-content;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px black;
+    padding: 1.5% 3%;
+}
+
+.header{
+   background-color: rgb(145, 192, 70);
+   border-radius: 15px;
+}
+
+.header > mat-header-cell{
+   border-radius: 15px 15px 0px 0px;
+}
+
+.footer-row{
+    background-color: rgb(145, 192, 70);
+    border-radius: 0px 0px 15px 15px;
+    font-weight: 600;
+}
+
+.footer-row > mat-footer-cell{
+    border-radius: 0px 0px 15px 15px;
+ }
+
+ mat-cell{
+    padding: 2.5% 0%;
+ }
+
+ .buttonPart{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2.5% 0%; 
+ }
+ img{
+    filter: brightness(85%);
+    height: 25px;
+}
+
+
+mat-card{
+    width: 35vw;
+    min-height: 50vh;
+    margin: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 1px 5px black;
+    overflow-y: hidden;
+}
+
+mat-card-footer > .holder{
+    overflow-y: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    padding: 5%;
+    max-height: 90%;
+    flex-direction: column-reverse;
+    background-color: rgba(255, 255, 255, 0.897);
+}
+
+
+mat-card-footer > .holder > h2{
+    margin: 1% 0%;
+}
+mat-card-footer > .holder > h4{
+    margin: 1% 0%;
+}
+mat-card-footer > .holder > button{
+    margin: 1% 0%;
+    overflow-y: hidden;
+    padding: 5% 3%;
+    word-spacing: 2px;
+    font-weight: 400;
+    font-size:medium;
+    border-radius: 15px;
+    background-color:#9ebe47;
+
+}
+
+.coin{
+    filter: brightness(85%);
+    height: 15px;
+}
+
+.price-sub{
+    display: flex;
+    padding: 15px 0px;
+}
+
+.price-sub > h4{
+    display: flex;
+    padding: 3px 2.5px;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--disabled {
+    opacity: 1;
+    letter-spacing: 0.05em;   
+    background-color:#2a2724;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+
+.mat-mdc-standard-chip {
+    --mdc-chip-disabled-label-text-color: rgb(255, 255, 255);
+    --mdc-chip-elevated-container-color: #e0e0e0;
+    --mdc-chip-elevated-disabled-container-color: #e0e0e0;
+    --mdc-chip-focus-state-layer-color: black;
+    --mdc-chip-focus-state-layer-opacity: 0.12;
+    --mdc-chip-label-text-color: #212121;
+    --mdc-chip-with-icon-icon-color: #212121;
+    --mdc-chip-with-icon-disabled-icon-color: #212121;
+    --mdc-chip-with-icon-selected-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-disabled-trailing-icon-color: #212121;
+    --mdc-chip-with-trailing-icon-trailing-icon-color: #212121;
+}
+
+.centerdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Removes default margin from body */
+}
