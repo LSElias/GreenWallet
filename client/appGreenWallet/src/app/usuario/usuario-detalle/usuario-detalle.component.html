@@ -1,0 +1,18 @@
+<div *ngIf="datos!=null">
+    <div class="container" style="background-image:  linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(252,176,69,0) 100%), url('../../../assets/images/bg-form.jpg');">
+        <div class="sq-cont">
+            <div class="square">
+               <h1>{{datos.nombre}}</h1>
+               <h2>Informacion</h2>
+                <h3>Cédula: </h3>
+                <p>{{datos.cedula}}</p>
+               <h3>Formas de contacto:</h3>
+               <p>{{datos.correo}}</p>
+               <p>{{datos.telefono}}</p>
+
+               <h2>Dirección:</h2>
+               <p>{{datos.direccion}}</p>
+            </div>
+        </div>
+    </div>
+</div>
