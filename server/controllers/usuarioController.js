@@ -18,6 +18,7 @@ module.exports.get = async (request, response, next) => {
   });
 
   const datos = usuarios.map((u) => ({
+    idUsuario: u.idUsuario,
     cedula: u.cedula,
     nombre: u.nombre + " " + u.apellido1 + " " + u.apellido2,
     correo: u.correo,
