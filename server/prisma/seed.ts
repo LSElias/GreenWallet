@@ -340,7 +340,7 @@ async function main() {
       imagen: "mat2.jpg",
       idUnidad: 1,
       idCategoria: 1,
-      color: "#151E3DD",
+      color: "#151E3D",
       valor: 5,
     },
   });

@@ -33,16 +33,18 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
       });
     }
     //Opcional indicar el tipo de contenido JSON
-    if (!request.headers.has('Content-Type')) {
-      request = request.clone({
-        headers: request.headers.set('Content-Type', 'application/json'),
-      });
-    }
+    //    if (!request.headers.has('Content-Type')) {
+  //     request = request.clone({
+  //      headers: request.headers.set('Content-Type', 'application/json'),
+  //    });
+  //  }
+
 
     request = request.clone({
       headers: request.headers.set('Accept', 'application/json'),
     });
 
+    console.log('FormData before request:', request.body);
     //Capturar el error
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {

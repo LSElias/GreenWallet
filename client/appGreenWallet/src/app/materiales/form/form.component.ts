@@ -151,6 +151,7 @@ export class FormComponent implements OnInit {
       this.materialForm.get('imagen').clearValidators();
       this.materialForm.get('imagen').updateValueAndValidity();
     }
+    
     this.submitted = true;
     if (this.materialForm.invalid) return;
 

@@ -8,13 +8,13 @@ import { AllComponent } from './all/all.component';
 const routes: Routes = [
   { path: 'recompensa', component: IndexComponent },
   { path: 'recompensa/crear', component: FormComponent },
-  { path: 'recompensa/mantenimiento/', component: AllComponent },
+  { path: 'recompensa/mantenimiento', component: AllComponent },
   { path: 'recompensa/:id', component: DetalleComponent },
   { path: 'recompensa/actualizar/:id', component: FormComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),],
   exports: [RouterModule],
 })
 export class RecompensaRoutingModule {}
