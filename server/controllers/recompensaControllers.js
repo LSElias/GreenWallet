@@ -12,11 +12,11 @@ module.exports.getAll = async (request, response, next) => {
       idRecompensas: "asc",
     },
 
-    include:{
-        categoria: true
-    }
+    include: {
+      categoria: true,
+    },
   });
-  const datos= recompensa.map(u => ({
+  const datos = recompensa.map((u) => ({
     idRecompensas: u.idRecompensas,
     idCategoria: u.idCategoria,
     categoria: u.categoria.nombre,
@@ -24,11 +24,10 @@ module.exports.getAll = async (request, response, next) => {
     valorUnidad: u.valor,
     cantidadDispo: u.cantidad,
     fechaAdquision: u.fechaAdquision,
-    fechaExpiracion: u.fechaExpiracion
-  }))
+    fechaExpiracion: u.fechaExpiracion,
+  }));
   response.json(datos);
 };
-
 //Get
 module.exports.get = async (request, response, next) => {
   const recompensa = await prisma.recompensa.findMany({
@@ -39,16 +38,16 @@ module.exports.get = async (request, response, next) => {
       fechaExpiracion: {
         gt: new Date(),
       },
-      cantidad:{
+      cantidad: {
         gt: 0,
-      }
+      },
     },
 
-    include:{
-        categoria: true
-    }
+    include: {
+      categoria: true,
+    },
   });
-  const datos= recompensa.map(u => ({
+  const datos = recompensa.map((u) => ({
     idRecompensas: u.idRecompensas,
     idCategoria: u.idCategoria,
     categoria: u.categoria.nombre,
@@ -57,12 +56,10 @@ module.exports.get = async (request, response, next) => {
     cantidadDispo: u.cantidad,
     fechaAdquision: u.fechaAdquision,
     fechaExpiracion: u.fechaExpiracion,
-    imagen: u.foto
-  }))
+    imagen: u.foto,
+  }));
   response.json(datos);
 };
-
-
 //GetByIdRecompensa
 module.exports.getByIdRecom = async (request, response, next) => {
   let idRecompensas = parseInt(request.params.idRecompensas);
@@ -72,20 +69,20 @@ module.exports.getByIdRecom = async (request, response, next) => {
       categoria: true,
     },
   });
-  const datos= {
-    categoria: recompensa.categoria.nombre,
+  const datos = {
+    idRecompensas: recompensa.idRecompensas,
+    categoria: recompensa.categoria,
     nombre: recompensa.nombre,
     descripcion: recompensa.descripcion,
     foto: recompensa.foto,
     valorUnidad: recompensa.valor,
     cantidadDispo: recompensa.cantidad,
-    estado: recompensa.estado, 
-    fechaAdquision: recompensa.fechaAdquision.toLocaleDateString(),
-    fechaExpiracion: recompensa.fechaExpiracion.toLocaleDateString(),
-  }
+    estado: recompensa.estado,
+    fechaAdquision: recompensa.fechaAdquision,
+    fechaExpiracion: recompensa.fechaExpiracion,
+  };
   response.json(datos);
 };
-
 //GetByIdRecompensa
 module.exports.getByIdCategoria = async (request, response, next) => {
   let idCategoria = parseInt(request.params.idCategoria);
@@ -95,15 +92,14 @@ module.exports.getByIdCategoria = async (request, response, next) => {
       categoria: true,
     },
   });
-  const datos= recompensa.map(u => ({
+  const datos = recompensa.map((u) => ({
     categoria: u.categoria.nombre,
     nombre: u.nombre,
     valorUnidad: u.valor,
-    cantidadDispo: u.cantidad
-  }))
+    cantidadDispo: u.cantidad,
+  }));
   response.json(datos);
 };
-
 //Ruta del almacenamiento
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -119,11 +115,18 @@ const upload = multer({ storage: storage });
 
 exports.upload = upload.single("foto");
 
-
-//Create 
+//Create
 module.exports.create = async (request, response, next) => {
   let infoRecom = request.body;
   const photo = request.file.originalname;
+
+  var tody = new Date();
+
+  if (infoRecom.fechaAdquision < tody && infoRecom.fechaExpiracion > tody) {
+    infoRecom.estado = 1;
+  } else {
+    infoRecom.estado = 0;
+  }
 
   const newRecom = await prisma.recompensa.create({
     data: {
@@ -135,8 +138,8 @@ module.exports.create = async (request, response, next) => {
       cantidad: parseInt(infoRecom.cantidad),
       estado: Boolean(infoRecom.estado),
       fechaAdquision: new Date(infoRecom.fechaAdquision),
-      fechaExpiracion:  new Date(infoRecom.fechaExpiracion),
-    }
+      fechaExpiracion: new Date(infoRecom.fechaExpiracion),
+    },
   });
   response.json(newRecom);
 };
@@ -146,12 +149,12 @@ const uploadOld = "prisma/imagenes/";
 //Update
 module.exports.update = async (request, response, next) => {
   let infoRecom = request.body;
-  let idRecompensas = parseInt(request.params.idRecompensas);
+  let idRecompensas = parseInt(infoRecom.id);
 
   const oldRecom = await prisma.recompensa.findUnique({
     where: { idRecompensas: idRecompensas },
     include: {
-     categoria: true
+      categoria: true,
     },
   });
 
@@ -165,6 +168,13 @@ module.exports.update = async (request, response, next) => {
     }
   } else {
     photo = oldRecom.foto;
+  }
+  var tody = new Date();
+
+  if (infoRecom.fechaAdquision < tody && infoRecom.fechaExpiracion > tody) {
+    infoRecom.estado = 1;
+  } else {
+    infoRecom.estado = 0;
   }
 
   const newRecom = await prisma.recompensa.update({
@@ -180,7 +190,7 @@ module.exports.update = async (request, response, next) => {
       cantidad: parseInt(infoRecom.cantidad),
       estado: Boolean(infoRecom.estado),
       fechaAdquision: new Date(infoRecom.fechaAdquision),
-      fechaExpiracion:  new Date(infoRecom.fechaExpiracion),
+      fechaExpiracion: new Date(infoRecom.fechaExpiracion),
     },
   });
 
