@@ -25,6 +25,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
 import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.component';
 import { CrearAdminComponent } from './crear-admin/crear-admin.component';
+import { AllAdmisComponent } from './all-admis/all-admis.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { CrearAdminComponent } from './crear-admin/crear-admin.component';
     AllComponent,
     UsuarioDetalleComponent,
     CrearAdminComponent,
+    AllAdmisComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +76,8 @@ import { CrearAdminComponent } from './crear-admin/crear-admin.component';
     AllComponent,
     UsuarioDetalleComponent,
     CrearAdminComponent,
+    AllAdmisComponent,
+    PerfilComponent,
   ]
 })
 export class UsuarioModule { }

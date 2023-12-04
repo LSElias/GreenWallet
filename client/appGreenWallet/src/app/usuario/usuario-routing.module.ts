@@ -6,10 +6,14 @@ import { UsuarioCreateComponent } from './usuario-create/usuario-create.componen
 import { AllComponent } from './all/all.component';
 import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.component';
 import { CrearAdminComponent } from './crear-admin/crear-admin.component';
+import { AllAdmisComponent } from './all-admis/all-admis.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   
   {path:'usuario/mantenimiento', component: AllComponent},
+  {path:'usuario/administradores', component: AllAdmisComponent},
+
   {path:'usuario/crear', component: CrearAdminComponent},
   {
   path: 'usuario',
@@ -25,6 +29,7 @@ const routes: Routes = [
   },
   {path:'usuario/detalle/:id', component: UsuarioDetalleComponent},
   {path:'usuario/actualizar/:id', component: CrearAdminComponent},
+  {path:'usuario/act/:id', component: PerfilComponent},
 
 
 ];

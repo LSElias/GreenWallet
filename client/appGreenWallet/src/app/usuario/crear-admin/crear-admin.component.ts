@@ -111,7 +111,7 @@ export class CrearAdminComponent {
           .pipe(takeUntil(this.destroy$))
           .subscribe((data: any) => {
             this.userInfo = data;
-           // console.log(this.userInfo);
+            // console.log(this.userInfo);
             this.crearAdminForm.setValue({
               id: this.userInfo.idUsuario,
               nombre: this.userInfo.nombre,
@@ -341,6 +341,7 @@ export class CrearAdminComponent {
   /*Modificar*/
   submit(): void {
     this.makeSubmit = true;
+    var idR;
 
     if (this.provincias != null) {
       this.provincias.forEach((element) => {
@@ -369,6 +370,7 @@ export class CrearAdminComponent {
       this.rolList.forEach((element) => {
         if (element.idRol == this.crearAdminForm.get('rol').value) {
           this.crearAdminForm.patchValue({ rolValue: element.nombre });
+          idR = element.idRol;
         }
       });
     }
@@ -380,35 +382,69 @@ export class CrearAdminComponent {
 
     console.log(this.crearAdminForm.value);
 
-    if (this.isCreate) {
-      //Registrar usuario
-      this.authService
-        .createUser(this.crearAdminForm.value)
-        .subscribe((respuesta: any) => {
-          this.crearAdminForm = respuesta;
-          this.noti.mensajeRedirect(
-            'Usuario',
-            'Usuario creado ',
-            TipoMessage.success,
-            '/'
-          );
-          this.router.navigate(['/usuario/mantenimiento']);
-        });
-    } else { 
-      this.gService
-      .update('usuario', this.crearAdminForm.value)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => {
-        //Obtener respuesta
-        this.crearAdminForm = data;
-        this.noti.mensajeRedirect(
-          'Éxito!',
-          `Usuario actualizado: ${data.nombre}`,
-          TipoMessage.success,
-          '/usuario/mantenimiento'
-        );
-        this.router.navigate(['/usuario/mantenimiento']);
-      });
+    if (idR == 3) {
+      if (this.isCreate) {
+        //Registrar usuario
+        this.authService
+          .createUser(this.crearAdminForm.value)
+          .subscribe((respuesta: any) => {
+            this.crearAdminForm = respuesta;
+            this.noti.mensajeRedirect(
+              'Usuario',
+              'Usuario creado ',
+              TipoMessage.success,
+              '/'
+            );
+            this.router.navigate(['/usuario/mantenimiento']);
+          });
+      } else {
+        this.gService
+          .update('usuario', this.crearAdminForm.value)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((data: any) => {
+            //Obtener respuesta
+            this.crearAdminForm = data;
+            this.noti.mensajeRedirect(
+              'Éxito!',
+              `Usuario actualizado`,
+              TipoMessage.success,
+              '/usuario/mantenimiento'
+            );
+            this.router.navigate(['/usuario/mantenimiento']);
+          });
+      }
+      console.log('Cliente');
+    } else {
+      if (this.isCreate) {
+        //Registrar usuario
+        this.authService
+          .createUser(this.crearAdminForm.value)
+          .subscribe((respuesta: any) => {
+            this.crearAdminForm = respuesta;
+            this.noti.mensajeRedirect(
+              'Usuario',
+              'Usuario creado ',
+              TipoMessage.success,
+              'usuario/administradores'
+            );
+            this.router.navigate(['usuario/administradores']);
+          });
+      } else {
+        this.gService
+          .update('usuario', this.crearAdminForm.value)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((data: any) => {
+            //Obtener respuesta
+            this.crearAdminForm = data;
+            this.noti.mensajeRedirect(
+              'Éxito!',
+              `Usuario actualizado`,
+              TipoMessage.success,
+              'usuario/administradores'
+            );
+            this.router.navigate(['usuario/administradores']);
+          });
+      }
     }
   }
 }

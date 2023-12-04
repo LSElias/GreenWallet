@@ -7,11 +7,11 @@ import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
 
 @Component({
-  selector: 'app-all',
-  templateUrl: './all.component.html',
-  styleUrls: ['./all.component.css'],
+  selector: 'app-all-admis',
+  templateUrl: './all-admis.component.html',
+  styleUrls: ['./all-admis.component.css']
 })
-export class AllComponent {
+export class AllAdmisComponent {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -38,7 +38,7 @@ export class AllComponent {
   getInfo() {
     var user = 3;
     this.gService
-      .get('usuario/idR', 3)
+      .get('usuario/idR', 2)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         console.log(response);
