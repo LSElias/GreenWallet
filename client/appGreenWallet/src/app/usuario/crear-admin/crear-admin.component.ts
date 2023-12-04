@@ -31,6 +31,10 @@ export class CrearAdminComponent {
   canto: any;
   makeSubmit: boolean;
   rolList: any;
+  distritos: any; 
+  provinciaId: any;
+  cantonId: any;
+
 
   constructor(
     public fb: FormBuilder,
@@ -42,6 +46,7 @@ export class CrearAdminComponent {
     this.reactiveForm();
     this.listaProvincias();
     this.listaCantones();
+    this.listaDistrito();
     this.listaRoles(); 
   }
 
@@ -52,9 +57,10 @@ export class CrearAdminComponent {
       rolValue: [null, null],
       provinciaValue: [null,null],
       cantonValue: [null,null],
-      nombre: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
-      apellido1: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
-      apellido2: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
+      distritoValue: [null,null],      
+      nombre: ['',  Validators.compose([Validators.required, Validators.minLength(3)]),],
+      apellido1: ['',  Validators.compose([Validators.required, Validators.minLength(3)]),],
+      apellido2: ['',  Validators.compose([Validators.required, Validators.minLength(3)]),],
       correo: ['', [Validators.required,Validators.email]],
       contrasena: ['', [Validators.required]],
       cedula: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -66,10 +72,12 @@ export class CrearAdminComponent {
       ],
       provincia: [null, Validators.required],
       canton: [null, Validators.required],
+      distrito: [null, Validators.required],
       senas: [null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
     });
+
   }
 
   /*Modificar*/
@@ -119,6 +127,50 @@ export class CrearAdminComponent {
           this.cantones = cant;
         } else {
           console.log('error — cantones');
+        }
+      };
+    }
+  }
+
+  listaDistrito() {
+    let dist : Provincia[] = []
+    let jsonresponse: any;
+    let request = new XMLHttpRequest();
+
+    if(this.provincias!=null){
+      this.provincias.forEach(element => {
+        if(element.id == this.crearAdminForm.get('provincia').value){
+          this.crearAdminForm.patchValue({provinciaValue: element.value})
+          this.provinciaId = element.id; 
+        }
+      });
+    }
+      if (this.cantones != null) {
+        this.cantones.forEach(element => {
+          if(element.id == this.crearAdminForm.get('canton').value){
+            this.crearAdminForm.patchValue({cantonValue: element.value})
+            this.cantonId = element.id; 
+          }
+        });
+      }
+
+    if (this.provinciaId != null && !Number.isNaN(this.provinciaId)) {
+      let request = new XMLHttpRequest();
+      request.open(
+        'GET',
+        `https://ubicaciones.paginasweb.cr/provincia/${this.provinciaId}/canton/${this.cantonId}/distritos.json`
+      );
+      request.send();
+      request.onload = () => {
+        if (request.status == 200) {
+          jsonresponse = JSON.parse(request.response);
+          for (var key in jsonresponse) {
+            var value = jsonresponse[key];
+            dist.push({ id: key, value: value });
+          }
+          this.distritos = dist;
+        } else {
+          console.log('error — distrito');
         }
       };
     }
@@ -217,12 +269,26 @@ export class CrearAdminComponent {
       this.cantones.forEach(element => {
         if(element.id == this.crearAdminForm.get('canton').value){
           this.crearAdminForm.patchValue({cantonValue: element.value})
+
         }
       });
     }
 
+    if (this.distritos != null) {
+      this.distritos.forEach(element => {
+        if(element.id == this.crearAdminForm.get('distrito').value){
+          this.crearAdminForm.patchValue({distritoValue: element.value})
+        }
+      });
+    }
 
- 
+    if (this.rolList != null) {
+      this.rolList.forEach(element => {
+        if(element.idRol == this.crearAdminForm.get('rol').value){
+          this.crearAdminForm.patchValue({rolValue: element.nombre})
+        }
+      });
+    }
 
     //Validación
     if (this.crearAdminForm.invalid) {
@@ -230,8 +296,6 @@ export class CrearAdminComponent {
     }
 
     console.log(this.crearAdminForm.value)
-    return; 
-
 
     //Registrar usuario
     this.authService
