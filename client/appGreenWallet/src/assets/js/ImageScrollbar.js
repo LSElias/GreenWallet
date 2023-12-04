@@ -3,11 +3,6 @@ let details = navigator.userAgent;
 let regexp = /android|iphone|kindle|ipad/i;
 let esMovil = regexp.test(details);
 
-if (esMovil) {
-  console.log("es movil");
-} else {
-  console.log("no es movil");
-}
 
 if (track != null) {
   if(!esMovil){
@@ -18,7 +13,6 @@ if (track != null) {
     if (!esMovil) {
       if((window.innerWidth>1024)){
       track.dataset.mouseDownAt = e.clientX;
-      console.log;
     }
     }
   };
