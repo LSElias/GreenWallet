@@ -67,6 +67,11 @@
         </button>
       </mat-list-item>
       <mat-list-item>
+        <button mat-button (click)="usuario()">
+          <mat-icon> face </mat-icon> Perfil
+        </button>
+      </mat-list-item>
+      <mat-list-item>
         <button mat-button (click)="redirect('usuario/login')">
           <mat-icon> door_front </mat-icon> Cerrar Sesión
         </button>
@@ -110,7 +115,12 @@
       </mat-list-item>
       <mat-list-item>
         <button (click)="redirect('usuario/mantenimiento')" mat-button>
-          <mat-icon> build </mat-icon> Mantenimiento de Usuarios
+          <mat-icon> build </mat-icon> Mantenimiento de Clientes
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button (click)="redirect('usuario/administradores')" mat-button>
+          <mat-icon> build </mat-icon> Mantenimiento de Administradores
         </button>
       </mat-list-item>
       <mat-list-item>
