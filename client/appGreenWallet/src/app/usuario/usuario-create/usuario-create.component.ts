@@ -37,6 +37,9 @@ export class UsuarioCreateComponent implements OnInit {
   submitted= false;
   respCreate: any; 
   genericService: any;
+  distritos: any; 
+  provinciaId: any;
+  cantonId: any;
 
   constructor(
     public fb: FormBuilder,
@@ -48,6 +51,7 @@ export class UsuarioCreateComponent implements OnInit {
     this.reactiveForm();
     this.listaProvincias();
     this.listaCantones();
+    this.listaDistrito();
     this.getInfo();
   }
 
@@ -56,6 +60,7 @@ export class UsuarioCreateComponent implements OnInit {
       rol: [null, null],
       provinciaValue: [null,null],
       cantonValue: [null,null],
+      distritoValue: [null,null],      
       nombre: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
       apellido1: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
       apellido2: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
@@ -70,6 +75,7 @@ export class UsuarioCreateComponent implements OnInit {
       ],
       provincia: [null, Validators.required],
       canton: [null, Validators.required],
+      distrito: [null, Validators.required],
       senas: [null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
@@ -162,6 +168,58 @@ export class UsuarioCreateComponent implements OnInit {
       };
     }
   }
+
+  listaDistrito() {
+    let dist : Provincia[] = []
+    let jsonresponse: any;
+    let request = new XMLHttpRequest();
+
+    if(this.provincias!=null){
+      this.provincias.forEach(element => {
+        if(element.id == this.formCreate.get('provincia').value){
+          this.formCreate.patchValue({provinciaValue: element.value})
+          this.provinciaId = element.id; 
+        }
+      });
+    }
+      if (this.cantones != null) {
+        this.cantones.forEach(element => {
+          if(element.id == this.formCreate.get('canton').value){
+            this.formCreate.patchValue({cantonValue: element.value})
+            this.cantonId = element.id; 
+          }
+        });
+      }
+
+    if (this.provinciaId != null && !Number.isNaN(this.provinciaId)) {
+      let request = new XMLHttpRequest();
+      request.open(
+        'GET',
+        `https://ubicaciones.paginasweb.cr/provincia/${this.provinciaId}/canton/${this.cantonId}/distritos.json`
+      );
+      request.send();
+      request.onload = () => {
+        if (request.status == 200) {
+          jsonresponse = JSON.parse(request.response);
+          for (var key in jsonresponse) {
+            var value = jsonresponse[key];
+            dist.push({ id: key, value: value });
+          }
+          this.distritos = dist;
+        } else {
+          console.log('error — distrito');
+        }
+      };
+    }
+  }
+
+
+
+
+
+
+
+
 
   getInfo(){
     var id= 3

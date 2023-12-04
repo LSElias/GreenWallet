@@ -150,7 +150,7 @@ module.exports.create = async (request, response, next) => {
     data:{
       provincia: infoUsuario.provinciaValue,
       canton: infoUsuario.cantonValue,
-      distrito: " ",
+      distrito: infoUsuario.distritoValue,
       senas: infoUsuario.senas
     }
   })
@@ -167,7 +167,9 @@ module.exports.create = async (request, response, next) => {
       cedula: infoUsuario.cedula,
       telefono: infoUsuario.telefono,
       rol: {
-        connect: infoUsuario.rol
+        connect: {
+          idRol: infoUsuario.rol,
+          nombre: infoUsuario.rolValue}       
       },  
       direccion:{
         connect: newDireccion
