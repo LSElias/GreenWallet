@@ -14,6 +14,7 @@ import { CanjeoModule } from './canjeo/canjeo.module';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 import { RecompensaModule } from './recompensa/recompensa.module';
+import { BilleteraModule } from './billetera/billetera.module';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { RecompensaModule } from './recompensa/recompensa.module';
 
     HomeModule,
     RecompensaModule,
-
+    BilleteraModule,
     UsuarioModule,
     CentroModule,
     MaterialesModule,

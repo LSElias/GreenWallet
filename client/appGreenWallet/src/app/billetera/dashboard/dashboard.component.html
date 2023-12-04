@@ -1,0 +1,29 @@
+<div>
+  <div class="billetera">
+    <h1>Tu billetera</h1>
+    <h4>
+      En este apartado podrás ver cuantas eco-monedas <br />tienes disponibles,
+      las que has usado y el total de estas.
+    </h4>
+    <hr />
+    
+    <div class="grid" *ngIf="billetera!=null">
+      <div>
+        <h4>Disponibles</h4>
+        <p> {{billetera.disponibles}} </p>
+      </div>
+      <div>
+        <h4>Canjeados</h4>
+        <p> {{billetera.canjeados}} </p>
+    </div>
+      <div>
+        <h4>Total</h4>
+        <p> {{billetera.canjeados}} </p>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div>
+    <!-- Aca puede ir lo que es un mini historial de interc de materiales y intc de cupones-->
+  </div>
+</div>
