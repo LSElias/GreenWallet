@@ -21,7 +21,7 @@ export class AllComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['nombre', 'sede','telefono', 'administrador','accion'];
+  displayedColumns = ['nombre', 'sede','estado', 'administrador','accion'];
 
 
   constructor(private gService: GenericService, private router: Router,
@@ -45,6 +45,30 @@ export class AllComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource(this.datos);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+      });
+    }
+
+    setEstado(est:any){
+      if(est){
+        return "Activado"
+      }else{
+        return "Desactivado"
+      }
+    }
+
+    flechas(est:any){
+      if(!est){
+        return 'arrow_drop_up'
+      }else{
+        return "arrow_drop_down"
+      }
+    }
+
+    cambiarEstado(id:any){
+      this.gService.get('centro/changeEstado', id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+          this.getInfo();
       });
     }
 

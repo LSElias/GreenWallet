@@ -1,5 +1,5 @@
-<div class="background">
-  <div class="formContainer">
+<div class="background" *ngIf="centro != null">
+  <div class="formContainer" *ngIf="centro[0].estado != false">
     <div class="topPart">
       <div class="autocompleteBlock">
         <h3>Ingrese la cédula del cliente</h3>
@@ -88,5 +88,10 @@
           </button>
         </div>
         </div>
+  </div>
+  <div class="formContainer" *ngIf="centro[0].estado == false"> 
+    <div class="topPart">
+    <h4> Este centro esta desactivado, por lo que no podrá registrar ningún intercambio.</h4>
+  </div>
   </div>
 </div>

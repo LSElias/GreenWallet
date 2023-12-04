@@ -58,6 +58,7 @@ model Centro{
   idAdmin       Int   
   idDireccion   Int
   idHorario     Int
+  estado        Boolean
   horario       Horario @relation(fields: [idHorario],references: [idHorario])
   administrador Usuario @relation(fields: [idAdmin],references: [idUsuario])
   nombre        String  @db.VarChar(250)

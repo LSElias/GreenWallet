@@ -92,7 +92,8 @@ async function main() {
       apellido1: "Hernández",
       apellido2: "Solis",
       correo: "solishe@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "102360214",
       telefono: "89566598",
     },
@@ -108,7 +109,8 @@ async function main() {
       apellido1: "Soto",
       apellido2: "Pesqueira",
       correo: "sotocla@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "202580852",
       telefono: "85659865",
     },
@@ -122,7 +124,8 @@ async function main() {
       apellido1: "Castro",
       apellido2: "Mendez",
       correo: "mendezsa@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "302350246",
       telefono: "85956565",
     },
@@ -136,7 +139,8 @@ async function main() {
       apellido1: "Godwin",
       apellido2: "Shelly",
       correo: "frankshelly@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "406540258",
       telefono: "88774455",
     },
@@ -150,7 +154,8 @@ async function main() {
       apellido1: "Lewis",
       apellido2: "House",
       correo: "houseth@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "702580147",
       telefono: "65251245",
     },
@@ -165,7 +170,8 @@ async function main() {
       apellido1: "Roberts",
       apellido2: "Wilson",
       correo: "ameliawil@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "602130478",
       telefono: "74125445",
     },
@@ -181,7 +187,8 @@ async function main() {
       apellido1: "Williams",
       apellido2: "Jones",
       correo: "williamsjo@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "201470741",
       telefono: "87588754",
     },
@@ -195,7 +202,8 @@ async function main() {
       apellido1: "Miller",
       apellido2: "Brown",
       correo: "brownmiller@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "302130321",
       telefono: "85415225",
     },
@@ -209,7 +217,8 @@ async function main() {
       apellido1: "García",
       apellido2: "Smith",
       correo: "smithg@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "302130123",
       telefono: "64621554",
     },
@@ -223,7 +232,8 @@ async function main() {
       apellido1: "Murphy",
       apellido2: "Taylor",
       correo: "taylornoah@gmail.com",
-      contrasena: "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
+      contrasena:
+        "$2b$10$G4sK5TtZ/vGS2HL/bAp.ruVFMCUri/CzxMy8GiciYC7S3af5SE2uS",
       cedula: "201590357",
       telefono: "64588522",
     },
@@ -295,7 +305,7 @@ async function main() {
       idUsuario: 7,
       idRecompensa: 1,
       idEstado: 1,
-      qr: ""
+      qr: "",
     },
   });
   await prisma.cupon.create({
@@ -303,7 +313,7 @@ async function main() {
       idUsuario: 8,
       idRecompensa: 2,
       idEstado: 1,
-      qr: ""
+      qr: "",
     },
   });
   await prisma.cupon.create({
@@ -311,7 +321,7 @@ async function main() {
       idUsuario: 9,
       idRecompensa: 3,
       idEstado: 1,
-      qr: ""
+      qr: "",
     },
   });
   await prisma.cupon.create({
@@ -319,7 +329,7 @@ async function main() {
       idUsuario: 10,
       idRecompensa: 4,
       idEstado: 1,
-      qr: ""
+      qr: "",
     },
   });
 
@@ -451,6 +461,7 @@ async function main() {
       idAdmin: 2,
       idDireccion: 2,
       idHorario: 1,
+      estado: true,
       nombre: "GreenWallet Cartago",
       telefono: "25521254",
       materiales: {
@@ -463,6 +474,7 @@ async function main() {
       idAdmin: 3,
       idDireccion: 3,
       idHorario: 2,
+      estado: true,
       nombre: "GreenWallet Limón",
       telefono: "27521254",
       materiales: {
@@ -475,6 +487,7 @@ async function main() {
       idAdmin: 4,
       idDireccion: 4,
       idHorario: 3,
+      estado: true,
       nombre: "GreenWallet Guanacaste",
       telefono: "26035428",
       materiales: {
@@ -487,6 +500,7 @@ async function main() {
       idAdmin: 5,
       idDireccion: 5,
       idHorario: 4,
+      estado: true,
       nombre: "GreenWallet San José",
       telefono: "22035428",
       materiales: {

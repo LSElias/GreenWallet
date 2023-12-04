@@ -23,6 +23,7 @@ module.exports.get = async (request, response, next) => {
     id: u.idCupon,
     nombre: u.usuario.nombre + " " + u.usuario.apellido1 + " " + u.usuario.apellido2,
     recompensa: u.recompensa.nombre,
+    valor: u.recompensa.valor,
     estado: u.estado.nombre
   }))
   response.json(datos);
