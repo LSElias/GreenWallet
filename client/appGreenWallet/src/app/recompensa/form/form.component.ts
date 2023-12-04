@@ -143,7 +143,7 @@ export class FormComponent implements OnInit {
       if (this.file == null || this.file == null) {
         this.noti.mensaje(
           'Imagen',
-          'Se necesita una imagen para poder guardar el material.',
+          'Se necesita una imagen para poder guardar la recompensa.',
           TipoMessage.error
         );
         return;

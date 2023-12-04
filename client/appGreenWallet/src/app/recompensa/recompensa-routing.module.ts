@@ -6,19 +6,21 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { AllComponent } from './all/all.component';
 import { IntercambioComponent } from './intercambio/intercambio.component';
 import { CuponComponent } from './cupon/cupon.component';
+import { HistorialComponent } from './historial/historial.component';
 
 const routes: Routes = [
   { path: 'recompensa', component: IndexComponent },
   { path: 'recompensa/crear', component: FormComponent },
+  { path: 'cupones/historial', component: HistorialComponent },
   { path: 'recompensa/mantenimiento', component: AllComponent },
   { path: 'recompensa/:id', component: DetalleComponent },
   { path: 'recompensa/cupon/:id', component: CuponComponent },
   { path: 'recompensa/intercambio/:id', component: IntercambioComponent },
-  { path: 'recompensa/actualizar/:id', component: FormComponent }
+  { path: 'recompensa/actualizar/:id', component: FormComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class RecompensaRoutingModule {}

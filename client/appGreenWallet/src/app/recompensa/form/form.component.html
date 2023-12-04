@@ -5,8 +5,8 @@
       <mat-card-header>
         <mat-card-title
           ><h3>
-            {{ titleForm }} un
-            <span> material </span>
+            {{ titleForm }} una
+            <span> recompensa </span>
           </h3></mat-card-title
         >
       </mat-card-header>
@@ -64,7 +64,7 @@
                       placeholder="Valor"
                     />
                     <mat-error *ngIf="errorHandling('valorUnidad', 'required')">
-                      El valor del material es <strong>requerido</strong>
+                      El valor de la recompensa es <strong>requerido</strong> y debe ser un<strong>númeral</strong> 
                     </mat-error>
                     <mat-error *ngIf="errorHandling('valorUnidad', 'pattern')">
                       El valor debe ser un
@@ -82,7 +82,7 @@
                     <mat-error
                       *ngIf="errorHandling('cantidadDispo', 'required')"
                     >
-                      El valor del material es <strong>requerido</strong>
+                      La cantidad de la recompensa es <strong>requerida</strong> y debe ser un<strong>númeral</strong>.
                     </mat-error>
                     <mat-error
                       *ngIf="errorHandling('cantidadDispo', 'pattern')"
@@ -94,9 +94,9 @@
               </div>
             </div>
 
-            <div class="row" tyle="min-width: 100%;">
+            <div class="row" tyle="width: 120vh;">
               <mat-form-field>
-                <mat-label>Enter a date range</mat-label>
+                <mat-label>Ingrese el rango de válidez</mat-label>
                 <mat-date-range-input  [rangePicker]="picker">
                   <input matStartDate formControlName="fechaAdquision" placeholder="Start date">
                   <input matEndDate formControlName="fechaExpiracion" placeholder="End date">
