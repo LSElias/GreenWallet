@@ -171,6 +171,8 @@
             placeholder="Canton"
             formControlName="canton"
             multiple="false"
+            #canto
+            (selectionChange)="listaDistrito()"
             >
               <div *ngFor="let item of cantones"> 
               <mat-option [value]="item.id">{{item.value}}</mat-option>
@@ -184,7 +186,23 @@
       </div>
       <div class="row">
         <div class="col">
-            <mat-form-field style="min-width: 100%">
+          <mat-form-field style="min-width: 30%">
+            <mat-select
+            placeholder="Distritos"
+            formControlName="distrito"
+            multiple="false"
+            >
+              <div *ngFor="let item of distritos"> 
+              <mat-option [value]="item.id">{{item.value}}</mat-option>
+            </div>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('distrito', 'required')">
+              Distrito es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field style="min-width: 30%">
                 <input
                   matInput
                   #senas
@@ -204,8 +222,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="submitForm()">Registrar</button>
-      <button mat-raised-button color="accent" type="reset" (click)="onReset()">Cancelar</button>
+      <button class="btnEstado" mat-raised-button (click)="submitForm()">Registrar</button>
+      <button class="btnEstado" mat-raised-button type="reset" (click)="onReset()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </form>
