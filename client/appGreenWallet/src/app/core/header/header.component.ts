@@ -9,9 +9,6 @@ import { CartService } from 'src/app/share/cart.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-usuario() {
-throw new Error('Method not implemented.');
-}
   isAutenticated: boolean;
   currentUser: any;
   id: any;

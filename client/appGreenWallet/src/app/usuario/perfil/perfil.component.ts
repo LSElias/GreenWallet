@@ -102,8 +102,8 @@ export class PerfilComponent {
     /*Modificar*/
     ngOnInit(): void {
       this.activeRouter.params.subscribe((params: Params) => {
-        this.idUsuario = params['id'];
-  
+        //this.idUsuario = params['id'];
+        this.idUsuario = 3; 
         if (this.idUsuario != undefined && !isNaN(Number(this.idUsuario))) {
           this.isCreate = false;
           this.titleForm = 'Actualizar';
@@ -321,10 +321,6 @@ export class PerfilComponent {
           }
         };
       }
-    }
-  
-    onReset() {
-      this.crearAdminForm.reset();
     }
   
     onBack() {
