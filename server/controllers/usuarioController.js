@@ -159,7 +159,6 @@ module.exports.create = async (request, response, next) => {
 
   const newUsuario = await prisma.usuario.create({
     data: {
-      idRol: infoUsuario.idRol,
       nombre: infoUsuario.nombre,
       apellido1: infoUsuario.apellido1,
       apellido2: infoUsuario.apellido2,
@@ -167,9 +166,12 @@ module.exports.create = async (request, response, next) => {
       contrasena: hash,
       cedula: infoUsuario.cedula,
       telefono: infoUsuario.telefono,
+      rol: {
+        connect: infoUsuario.rol
+      },  
       direccion:{
         connect: newDireccion
-      },
+      }, 
     },
   });
   response.status(200).json({

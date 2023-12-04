@@ -5,10 +5,12 @@ import { UsuarioLoginComponent } from './usuario-login/usuario-login.component';
 import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
 import { AllComponent } from './all/all.component';
 import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.component';
+import { CrearAdminComponent } from './crear-admin/crear-admin.component';
 
 const routes: Routes = [
   
   {path:'usuario/mantenimiento', component: AllComponent},
+  {path:'usuario/crear', component: CrearAdminComponent},
   {
   path: 'usuario',
   component: UsuarioIndexComponent,    

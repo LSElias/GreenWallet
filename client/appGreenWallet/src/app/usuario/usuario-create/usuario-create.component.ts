@@ -93,6 +93,8 @@ export class UsuarioCreateComponent implements OnInit {
       }
     });
 
+    this.formCreate.get("rol").setValue(this.rol);
+
     //Validación
     if (this.formCreate.invalid) {
       return;
