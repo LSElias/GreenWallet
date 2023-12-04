@@ -47,7 +47,9 @@
                 ">
                  {{item.categoria}} </mat-chip-option>  
 <br/>
-                <button mat-flat-button>
+                <button 
+                (click)="comprar(item.idRecompensas)"
+                mat-raised-button *ngIf="this.currentUser?.rol===3">
                     Reclamar
                   </button>
                 </div>

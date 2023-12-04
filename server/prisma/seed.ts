@@ -295,6 +295,7 @@ async function main() {
       idUsuario: 7,
       idRecompensa: 1,
       idEstado: 1,
+      qr: ""
     },
   });
   await prisma.cupon.create({
@@ -302,6 +303,7 @@ async function main() {
       idUsuario: 8,
       idRecompensa: 2,
       idEstado: 1,
+      qr: ""
     },
   });
   await prisma.cupon.create({
@@ -309,6 +311,7 @@ async function main() {
       idUsuario: 9,
       idRecompensa: 3,
       idEstado: 1,
+      qr: ""
     },
   });
   await prisma.cupon.create({
@@ -316,6 +319,7 @@ async function main() {
       idUsuario: 10,
       idRecompensa: 4,
       idEstado: 1,
+      qr: ""
     },
   });
 
