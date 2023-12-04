@@ -40,11 +40,16 @@ module.exports.getByIdUser = async (request, response, next) => {
   const datos = {
     idUsuario: usuario.idUsuario,
     cedula: usuario.cedula,
-    nombre: usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2,
+    nombre: usuario.nombre,
+    apellido1: usuario.apellido1,
+    apellido2: usuario.apellido2,
     correo: usuario.correo,
     contrasena: usuario.contrasena,
     telefono: usuario.telefono,
+    idRol: usuario.rol.idRol,
     rol: usuario.rol.nombre,
+    nombreCompleto:
+      usuario.nombre + " " + usuario.apellido1 + " " + usuario.apellido2,
     direccion:
       usuario.direccion.provincia +
       ", " +
@@ -53,6 +58,11 @@ module.exports.getByIdUser = async (request, response, next) => {
       usuario.direccion.distrito +
       ". " +
       usuario.direccion.senas,
+    provincia: usuario.direccion.provincia,
+    canton: usuario.direccion.canton,
+    distrito: usuario.direccion.distrito,
+    senas: usuario.direccion.senas,
+    idDireccion: usuario.direccion.idDireccion,
   };
   response.json(datos);
 };
@@ -114,12 +124,15 @@ module.exports.login = async (request, response, next) => {
     });
   }
 
-  const checkPassword = await bcrypt.compare(userData.contrasena, usuario.contrasena);
+  const checkPassword = await bcrypt.compare(
+    userData.contrasena,
+    usuario.contrasena
+  );
   if (checkPassword === false) {
     response.status(401).send({
       success: false,
-      message: "Credenciales no validas"
-    })
+      message: "Credenciales no validas",
+    });
   } else {
     const payload = {
       idUsuario: usuario.idUsuario,
@@ -128,17 +141,18 @@ module.exports.login = async (request, response, next) => {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: process.env.JWT_EXPIRE
+      expiresIn: process.env.JWT_EXPIRE,
     });
     response.json({
       success: true,
       message: "Bienvenido a GreenWallet",
       token,
-    })
+    });
   }
 };
 
-//Create
+
+//Create 
 module.exports.create = async (request, response, next) => {
   const infoUsuario = request.body;
 
@@ -147,15 +161,13 @@ module.exports.create = async (request, response, next) => {
   let hash = bcrypt.hashSync(infoUsuario.contrasena, salt);
 
   const newDireccion = await prisma.direccion.create({
-    data:{
+    data: {
       provincia: infoUsuario.provinciaValue,
       canton: infoUsuario.cantonValue,
       distrito: infoUsuario.distritoValue,
-      senas: infoUsuario.senas
-    }
-  })
-
-
+      senas: infoUsuario.senas,
+    },
+  });
 
   const newUsuario = await prisma.usuario.create({
     data: {
@@ -169,11 +181,12 @@ module.exports.create = async (request, response, next) => {
       rol: {
         connect: {
           idRol: infoUsuario.rol,
-          nombre: infoUsuario.rolValue}       
-      },  
-      direccion:{
-        connect: newDireccion
-      }, 
+          nombre: infoUsuario.rolValue,
+        },
+      },
+      direccion: {
+        connect: newDireccion,
+      },
     },
   });
   response.status(200).json({
@@ -190,23 +203,91 @@ module.exports.update = async (request, response, next) => {
 
   const oldUser = await prisma.usuario.findUnique({
     where: { idUsuario: idUsuario },
-  });
-  const newUser = await prisma.usuario.update({
-    where: {
-      idUsuario: idUsuario,
-    },
-    data: {
-      idRol: infoUsuario.idRol,
-      idDireccion: infoUsuario.idDireccion,
-      nombre: infoUsuario.nombre,
-      apellido1: infoUsuario.apellido1,
-      apellido2: infoUsuario.apellido2,
-      correo: infoUsuario.correo,
-      contrasena: infoUsuario.contrasena,
-      cedula: infoUsuario.cedula,
-      telefono: infoUsuario.telefono,
+    include: {
+      direccion: true,
+      rol: true,
     },
   });
 
-  response.json(newUser);
+  const isMatchPass = await bcrypt.compare(
+    infoUsuario.contrasena,
+    oldUser.contrasena
+  );
+
+  if (isMatchPass) {
+
+    const newDireccion = await prisma.direccion.create({
+      data: {
+        provincia: infoUsuario.provinciaValue,
+        canton: infoUsuario.cantonValue,
+        distrito: infoUsuario.distritoValue,
+        senas: infoUsuario.senas,
+      },
+    });
+
+    const newUser = await prisma.usuario.update({
+      where: {
+        idUsuario: idUsuario,
+      },
+      data: {
+        nombre: infoUsuario.nombre,
+        apellido1: infoUsuario.apellido1,
+        apellido2: infoUsuario.apellido2,
+        correo: infoUsuario.correo,
+        contrasena: infoUsuario.contrasena,
+        cedula: infoUsuario.cedula,
+        telefono: infoUsuario.telefono,
+        rol: {
+          connect: {
+            idRol: infoUsuario.rol,
+            nombre: infoUsuario.rolValue,
+          },
+        },
+        direccion: {
+          connect: newDireccion,
+        },
+      },
+    });
+
+    response.json(newUser);
+  }else
+  {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(infoUsuario.contrasena, salt);
+
+    const newDireccion = await prisma.direccion.create({
+      data: {
+        provincia: infoUsuario.provinciaValue,
+        canton: infoUsuario.cantonValue,
+        distrito: infoUsuario.distritoValue,
+        senas: infoUsuario.senas,
+      },
+    });
+
+    const newUser = await prisma.usuario.update({
+      where: {
+        idUsuario: idUsuario,
+      },
+      data: {
+        nombre: infoUsuario.nombre,
+        apellido1: infoUsuario.apellido1,
+        apellido2: infoUsuario.apellido2,
+        correo: infoUsuario.correo,
+        contrasena: hash,
+        cedula: infoUsuario.cedula,
+        telefono: infoUsuario.telefono,
+        rol: {
+          connect: {
+            idRol: infoUsuario.rol,
+            nombre: infoUsuario.rolValue,
+          },
+        },
+        direccion: {
+          connect: newDireccion,
+        },
+      },
+    });
+
+    response.json(newUser);
+  }
 };
