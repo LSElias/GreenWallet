@@ -11,6 +11,16 @@ module.exports.get = async (request, response, next) => {
       administrador: true,
       direccion: true,
       horario: true,
+      materiales: {
+        select: {
+          nombre: true,
+          descripcion: true,
+          imagen: true,
+          color: true,
+          valor: true,
+          idMaterial: true,
+        },
+      },
     },
   });
 
@@ -18,8 +28,10 @@ module.exports.get = async (request, response, next) => {
     idCentro: b.idCentro,
     estado: b.estado,
     nombre: b.nombre,
+    provincia: b.direccion.provincia,
     telefono: b.telefono,
     sede: b.direccion.provincia,
+    materiales: b.materiales,
     administrador:
       b.administrador.nombre +
       " " +
