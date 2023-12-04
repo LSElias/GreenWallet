@@ -8,10 +8,6 @@ body{
 
 }
 
-.slide1{
-    display: none;
-}
-
 .container{
     min-height: 100vh;
     height: fit-content;

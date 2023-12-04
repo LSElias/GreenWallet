@@ -1,28 +1,42 @@
-<div>
+<div class="container">
+  <div class="spacing"></div>
+
   <div class="billetera">
     <h1>Tu billetera</h1>
-    <h4>
-      En este apartado podrás ver cuantas eco-monedas <br />tienes disponibles,
-      las que has usado y el total de estas.
-    </h4>
     <hr />
-    
-    <div class="grid" *ngIf="billetera!=null">
-      <div>
-        <h4>Disponibles</h4>
-        <p> {{billetera.disponibles}} </p>
-      </div>
-      <div>
-        <h4>Canjeados</h4>
-        <p> {{billetera.canjeados}} </p>
-    </div>
-      <div>
-        <h4>Total</h4>
-        <p> {{billetera.canjeados}} </p>
-      </div>
+  </div>
+  <div *ngIf="billetera != null">
+    <div class="grid-container">
+      <mat-grid-list
+        [cols]="breakpoint"
+        [rowHeight]="'20vh'"
+        (window:resize)="onResize($event)"
+      >
+        <mat-grid-tile>
+          <div class="tile">
+            <h3>Disponibles</h3>
+            <h4>{{ billetera.disponibles }}</h4>
+            <hr class="underline" />
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div>
+            <h3>Canjeados</h3>
+            <h4>{{ billetera.canjeados }}</h4>
+            <hr class="underline" />
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div>
+            <h3>Total</h3>
+            <h4>{{ billetera.canjeados }}</h4>
+            <hr class="underline" />
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
   </div>
-  <br/>
+  <br />
   <div>
     <!-- Aca puede ir lo que es un mini historial de interc de materiales y intc de cupones-->
   </div>
