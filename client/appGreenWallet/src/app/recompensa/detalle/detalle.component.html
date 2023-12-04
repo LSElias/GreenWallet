@@ -1,1 +1,25 @@
-<p>detalle works!</p>
+<div *ngIf="datos != null">
+  <div
+    class="container"
+    style="background-image:  linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(252,176,69,0) 100%), url('../../../assets/images/{{datos.foto}}');"
+  >
+    <div class="sq-cont">
+      <div class="square">
+        <h1>{{ datos.nombre }}</h1>
+        <mat-chip-option disabled="true">
+         {{datos.categoria.nombre}} </mat-chip-option>  
+        <h2>Informacion</h2>
+        <p>{{ datos.descripcion }}</p>
+        <h2>Valor</h2>
+        <div class="money">
+          <img src="../../../assets/images/coin.png" />
+          <h3>{{ datos.valorUnidad }}</h3>
+        </div>
+        <h3>Cantidad Disponible</h3> {{ datos.cantidadDispo }} 
+        <h3>Fecha de Inicio: </h3> <p> {{ getDate(datos.fechaAdquision) }}</p>
+        <h3>Fecha de Expiración: </h3> <p> {{ getDate(datos.fechaExpiracion) }}</p>
+
+      </div>
+    </div>
+  </div>
+</div>

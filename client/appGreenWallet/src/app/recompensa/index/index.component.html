@@ -47,11 +47,25 @@
                 ">
                  {{item.categoria}} </mat-chip-option>  
 <br/>
+                <div class="botones">
                 <button 
+                class="botoncom"
+                  color="primary"
                 (click)="comprar(item.idRecompensas)"
                 mat-raised-button *ngIf="this.currentUser?.rol===3">
                     Reclamar
                   </button>
+                  <span class="example-spacer"></span>
+                  <button
+                  class="botoninfo"
+                  mat-mini-fab
+                  matTooltip="Detalle del Material"
+                  aria-label="Detalle del Material"
+                  (click)="Redirect(item.idRecompensas)"
+                >
+                  <mat-icon class="mat-18" style="color: rgb(255, 255, 255); text-shadow: 0px 0px 3px black;">info</mat-icon>
+                </button>
+              </div>
                 </div>
               </mat-card-footer>
             </mat-card>

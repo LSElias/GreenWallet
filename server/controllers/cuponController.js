@@ -46,6 +46,7 @@ module.exports.getByIdCupon = async (request, response, next) => {
   });
   const datos= {
     id: cupon.idCupon,
+    qr: cupon.qr,
     estado: cupon.estado.nombre,
     usuario: {
       cedula: cupon.usuario.cedula,
@@ -148,7 +149,7 @@ module.exports.create = async (request, response, next) => {
     data: {
       disponibles: infoB.disponibles - rec.valor,
       canjeadas: infoB.canjeadas + rec.valor,
-      total: infoB.total
+      total: infoB.disponibles + infoB.canjeadas
     }
   });
 

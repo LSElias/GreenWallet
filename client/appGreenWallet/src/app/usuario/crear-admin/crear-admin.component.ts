@@ -65,7 +65,7 @@ export class CrearAdminComponent {
         Validators.maxLength(8),]),
       ],
       provincia: [null, Validators.required],
-      canton: [1, Validators.required],
+      canton: [null, Validators.required],
       senas: [null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
@@ -206,13 +206,14 @@ export class CrearAdminComponent {
   submit(): void  { 
     this.makeSubmit = true;
 
+    if(this.provincias!=null){
     this.provincias.forEach(element => {
       if(element.id == this.crearAdminForm.get('provincia').value){
         this.crearAdminForm.patchValue({provinciaValue: element.value})
       }
     });
-
-    if (this.cantones == null) {
+  }
+    if (this.cantones != null) {
       this.cantones.forEach(element => {
         if(element.id == this.crearAdminForm.get('canton').value){
           this.crearAdminForm.patchValue({cantonValue: element.value})

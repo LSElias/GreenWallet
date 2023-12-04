@@ -1,0 +1,64 @@
+<div class="main-container">
+    <div *ngIf="datos != null">
+      <div class="data-container">
+        <div class="th-header">
+          <div class="left-side">
+            <img src="../../../assets/images/icon.png">
+          </div>
+          <div class="right-side">
+          <span class="example-spacer"></span>
+          <h2> cupón #{{datos.id}} </h2>
+        </div>
+        </div>
+        <div class="bodyodyody">
+          <div class="body-flex">
+            <div class="box1">
+              <h3> Usuario</h3>
+              <p> {{datos.usuario.nombre}} </p>
+            </div>
+            <div class="box1">
+              <h3> Correo </h3>
+              <p> {{datos.usuario.correo}} </p>
+            </div>
+            <div class="box1">
+              <h3> Estado</h3>
+              <p> {{datos.estado}} </p>
+            </div>
+            <div class="box2">
+              <h3> Recompensa</h3>
+              <p> {{datos.recompensa.nombre}} </p>
+            </div>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                    Categoría
+                </td>
+                <td>
+                    {{datos.recompensa.categoria}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Descripción
+                </td>
+                <td>
+                    {{datos.recompensa.descripcion}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    QR
+                </td>
+                <td>
+                    <img class="qr" src="{{datos.qr}}" alt="Red dot" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

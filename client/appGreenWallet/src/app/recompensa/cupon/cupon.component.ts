@@ -5,11 +5,11 @@ import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
 
 @Component({
-  selector: 'app-detalle',
-  templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
+  selector: 'app-cupon',
+  templateUrl: './cupon.component.html',
+  styleUrls: ['./cupon.component.css']
 })
-export class DetalleComponent {
+export class CuponComponent {
   datos: any;
   destroy$: Subject<boolean>=new Subject<boolean>();
   
@@ -22,7 +22,7 @@ export class DetalleComponent {
     }
 
     obtenerInfo(id: any){
-      this.gService.get('canjeo/', id)
+      this.gService.get('cupon/', id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         this.datos = data;
@@ -34,5 +34,5 @@ export class DetalleComponent {
       this.destroy$.next(true);
       this.destroy$.unsubscribe();
     }
-  }
 
+}
