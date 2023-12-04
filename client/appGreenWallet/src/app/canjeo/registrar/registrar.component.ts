@@ -1,9 +1,10 @@
 import { formatDate, getLocaleDateFormat } from '@angular/common';
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, takeUntil, window } from 'rxjs';
+import { AuthenticationService } from 'src/app/share/authentication.service';
 import { GenericService } from 'src/app/share/generic.service';
 import {
   NotificacionService,
@@ -23,7 +24,7 @@ export class ItemCart {
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.css'],
 })
-export class RegistrarComponent implements AfterViewInit {
+export class RegistrarComponent implements AfterViewInit, OnInit {
   private cart = new BehaviorSubject<ItemCart[]>(null);
   public currentDataCart$ = this.cart.asObservable();
   public qtyItems = new Subject<number>();
@@ -40,13 +41,18 @@ export class RegistrarComponent implements AfterViewInit {
   cantidad: any;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['material', 'precio', 'cantidad', 'subtotal'];
+  isAutenticated: boolean;
+  currentUser: any;
+
 
   date: any = formatDate(new Date(), 'dd-MM-YYYY', 'en');
 
   constructor(
-    private route: Router,
     private genericService: GenericService,
-    private noti: NotificacionService
+    private noti: NotificacionService,
+    private authService: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe((newValue) => {
@@ -58,6 +64,18 @@ export class RegistrarComponent implements AfterViewInit {
     this.currentDataCart$ = this.cart.asObservable();
   }
 
+  ngOnInit(): void {
+    this.authService.decodeToken.subscribe((user: any) => {
+      this.currentUser = user;
+      console.log(this.currentUser);
+    });
+
+    this.authService.isAuthenticated.subscribe(
+      (valor) => (this.isAutenticated = valor)
+    );
+
+  }
+  
   ngAfterViewInit(): void {
     this.getUserData();
     this.getAdminData();
@@ -69,7 +87,6 @@ export class RegistrarComponent implements AfterViewInit {
 
   actualizarCantidad(item: any) {
     this.cantidad = item.cantidad;
-    //console.log('Valor Cantidad: ', this.cantidad)
 
     if (!isNaN(this.cantidad)) {
       this.addToCart(item);
@@ -221,7 +238,7 @@ export class RegistrarComponent implements AfterViewInit {
 
   getAdminData() {
     this.genericService
-      .get('usuario/IdU', 4)
+      .get('usuario/IdU', this.currentUser.idUsuario)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.admin = response;
@@ -296,7 +313,7 @@ export class RegistrarComponent implements AfterViewInit {
             TipoMessage.success,
             `/canjeo/detalle/${response.idCanjeo}`
           );
-          this.route.navigate([`/canjeo/detalle/${response.idCanjeo}`]);
+          this.router.navigate([`/canjeo/detalle/${response.idCanjeo}`]);
         });
     } else {
       this.noti.mensaje(

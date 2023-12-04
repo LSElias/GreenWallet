@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BilleteraRoutingModule } from './billetera-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    BilleteraRoutingModule
+    BilleteraRoutingModule,
+    MatGridListModule,
   ]
 })
 export class BilleteraModule { }

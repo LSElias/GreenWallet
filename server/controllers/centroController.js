@@ -11,14 +11,27 @@ module.exports.get = async (request, response, next) => {
       administrador: true,
       direccion: true,
       horario: true,
+      materiales: {
+        select: {
+          nombre: true,
+          descripcion: true,
+          imagen: true,
+          color: true,
+          valor: true,
+          idMaterial: true,
+        },
+      },
     },
   });
 
   const datos = centro.map((b) => ({
     idCentro: b.idCentro,
+    estado: b.estado,
     nombre: b.nombre,
+    provincia: b.direccion.provincia,
     telefono: b.telefono,
     sede: b.direccion.provincia,
+    materiales: b.materiales,
     administrador:
       b.administrador.nombre +
       " " +
@@ -46,13 +59,14 @@ module.exports.getByIdCentro = async (request, response, next) => {
           imagen: true,
           color: true,
           valor: true,
-          idMaterial: true
+          idMaterial: true,
         },
       },
     },
   });
   const datos = {
     nombre: centro.nombre,
+    estado: centro.estado,
     telefono: centro.telefono,
     horario: centro.horario.dias + " - " + centro.horario.horas,
     dias: centro.horario.dias,
@@ -86,6 +100,8 @@ module.exports.getByIdCentro = async (request, response, next) => {
   response.json(datos);
 };
 
+
+
 //GetByIdUsuario
 module.exports.getByIdUser = async (request, response, next) => {
   let idAdmin = parseInt(request.params.idAdmin);
@@ -109,6 +125,7 @@ module.exports.getByIdUser = async (request, response, next) => {
   });
   const datos = centro.map((centro) => ({
     idCentro: centro.idCentro,
+    estado: centro.estado,
     nombre: centro.nombre,
     telefono: centro.telefono,
     horario: centro.horario.dias + " - " + centro.horario.horas,
@@ -139,28 +156,25 @@ module.exports.getByIdUser = async (request, response, next) => {
 module.exports.create = async (request, response, next) => {
   let info = request.body;
 
-
-
   const admin = await prisma.usuario.findUnique({
-    where: { idUsuario: info.administrador }
+    where: { idUsuario: info.administrador },
   });
 
-
   const newHorario = await prisma.horario.create({
-    data:{
+    data: {
       horas: info.horas,
-      dias: info.dias
-    }
-  })
+      dias: info.dias,
+    },
+  });
 
   const newDireccion = await prisma.direccion.create({
-    data:{
+    data: {
       provincia: info.provinciaValue,
       canton: info.cantonValue,
       distrito: " ",
-      senas: info.senas
-    }
-  })
+      senas: info.senas,
+    },
+  });
 
   const newMateriales = await prisma.centro.create({
     data: {
@@ -169,15 +183,15 @@ module.exports.create = async (request, response, next) => {
       materiales: {
         connect: info.materiales,
       },
-      administrador:{
-        connect: admin
+      administrador: {
+        connect: admin,
       },
-      horario:{
-        connect: newHorario
+      horario: {
+        connect: newHorario,
       },
-      direccion:{
-        connect: newDireccion
-      }
+      direccion: {
+        connect: newDireccion,
+      },
     },
   });
   response.json(newMateriales);
@@ -193,7 +207,7 @@ module.exports.update = async (request, response, next) => {
     include: {
       materiales: {
         select: {
-          idMaterial: true
+          idMaterial: true,
         },
       },
       administrador: true,
@@ -202,28 +216,26 @@ module.exports.update = async (request, response, next) => {
     },
   });
 
-
   const newDireccion = await prisma.direccion.update({
-    where:{
-      idDireccion: centro.idDireccion
+    where: {
+      idDireccion: centro.idDireccion,
     },
-    data:{
+    data: {
       provincia: centro.provinciaValue,
       canton: centro.cantonValue,
-      senas: centro.senas
-    }
-  })
-
+      senas: centro.senas,
+    },
+  });
 
   const newHorario = await prisma.horario.update({
-    where:{
-      idHorario: centro.idHorario
+    where: {
+      idHorario: centro.idHorario,
     },
-    data:{
+    data: {
       dias: centro.dias,
-      horas: centro.horas
-    }
-  })
+      horas: centro.horas,
+    },
+  });
 
   const newCentro = await prisma.centro.update({
     where: {
@@ -243,4 +255,39 @@ module.exports.update = async (request, response, next) => {
   });
 
   response.json(newCentro);
+};
+
+module.exports.changeEstado = async (request, response, next) => {
+  let idCentro = parseInt(request.params.idCentro);
+
+  const centro = await prisma.centro.findUnique({
+    where: { idCentro: idCentro },
+    include: {
+      administrador: true,
+      direccion: true,
+      horario: true,
+      materiales: {
+        select: {
+          nombre: true,
+          descripcion: true,
+          imagen: true,
+          color: true,
+          valor: true,
+          idMaterial: true
+        },
+      },
+    },
+  });
+
+  const newCentro = await prisma.centro.update({
+    where: {
+      idCentro: idCentro,
+    },
+    data: {
+      estado: !centro.estado
+    },
+  });
+  
+  response.json(newCentro);
+
 };

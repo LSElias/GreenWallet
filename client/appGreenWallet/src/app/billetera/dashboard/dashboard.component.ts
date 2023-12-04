@@ -48,4 +48,13 @@ export class DashboardComponent implements OnInit {
         this.billetera = response;
       });
   }
+  
+  onResize(event) {
+    this.breakpoint = event.target.innerWidth <= 1080 ? 1 : 3;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

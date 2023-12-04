@@ -1,30 +1,79 @@
 <div>
   <div class="container-vh100 bg">
     <div>
-      <h1> Nuestros centros</h1>
+      <h1>Nuestros centros</h1>
     </div>
     <div class="container-int">
       <div class="menu-option">
+        <h4>Busca tu centro</h4>
+        <div class="search-options">
+        <mat-form-field style="min-width: 25%; margin: 1%">
+          <mat-label>Nombre del Centro</mat-label>
+          <input matInput #filtro (change)="filterName(filtro.value)" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field style="min-width: 25%; margin: 1%">
+          <mat-select
+            placeholder="Provincia"
+            multiple="false"
+            #prov
+            (selectionChange)="filterProv($event.value)"
+          >
+            <div *ngFor="let item of provincias">
+              <mat-option [value]="item.value"> {{ item.value }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="min-width: 25%; margin: 1%">
+          <mat-select
+            placeholder="Materiales"
+            formControlName="materiales"
+            (selectionChange)="filterMat($event.value)"
+          >
+            <div *ngFor="let item of matList">
+              <mat-option [value]="item.idMaterial">{{
+                item.nombre
+              }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        <hr />
         <ul>
-          <div *ngFor="let item of datos">
-            <li  (click)="changeData(item)">
-              ➺ {{ item.nombre }}
-            </li>
+          <div *ngFor="let item of filterDatos">
+            <li (click)="changeData(item)">➺ {{ item.nombre }}</li>
           </div>
         </ul>
       </div>
       <div id="changeable" class="select-detail">
         <div *ngIf="datos != null">
-        <h3 id="title">{{datos[0].nombre}}</h3>
-        <hr/>
-        <p> <b>Administrador:</b> <span id="admin"> {{datos[0].administrador}} </span> </p>
-        <p> <b>Teléfono:</b> <span id="tel"> {{datos[0].telefono}} </span> </p>
-        <p> <b>Sede:</b> <span id="sede"> {{datos[0].sede}} </span></p>
-        <hr/>
-        <div class="button-part">
-          <button class="botoncito" mat-raised-button id="{{datos[0].idCentro}}" color="warn" (click)="redirect()">Más Información</button>
+          <h3 id="title">{{ datos[0].nombre }}</h3>
+          <hr />
+          <p>
+            <b>Administrador:</b>
+            <span id="admin"> {{ datos[0].administrador }} </span>
+          </p>
+          <p>
+            <b>Teléfono:</b> <span id="tel"> {{ datos[0].telefono }} </span>
+          </p>
+          <p>
+            <b>Sede:</b> <span id="sede"> {{ datos[0].sede }} </span>
+          </p>
+          <hr />
+          <div class="button-part">
+            <button
+              class="botoncito"
+              mat-raised-button
+              id="{{ datos[0].idCentro }}"
+              color="warn"
+              (click)="redirect()"
+            >
+              Más Información
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
