@@ -24,6 +24,8 @@ const routes: Routes = [
   ]
   },
   {path:'usuario/detalle/:id', component: UsuarioDetalleComponent},
+  {path:'usuario/actualizar/:id', component: CrearAdminComponent},
+
 
 ];
 
