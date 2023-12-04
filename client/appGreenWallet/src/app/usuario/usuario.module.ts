@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
 import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.component';
+import { CrearAdminComponent } from './crear-admin/crear-admin.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.compo
     UsuarioCreateComponent,
     AllComponent,
     UsuarioDetalleComponent,
+    CrearAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -69,6 +71,7 @@ import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.compo
     UsuarioCreateComponent,
     AllComponent,
     UsuarioDetalleComponent,
+    CrearAdminComponent,
   ]
 })
 export class UsuarioModule { }
