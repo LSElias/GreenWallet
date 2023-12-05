@@ -515,7 +515,7 @@ async function main() {
     data: {
       idCentro: 1,
       idUsuario: 7,
-      fecha: new Date("2023-10-29"),
+      fecha: new Date("2023-12-29"),
       total: 18,
       canjeoDet: {
         createMany: {
@@ -532,7 +532,7 @@ async function main() {
     data: {
       idCentro: 1,
       idUsuario: 7,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 18,
       canjeoDet: {
         createMany: {
@@ -549,7 +549,7 @@ async function main() {
     data: {
       idCentro: 2,
       idUsuario: 9,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 15,
       canjeoDet: {
         createMany: {
@@ -565,7 +565,7 @@ async function main() {
     data: {
       idCentro: 2,
       idUsuario: 10,
-      fecha: new Date("2023-10-31"),
+      fecha: new Date("2023-12-31"),
       total: 15,
       canjeoDet: {
         createMany: {
@@ -581,7 +581,7 @@ async function main() {
     data: {
       idCentro: 2,
       idUsuario: 7,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 15,
       canjeoDet: {
         createMany: {
@@ -597,7 +597,7 @@ async function main() {
     data: {
       idCentro: 2,
       idUsuario: 8,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 18,
       canjeoDet: {
         createMany: {
@@ -615,7 +615,7 @@ async function main() {
     data: {
       idCentro: 3,
       idUsuario: 7,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 15,
       canjeoDet: {
         createMany: {
@@ -632,7 +632,7 @@ async function main() {
     data: {
       idCentro: 4,
       idUsuario: 8,
-      fecha: new Date("2023-10-30"),
+      fecha: new Date("2023-12-30"),
       total: 18,
       canjeoDet: {
         createMany: {
