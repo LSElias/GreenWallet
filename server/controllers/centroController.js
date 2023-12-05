@@ -291,3 +291,54 @@ module.exports.changeEstado = async (request, response, next) => {
   response.json(newCentro);
 
 };
+
+////// Reportes 
+
+///Admin General 
+
+/*Cant Total de Canjes de Materiales*/
+module.exports.getCanjes= async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT COUNT(distinct c.idCanjeo) AS total FROM canjeo c JOIN canjeodet cd ON cd.idCanjeo = c.idCanjeo JOIN usuario u ON c.idUsuario = u.idUsuario WHERE MONTH(c.fecha) = MONTH(NOW())`
+   )
+  response.json(result);
+};
+
+/*Estadistica ecom producidas x centro año actual */   
+module.exports.getEcomonedas= async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT ce.nombre as centro, SUM(total) AS total FROM canjeo c JOIN centro ce ON c.idCentro = ce.idCentro WHERE YEAR(c.fecha) = YEAR(NOW()) AND c.idCentro and ce.idCentro GROUP BY ce.idCentro ORDER BY total DESC`
+   )
+  response.json(result);
+};
+
+/*Sum de tot eco generadas por c. centro */
+module.exports.getTotalEcom = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT c.nombre AS centro, SUM(m.valor) AS ecomonedas FROM centro c JOIN _centrotomaterial cm ON c.idCentro = cm.A JOIN material m ON cm.B = m.idMaterial WHERE cm.B = m.idMaterial GROUP BY c.nombre ORDER BY ecomonedas DESC`
+   )
+  response.json(result);
+};
+
+/* Cant Canjes de cupones año actual*/
+module.exports.getCupones = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT COUNT(*) AS cantidad FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
+   )
+  response.json(result);
+};
+
+/* Total de ecomo utilizadas en los cupones del año actual*/
+module.exports.getCuponesEco = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT SUM(r.valor) AS ecomonedas FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
+   )
+  response.json(result);
+};
+
+
