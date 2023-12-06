@@ -399,7 +399,7 @@ async function main() {
   await prisma.billetera.create({
     data: {
       idUsuario: 7,
-      disponibles: 40,
+      disponibles: 30,
       canjeadas: 80,
       total: 120,
     },
@@ -407,7 +407,7 @@ async function main() {
   await prisma.billetera.create({
     data: {
       idUsuario: 8,
-      disponibles: 50,
+      disponibles: 100,
       canjeadas: 80,
       total: 130,
     },
@@ -415,7 +415,7 @@ async function main() {
   await prisma.billetera.create({
     data: {
       idUsuario: 9,
-      disponibles: 50,
+      disponibles: 100,
       canjeadas: 50,
       total: 100,
     },
@@ -423,7 +423,7 @@ async function main() {
   await prisma.billetera.create({
     data: {
       idUsuario: 10,
-      disponibles: 50,
+      disponibles: 200,
       canjeadas: 170,
       total: 100,
     },

@@ -58,7 +58,7 @@ export class ReporteCentroComponent implements OnInit {
 
 /* Cant Canjes por material en año act */ 
     this.gService
-    .get('centro/material', 3)
+    .get('centro/material', this.currentUser.idUsuario)
     .pipe(takeUntil(this.destroy$))
     .subscribe((data: any) => {
       this.material = data;
@@ -77,7 +77,7 @@ export class ReporteCentroComponent implements OnInit {
 
   getInfo() {
     this.gService
-      .get('centro/info', 3)
+      .get('centro/info', this.currentUser.idUsuario)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         console.log(response);
@@ -186,7 +186,7 @@ export class ReporteCentroComponent implements OnInit {
 getEcoCentro() {
 
   this.gService
-    .get('centro/ecomoneda',3)
+    .get('centro/ecomoneda',this.currentUser.idUsuario)
     .pipe(takeUntil(this.destroy$))
     .subscribe((response: any) => {
       console.log(response);
@@ -198,7 +198,7 @@ getEcoCentro() {
 getCanjesMaterial() {
 
   this.gService
-    .get('centro/canjes',3)
+    .get('centro/canjes',this.currentUser.idUsuario)
     .pipe(takeUntil(this.destroy$))
     .subscribe((response: any) => {
       console.log(response);

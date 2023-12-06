@@ -7,12 +7,20 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { authGuard } from '../share/auth.guard';
 
 const routes: Routes = [
-  {path:'canjeo/historial', component: HistorialComponent },
-  {path:'canjeo/registrar', component: RegistrarComponent},
-  {path:'canjeo/admin/historial', component: AdminHistorialComponent },
-  {path:'canjeo/detalle/:id', component: DetalleComponent },
+  {path:'canjeo/historial', component: HistorialComponent,
+  canActivate:[authGuard], data:{rol:[3]} },
+  
+  {path:'canjeo/registrar', component: RegistrarComponent,
+    canActivate:[authGuard], data:{rol:[2]}},
+  
+  {path:'canjeo/admin/historial', component: AdminHistorialComponent,
+          canActivate:[authGuard], data:{rol:[2]}},
+  
+  {path:'canjeo/detalle/:id', component: DetalleComponent,
+          canActivate:[authGuard], data:{rol:[2,3]} },
 ];
 
 @NgModule({
