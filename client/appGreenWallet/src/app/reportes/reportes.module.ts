@@ -12,11 +12,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReporteCentroComponent } from './reporte-centro/reporte-centro.component';
 
 
 @NgModule({
   declarations: [
-    ReporteGeneralComponent
+    ReporteGeneralComponent,
+    ReporteCentroComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     FormsModule, ReactiveFormsModule,
 
+  ],
+  exports: [
+    ReporteCentroComponent
   ]
 })
 export class ReportesModule { }

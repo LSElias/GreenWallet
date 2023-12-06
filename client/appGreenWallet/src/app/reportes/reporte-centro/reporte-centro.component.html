@@ -1,0 +1,40 @@
+<div class="vh-100">
+    <mat-card class="shipping-card">
+      <h1 style="margin: 40px 0;"> ¡Bienvenido nuevamente a {{info}}!</h1>
+
+      <mat-card-content>
+        <div class="divider">
+          <div class="left-grid">
+            <div class="row" style="width: 100%; margin-left: 100px;">
+              <div class="holder">
+                <div class="col" style="min-width: 45%">
+                  <canvas #canjesMaterial  class="chart" style="min-width: 50%;">{{material}}</canvas>
+                </div>
+                
+              </div>
+            </div>
+          <br>
+          <hr />
+          <br>
+
+            <div class="row">
+              <div class="holder" style="margin: 0 50px;">
+                  <div class="col" style="min-width: 50%;">
+                      <h3 >Cantidad de canjes de materiales realizados</h3>
+                      <h4 style="margin-top: 10px; font-style: italic;" >(Mes actual)</h4>
+                      <h3 style="margin-top: 30px;">{{canjes}}</h3>
+                  </div>
+
+                <div class="col" style="min-width: 50%">
+                  <h3 >Total de eco-monedas generadas</h3>
+                  <h3 style="margin-top: 50px;">{{ecomoneda}} </h3>
+              </div>  
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+</div>
+
