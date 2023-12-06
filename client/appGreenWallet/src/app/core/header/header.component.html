@@ -27,6 +27,7 @@
         <mat-icon>logout</mat-icon>
       </button>
       <button
+      *ngIf="this.currentUser?.rol===3"
       mat-icon-button
       class="nav-item"
       (click)="redirect('billetera')"
@@ -35,6 +36,7 @@
       <mat-icon>wallet</mat-icon>
     </button>
         <button
+        *ngIf="[1, 2, 3].includes(this.currentUser?.rol)"
           mat-icon-button
           class="nav-item"
           aria-label="Example icon-button with menu icon"
@@ -67,68 +69,68 @@
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="redirect('/')">
+        <button mat-button  *ngIf="isAutenticated" (click)="perfil()">
           <mat-icon> face </mat-icon> Perfil
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button (click)="redirect('usuario/login')">
+        <button mat-button  *ngIf="isAutenticated" (click)="logout()">
           <mat-icon> door_front </mat-icon> Cerrar Sesión
         </button>
       </mat-list-item>
       <!--Esto se elimina cuando se hayan hecho los logeos-->
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===3">
         <h4>Cliente</h4>
       </mat-list-item>
-      <hr />
-      <mat-list-item>
+      <hr *ngIf="this.currentUser?.rol===3"/>
+      <mat-list-item *ngIf="this.currentUser?.rol===3">
         <button mat-button (click)="redirect('canjeo/historial')">
           <mat-icon> history </mat-icon> Historial de Canjeos
         </button>
       </mat-list-item>
       <!--Esto se elimina cuando se hayan hecho los logeos-->
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===2">
         <h4>Administrador de Centro</h4>
       </mat-list-item>
-      <hr />
-      <mat-list-item>
+      <hr *ngIf="this.currentUser?.rol===2"/>
+      <mat-list-item *ngIf="this.currentUser?.rol===2">
         <button mat-button (click)="redirect('canjeo/admin/historial')">
           <mat-icon> history </mat-icon> Historial de Canjeos — Administrador de
           Centro
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===2">
         <button (click)="redirect('canjeo/registrar')" mat-button>
           <mat-icon>swap_horiz</mat-icon>
           Canjear Materiales
         </button>
       </mat-list-item>
       <!--Esto se elimina cuando se hayan hecho los logeos-->
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <h4>Administrador General</h4>
       </mat-list-item>
-      <hr />
-      <mat-list-item>
+      <hr *ngIf="this.currentUser?.rol===1" />
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <button (click)="redirect('centros/mantenimiento')" mat-button>
           <mat-icon> build </mat-icon> Mantenimiento de Centros
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <button (click)="redirect('usuario/mantenimiento')" mat-button>
           <mat-icon> build </mat-icon> Mantenimiento de Clientes
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <button (click)="redirect('usuario/administradores')" mat-button>
           <mat-icon> build </mat-icon> Mantenimiento de Administradores
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <button (click)="redirect('materiales/mantenimiento')" mat-button>
           <mat-icon> build </mat-icon> Mantenimiento de Materiales
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="this.currentUser?.rol===1">
         <button (click)="redirect('recompensa/mantenimiento')" mat-button>
           <mat-icon> build </mat-icon> Mantenimiento de Recompensas
         </button>

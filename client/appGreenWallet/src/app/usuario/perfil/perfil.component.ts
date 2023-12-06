@@ -38,6 +38,9 @@ export class PerfilComponent {
     distritos: any;
     provinciaId: any;
     cantonId: any;
+    breakpoint: number;
+    isAutenticated: boolean;
+    currentUser: any;
   
     constructor(
       public fb: FormBuilder,
@@ -101,14 +104,22 @@ export class PerfilComponent {
   
     /*Modificar*/
     ngOnInit(): void {
+      this.authService.decodeToken.subscribe((user: any) => {
+        this.currentUser = user;
+        console.log(this.currentUser);
+      });
+  
+      this.authService.isAuthenticated.subscribe(
+        (valor) => (this.isAutenticated = valor)
+      );
+
       this.activeRouter.params.subscribe((params: Params) => {
-        //this.idUsuario = params['id'];
-        this.idUsuario = 3; 
+
         if (this.idUsuario != undefined && !isNaN(Number(this.idUsuario))) {
           this.isCreate = false;
           this.titleForm = 'Actualizar';
           this.gService
-            .get('usuario/idU', this.idUsuario)
+            .get('usuario/idU', this.currentUser.idUsuario)
             .pipe(takeUntil(this.destroy$))
             .subscribe((data: any) => {
               this.userInfo = data;
