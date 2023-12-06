@@ -301,15 +301,18 @@ module.exports.getCanjes= async (request, response, next) => {
   
   const result = await prisma.$queryRaw(
     Prisma.sql`SELECT COUNT(distinct c.idCanjeo) AS total FROM canjeo c JOIN canjeodet cd ON cd.idCanjeo = c.idCanjeo JOIN usuario u ON c.idUsuario = u.idUsuario WHERE MONTH(c.fecha) = MONTH(NOW())`
-   )
-  response.json(result);
+   );
+
+   const totalCanjes = Number(result[0].total); 
+
+  response.json({totalCanjes});
 };
 
 /*Estadistica ecom producidas x centro año actual */   
 module.exports.getEcomonedas= async (request, response, next) => {
   
   const result = await prisma.$queryRaw(
-    Prisma.sql`SELECT ce.nombre as centro, SUM(total) AS total FROM canjeo c JOIN centro ce ON c.idCentro = ce.idCentro WHERE YEAR(c.fecha) = YEAR(NOW()) AND c.idCentro and ce.idCentro GROUP BY ce.idCentro ORDER BY total DESC`
+    Prisma.sql`SELECT ce.nombre as nombre, SUM(total) AS total FROM canjeo c JOIN centro ce ON c.idCentro = ce.idCentro WHERE YEAR(c.fecha) = YEAR(NOW()) AND c.idCentro and ce.idCentro GROUP BY ce.idCentro ORDER BY total DESC`
    )
   response.json(result);
 };
@@ -329,7 +332,10 @@ module.exports.getCupones = async (request, response, next) => {
   const result = await prisma.$queryRaw(
     Prisma.sql`SELECT COUNT(*) AS cantidad FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
    )
-  response.json(result);
+
+   const cupon = Number(result[0].cantidad); 
+
+  response.json({cupon});
 };
 
 /* Total de ecomo utilizadas en los cupones del año actual*/
@@ -338,7 +344,10 @@ module.exports.getCuponesEco = async (request, response, next) => {
   const result = await prisma.$queryRaw(
     Prisma.sql`SELECT SUM(r.valor) AS ecomonedas FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
    )
-  response.json(result);
+   
+   const eco = Number(result[0].ecomonedas); 
+
+  response.json(eco);
 };
 
 

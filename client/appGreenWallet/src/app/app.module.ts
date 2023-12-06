@@ -35,9 +35,8 @@ import { ReportesModule } from './reportes/reportes.module';
     CentroModule,
     MaterialesModule,
     CanjeoModule,
-
+    ReportesModule,
     AppRoutingModule,
-      ReportesModule,
   ],
 
   providers: [{
