@@ -8,13 +8,19 @@ import { UsuarioDetalleComponent } from './usuario-detalle/usuario-detalle.compo
 import { CrearAdminComponent } from './crear-admin/crear-admin.component';
 import { AllAdmisComponent } from './all-admis/all-admis.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { authGuard } from '../share/auth.guard';
 
 const routes: Routes = [
   
-  {path:'usuario/mantenimiento', component: AllComponent},
-  {path:'usuario/administradores', component: AllAdmisComponent},
+  {path:'usuario/mantenimiento', component: AllComponent,
+  canActivate:[authGuard], data:{rol:[1]}},
 
-  {path:'usuario/crear', component: CrearAdminComponent},
+  {path:'usuario/administradores', component: AllAdmisComponent,
+  canActivate:[authGuard], data:{rol:[1]}},
+
+  {path:'usuario/crear', component: CrearAdminComponent,
+  canActivate:[authGuard], data:{rol:[1]}},
+
   {
   path: 'usuario',
   component: UsuarioIndexComponent,    
@@ -27,9 +33,14 @@ const routes: Routes = [
     }
   ]
   },
-  {path:'usuario/detalle/:id', component: UsuarioDetalleComponent},
-  {path:'usuario/actualizar/:id', component: CrearAdminComponent},
-  {path:'usuario/act/:id', component: PerfilComponent},
+  {path:'usuario/detalle/:id', component: UsuarioDetalleComponent,
+  canActivate:[authGuard], data:{rol:[1]}},
+ 
+  {path:'usuario/actualizar/:id', component: CrearAdminComponent,
+  canActivate:[authGuard], data:{rol:[1]}},
+ 
+  {path:'usuario/act/:id', component: PerfilComponent,
+  canActivate:[authGuard], data:{rol:[1,2,3]}},
 
 
 ];
