@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.shipping-card {
+  margin-top: -40px;
+  height: auto;
+  border-radius: 40;
+  padding: 2px;
+  display: flex;
+
+  background-color: rgba(255, 255, 255, 0.89);
+  border-radius: 80px;
+  text-align: center;
+}
+
+.vh-100 {
+  min-height: 80vh;
+  height: fit-content;
+  padding: 20vh 5vh;
+  background-color: #1c462f;
+  background-image: url("../../../assets/images/bg-form.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+
+mat-card-content {
+  margin: 60px auto;
+}
+
+.holder {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+
+canvas {
+  height: 300px;
+  display: block;
+  width: 100%;
+  margin: 5px auto;
+}
+
+.divider {
+  display: flex;
+}
+.row { 
+  display: flex;
+  justify-content: center;
+}
+.col h3, h4, h1 {
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
