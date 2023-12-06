@@ -4,7 +4,7 @@ import { ReporteGeneralComponent } from './reporte-general/reporte-general.compo
 
 const routes: Routes = [
   {
-    path: 'centro/reportes',
+    path: 'centro/general',
     component: ReporteGeneralComponent,
   },
 ];
