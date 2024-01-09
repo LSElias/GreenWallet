@@ -18,18 +18,17 @@ export class UserGuard {
   checkUserLogin(route: ActivatedRouteSnapshot): boolean {
     if (this.auth) {
       const userRole = this.currentUser.rol;
-      //roles.length && roles.indexOf(verify.role)===-1
       if (
         route.data['rol'].length &&
         !route.data['rol'].includes(userRole)
       ) {
         this.noti.mensajeRedirect(
           'Usuario',
-          `Usuario Sin permisos para acceder`,
+          `Usuario sin permisos para acceder`,
           TipoMessage.warning,
-          '/usuario/login'
+          '/'
         );
-        this.router.navigate(['/usuario/login']);
+        this.router.navigate(['/']);
         return false;
       }
       return true;
@@ -38,7 +37,7 @@ export class UserGuard {
       'Usuario',
       `Usuario No autenticado`,
       TipoMessage.warning,
-      '/usuario/login'
+      '/'
     );
     return false;
   }

@@ -1,7 +1,7 @@
 <form [formGroup]="formCreate" novalidate>
   <mat-card class="shipping-card">
     <mat-card-header style="justify-content: center; margin: 0 0 15px 0">
-      <mat-card-title>Registrarse </mat-card-title>
+      <h3 style="margin: 10px 0;">Registro</h3>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -18,7 +18,7 @@
               Nombre es <strong>requerido</strong>
             </mat-error>
             <mat-error *ngIf="errorHandling('nombre', 'minlength')">
-                El nombre debe tener al menos <strong>cinco</strong> caracteres
+                El nombre debe tener al menos <strong>tres</strong> caracteres
               </mat-error>
           </mat-form-field>
         </div>
@@ -37,7 +37,7 @@
               El primer apellido es <strong>requerido</strong>
             </mat-error>
             <mat-error *ngIf="errorHandling('apellido1', 'minlength')">
-                El primer apellido debe tener al menos <strong>cinco</strong> caracteres
+                El primer apellido debe tener al menos <strong>tres</strong> caracteres
               </mat-error>
           </mat-form-field>
         </div>
@@ -54,7 +54,7 @@
               El segundo apellido es <strong>requerido</strong>
             </mat-error>
             <mat-error *ngIf="errorHandling('apellido2', 'minlength')">
-                El segundo apellido debe tener al menos <strong>cinco</strong> caracteres
+                El segundo apellido debe tener al menos <strong>tres</strong> caracteres
               </mat-error>
           </mat-form-field>
         </div>
@@ -146,7 +146,7 @@
           </mat-form-field>
         </div>
       </div>
-      <h3>Dirección</h3>
+      <h4>Dirección</h4>
       <div class="row">
         <div class="col">
           <mat-form-field style="min-width: 30%">

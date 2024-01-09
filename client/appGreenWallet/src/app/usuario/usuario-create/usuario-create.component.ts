@@ -25,6 +25,7 @@ export class UsuarioCreateComponent implements OnInit {
   hide = true;
   usuario: any;
   rol: any;
+  rolValue: any;
   formCreate: FormGroup;
   makeSubmit: boolean = false;
   provincias: Provincia[];
@@ -34,10 +35,10 @@ export class UsuarioCreateComponent implements OnInit {
   activeRouter: any;
   provin: any;
   canto: any;
-  submitted= false;
-  respCreate: any; 
+  submitted = false;
+  respCreate: any;
   genericService: any;
-  distritos: any; 
+  distritos: any;
   provinciaId: any;
   cantonId: any;
 
@@ -58,69 +59,48 @@ export class UsuarioCreateComponent implements OnInit {
   reactiveForm() {
     this.formCreate = this.fb.group({
       rol: [null, null],
-      provinciaValue: [null,null],
-      cantonValue: [null,null],
-      distritoValue: [null,null],      
-      nombre: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
-      apellido1: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
-      apellido2: ['',  Validators.compose([Validators.required, Validators.minLength(5)]),],
-      correo: ['', [Validators.required,Validators.email]],
+      provinciaValue: [null, null],
+      cantonValue: [null, null],
+      distritoValue: [null, null],
+      rolValue: [null, null],
+      nombre: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      apellido1: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      apellido2: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required]],
-      cedula: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-      telefono: ['',  Validators.compose([
-        Validators.required,
-        Validators.pattern(this.numRegex),
-        Validators.minLength(8),
-        Validators.maxLength(8),]),
+      cedula: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(5)]),
+      ],
+      telefono: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(this.numRegex),
+          Validators.minLength(8),
+          Validators.maxLength(8),
+        ]),
       ],
       provincia: [null, Validators.required],
       canton: [null, Validators.required],
       distrito: [null, Validators.required],
-      senas: [null,
+      senas: [
+        null,
         Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
     });
   }
 
   ngOnInit(): void {}
-
-  submitForm(): void  { 
-     this.submitted = true;
-     
-    this.provincias.forEach(element => {
-      if(element.id == this.formCreate.get('provincia').value){
-        this.formCreate.patchValue({provinciaValue: element.value})
-      }
-    });
-
-    this.cantones.forEach(element => {
-      if(element.id == this.formCreate.get('canton').value){
-        this.formCreate.patchValue({cantonValue: element.value})
-      }
-    });
-
-    this.formCreate.get("rol").setValue(this.rol);
-
-    //Validación
-    if (this.formCreate.invalid) {
-      return;
-    }
-
-    console.log(this.formCreate.value)
-    //Registrar usuario
-    this.authService
-      .createUser(this.formCreate.value)
-      .subscribe((respuesta: any) => {
-        this.respCreate = respuesta;
-        this.noti.mensajeRedirect(
-          'Usuario',
-          'Usuario creado ',
-          TipoMessage.success,
-          '/'
-        );
-      this.router.navigate(['/usuario/login']);
-      });
-  }
 
   listaProvincias() {
     let prov: Provincia[] = [];
@@ -170,26 +150,26 @@ export class UsuarioCreateComponent implements OnInit {
   }
 
   listaDistrito() {
-    let dist : Provincia[] = []
+    let dist: Provincia[] = [];
     let jsonresponse: any;
     let request = new XMLHttpRequest();
 
-    if(this.provincias!=null){
-      this.provincias.forEach(element => {
-        if(element.id == this.formCreate.get('provincia').value){
-          this.formCreate.patchValue({provinciaValue: element.value})
-          this.provinciaId = element.id; 
+    if (this.provincias != null) {
+      this.provincias.forEach((element) => {
+        if (element.id == this.formCreate.get('provincia').value) {
+          this.formCreate.patchValue({ provinciaValue: element.value });
+          this.provinciaId = element.id;
         }
       });
     }
-      if (this.cantones != null) {
-        this.cantones.forEach(element => {
-          if(element.id == this.formCreate.get('canton').value){
-            this.formCreate.patchValue({cantonValue: element.value})
-            this.cantonId = element.id; 
-          }
-        });
-      }
+    if (this.cantones != null) {
+      this.cantones.forEach((element) => {
+        if (element.id == this.formCreate.get('canton').value) {
+          this.formCreate.patchValue({ cantonValue: element.value });
+          this.cantonId = element.id;
+        }
+      });
+    }
 
     if (this.provinciaId != null && !Number.isNaN(this.provinciaId)) {
       let request = new XMLHttpRequest();
@@ -213,22 +193,68 @@ export class UsuarioCreateComponent implements OnInit {
     }
   }
 
+  getInfo() {
+    var id = 3;
+    this.gService
+      .get('datos/rol', id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: any) => {
+        this.rol = response.idRol;
+        this.rolValue = response.nombre; 
+      });
+  }
+
+  submitForm(): void {
+    this.submitted = true;
+
+    if (this.provincias != null) {
+      this.provincias.forEach((element) => {
+        if (element.id == this.formCreate.get('provincia').value) {
+          this.formCreate.patchValue({ provinciaValue: element.value });
+        }
+      });
+    }
+
+    if (this.cantones != null) {
+      this.cantones.forEach((element) => {
+        if (element.id == this.formCreate.get('canton').value) {
+          this.formCreate.patchValue({ cantonValue: element.value });
+        }
+      });
+    }
+
+    if (this.distritos != null) {
+      this.distritos.forEach((element) => {
+        if (element.id == this.formCreate.get('distrito').value) {
+          this.formCreate.patchValue({ distritoValue: element.value });
+        }
+      });
+    }
 
 
+   this.formCreate.get('rol').setValue(this.rol);
+   this.formCreate.get('rolValue').setValue(this.rolValue);
 
 
+    //Validación
+    if (this.formCreate.invalid) {
+      return;
+    }
 
-
-
-
-  getInfo(){
-    var id= 3
-    this.gService.get('datos/rol', id)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((response: any) => {
-      console.log(response);
-      this.rol=response;
-    });
+    console.log(this.formCreate.value);
+    //Registrar usuario
+    this.authService
+      .createUser(this.formCreate.value)
+      .subscribe((respuesta: any) => {
+        this.respCreate = respuesta;
+        this.noti.mensajeRedirect(
+          'Usuario',
+          'Usuario creado ',
+          TipoMessage.success,
+          '/'
+        );
+        this.router.navigate(['/usuario/login']);
+      });
   }
 
   onReset() {

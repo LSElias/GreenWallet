@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 import { RecompensaModule } from './recompensa/recompensa.module';
 import { BilleteraModule } from './billetera/billetera.module';
+import { ReportesModule } from './reportes/reportes.module';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { BilleteraModule } from './billetera/billetera.module';
     CentroModule,
     MaterialesModule,
     CanjeoModule,
-
+    ReportesModule,
     AppRoutingModule,
   ],
 

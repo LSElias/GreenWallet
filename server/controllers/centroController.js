@@ -291,3 +291,102 @@ module.exports.changeEstado = async (request, response, next) => {
   response.json(newCentro);
 
 };
+
+////// Reportes 
+
+///Admin General 
+
+/*Cant Total de Canjes de Materiales*/
+module.exports.getCanjes= async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT COUNT(distinct c.idCanjeo) AS total FROM canjeo c JOIN canjeodet cd ON cd.idCanjeo = c.idCanjeo JOIN usuario u ON c.idUsuario = u.idUsuario WHERE MONTH(c.fecha) = MONTH(NOW())`
+   );
+
+   const totalCanjes = Number(result[0].total); 
+
+  response.json({totalCanjes});
+};
+
+/*Estadistica ecom producidas x centro año actual */   
+module.exports.getEcomonedas= async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT ce.nombre as nombre, SUM(total) AS total FROM canjeo c JOIN centro ce ON c.idCentro = ce.idCentro WHERE YEAR(c.fecha) = YEAR(NOW()) AND c.idCentro and ce.idCentro GROUP BY ce.idCentro ORDER BY total DESC`
+   )
+  response.json(result);
+};
+
+/*Sum de tot eco generadas por c. centro */
+module.exports.getTotalEcom = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT c.nombre AS centro, SUM(m.valor) AS ecomonedas FROM centro c JOIN _centrotomaterial cm ON c.idCentro = cm.A JOIN material m ON cm.B = m.idMaterial WHERE cm.B = m.idMaterial GROUP BY c.nombre ORDER BY ecomonedas DESC`
+   )
+  response.json(result);
+};
+
+/* Cant Canjes de cupones año actual*/
+module.exports.getCupones = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT COUNT(*) AS cantidad FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
+   )
+
+   const cupon = Number(result[0].cantidad); 
+
+  response.json({cupon});
+};
+
+/* Total de ecomo utilizadas en los cupones del año actual*/
+module.exports.getCuponesEco = async (request, response, next) => {
+  
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT SUM(r.valor) AS ecomonedas FROM cupon c JOIN usuario u ON c.idUsuario = u.idUsuario JOIN recompensa r ON c.idRecompensa = r.idRecompensas WHERE YEAR(r.fechaAdquision) = YEAR(NOW())`
+   )
+   
+   const eco = Number(result[0].ecomonedas); 
+
+  response.json(eco);
+};
+
+//Admin Centro
+
+/* Nombre*/
+module.exports.getCentroByIAdmin = async (request, response, next) => {
+  let idAdmin = parseInt(request.params.idAdmin); 
+  const result = await prisma.$queryRaw(
+    Prisma.sql`Select c.nombre as nombre from centro c where c.idAdmin = ${idAdmin}`
+  )
+  response.json(result);
+};
+
+/* Cant Canjes de Materiales en mes actual */ 
+module.exports.getCanjesByIAdmin = async (request, response, next) => {
+  let idAdmin = parseInt(request.params.idAdmin); 
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT COUNT(distinct c.idCanjeo) AS total FROM canjeo c JOIN canjeodet cd ON cd.idCanjeo = c.idCanjeo JOIN usuario u ON c.idUsuario = u.idUsuario JOIN centro t ON c.idCentro = t.idCentro WHERE MONTH(c.fecha) = MONTH(NOW()) AND t.idAdmin = ${idAdmin}`
+  )
+  const canjes = Number(result[0].total)
+  response.json(canjes);
+};
+
+    
+/*Total de ecomonedas generadas por centro  */
+module.exports.getEcoByIAdmin = async (request, response, next) => {
+  let idAdmin = parseInt(request.params.idAdmin); 
+  const result = await prisma.$queryRaw(
+    Prisma.sql` SELECT SUM(m.valor) AS ecomonedas FROM centro c JOIN _centrotomaterial cm ON c.idCentro = cm.A JOIN material m ON cm.B = m.idMaterial JOIN usuario u ON c.idAdmin = u.idUsuario WHERE cm.B = m.idMaterial AND u.idUsuario = ${idAdmin} GROUP BY c.nombre ORDER BY ecomonedas DESC`
+  )
+  response.json(result);
+};
+
+
+/* Cant Canjes por material en año act */ 
+module.exports.getCanMatByIAdmin = async (request, response, next) => {
+  let idAdmin = parseInt(request.params.idAdmin); 
+  const result = await prisma.$queryRaw(
+    Prisma.sql`SELECT m.nombre AS material, SUM(cd.cantidad) AS cantidad_canjes FROM centro c JOIN canjeo ca ON c.idCentro = ca.idCentro JOIN canjeodet cd ON ca.idCanjeo = cd.idCanjeo JOIN material m ON cd.idMaterial = m.idMaterial WHERE YEAR(ca.fecha) = YEAR(NOW()) AND c.idAdmin = ${idAdmin} GROUP BY m.idMaterial, m.nombre ORDER BY cantidad_canjes DESC;`
+  )
+  response.json(result);
+};

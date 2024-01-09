@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-
+const auth= require("../middleware/auth")
 const materialController = require("../controllers/materialController");
 
-router.get("/", materialController.get);
+router.get("/",materialController.get);
 
-router.post("/", materialController.upload,
+router.post("/", auth.grantRole([1]), materialController.upload,
 materialController.create);
 
 
-router.put("/:idMaterial", materialController.upload,
+router.put("/:idMaterial", auth.grantRole([1]), materialController.upload,
 materialController.update);
 
 router.get("/:idMaterial", materialController.getByIdMat);
